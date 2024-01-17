@@ -27,6 +27,9 @@ public class Reservation {
     @Column(name = "reservationDate")
     private LocalDateTime reservationDate;
 
+    @Column(name = "startTime")
+    private String startTime;
+
     @Column(name = "roomName")
     private String roomName;
 
@@ -44,9 +47,10 @@ public class Reservation {
     private LocalDateTime reservationTime;
 
     @Builder
-    public Reservation(String owner, LocalDateTime reservationDate, String roomName, String phoneNumber, int numberOfPeople, int price) {
+    public Reservation(String owner, LocalDateTime reservationDate, String startTime, String roomName, String phoneNumber, int numberOfPeople, int price) {
         this.owner = owner;
         this.reservationDate = reservationDate;
+        this.startTime = startTime;
         this.roomName = roomName;
         this.phoneNumber = phoneNumber;
         this.numberOfPeople = numberOfPeople;
