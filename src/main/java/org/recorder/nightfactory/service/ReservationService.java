@@ -15,7 +15,7 @@ public class ReservationService {
 
         return reservationRepository.save(Reservation.builder()
                 .reservationDate(dto.getReservationDate())
-                .reservationName(dto.getReservationName())
+                .owner(dto.getOwner())
                 .roomName(dto.getRoomName())
                 .phoneNumber(dto.getPhoneNumber())
                 .numberOfPeople(dto.getNumberOfPeople())

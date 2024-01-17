@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Setter
 public class ReservationRequest {
     private LocalDateTime reservationDate;
-    private String reservationName;
+    private String owner;
     private String roomName;
     private String phoneNumber;
     private int numberOfPeople;

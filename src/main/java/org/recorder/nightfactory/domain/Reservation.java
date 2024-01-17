@@ -21,8 +21,8 @@ public class Reservation {
     @Column(name = "id", updatable = false)
     private Long id;
 
-    @Column(name = "reservationName", nullable = false)
-    private String reservationName;
+    @Column(name = "owner", nullable = false)
+    private String owner;
 
     @Column(name = "reservationDate")
     private LocalDateTime reservationDate;
@@ -44,8 +44,8 @@ public class Reservation {
     private LocalDateTime reservationTime;
 
     @Builder
-    public Reservation(String reservationName, LocalDateTime reservationDate, String roomName, String phoneNumber, int numberOfPeople, int price) {
-        this.reservationName = reservationName;
+    public Reservation(String owner, LocalDateTime reservationDate, String roomName, String phoneNumber, int numberOfPeople, int price) {
+        this.owner = owner;
         this.reservationDate = reservationDate;
         this.roomName = roomName;
         this.phoneNumber = phoneNumber;
