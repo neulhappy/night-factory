@@ -1,0 +1,19 @@
+spring:
+  jpa:
+    show-sql: true
+  datasource:
+    url: jdbc:mariadb://localhost:3306/test
+    hikari:
+      username: root
+      password: bitc5600
+      driver-class-name: org.mariadb.jdbc.Driver
+  devtools:
+    livereload:
+      enabled : true
+    remote :
+      restart:
+        enabled : false
+  thymeleaf:
+    cache: false
+
+
