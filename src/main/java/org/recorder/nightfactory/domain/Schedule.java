@@ -5,7 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
+
 
 @Table(name = "schedule")
 @NoArgsConstructor
@@ -13,16 +14,12 @@ import java.time.LocalDateTime;
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 public class Schedule {
-
     @Id
-    @OneToOne(targetEntity = Theme.class)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int Id;
+    @ManyToOne
     @JoinColumn(name = "room_id")
-    private int roomId;
-
-    @Column(name = "reservationDate")
-    private LocalDateTime reservationDate;
-
-    @Column(name = "startTime")
-    private String startTime;
+    private Theme theme;
+    private LocalTime startTime;
 
 }
