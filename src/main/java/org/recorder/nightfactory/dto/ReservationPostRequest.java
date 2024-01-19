@@ -7,9 +7,9 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 
+//TODO: 필요한 정보만 getter 직접 만들고 어노테이션 제거
 @Getter
-@Setter
-public class ReservationRequest {
+public class ReservationPostRequest {
     private LocalDateTime reservationDate;
     private LocalTime startTime;
     private String owner;
