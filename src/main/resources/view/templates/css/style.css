@@ -922,6 +922,8 @@ ol {
 
 .footer__nav {
 	text-align: center;
+	transform: translate(0, 180px);
+	padding-bottom: 20px;
 }
 
 .footer__nav ul li {
