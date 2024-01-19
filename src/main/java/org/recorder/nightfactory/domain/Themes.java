@@ -1,14 +1,18 @@
 package org.recorder.nightfactory.domain;
 
+import org.recorder.nightfactory.repository.ThemeRepository;
+
 import java.util.List;
 
 public class Themes {
+    private final List<Theme> themes;
 
-    private List<Theme> themes;
+    private Themes(ThemeRepository themeRepository) {
+        this.themes = (themeRepository.findAllByOrderByRoomIdAsc());
+    }
 
-
-    public void addTheme(Theme Theme) {
-        themes.add(Theme);
+    public static Themes generateThemes(ThemeRepository themeRepository) {
+        return new Themes(themeRepository);
     }
 }
 
