@@ -71,9 +71,9 @@
         navText: ["<span class='arrow_carrot-left'></span>", "<span class='arrow_carrot-right'></span>"],
         animateOut: 'fadeOut',
         animateIn: 'fadeIn',
-        smartSpeed: 1200,
+        smartSpeed: 0,
         autoHeight: false,
-        autoplay: true,
+        autoplay: false,
         mouseDrag: false
     });
 
