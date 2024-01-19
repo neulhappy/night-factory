@@ -1,27 +1,25 @@
-//package org.recorder.nightfactory.domain;
-//
-//import jakarta.persistence.*;
-//import lombok.Getter;
-//import lombok.NoArgsConstructor;
-//import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-//
-//import java.time.LocalDateTime;
-//
-//@Table(name = "schedule")
-//@NoArgsConstructor
-//@Getter
-//@Entity
-//@EntityListeners(AuditingEntityListener.class)
-//public class Schedule {
-//
-//    @ManyToOne(targetEntity = Thema.class)
-//    @JoinColumn(name = "RoomId")
-//    private roomd
-//
-//    @Column(name = "reservationDate")
-//    private LocalDateTime reservationDate;
-//
-//    @Column(name = "startTime")
-//    private String startTime;
-//
-//}
+package org.recorder.nightfactory.domain;
+
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.time.LocalTime;
+
+
+@Table(name = "schedule")
+@NoArgsConstructor
+@Getter
+@Entity
+@EntityListeners(AuditingEntityListener.class)
+public class Schedule {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int Id;
+    @ManyToOne
+    @JoinColumn(name = "room_id")
+    private Theme theme;
+    private LocalTime startTime;
+
+}
