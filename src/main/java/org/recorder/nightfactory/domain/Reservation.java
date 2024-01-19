@@ -27,30 +27,22 @@ public class Reservation {
     @Column(name = "reservationDate")
     private LocalDateTime reservationDate;
 
-    @Column(name = "roomName")
-    private String roomName;
-
     @Column(name = "phoneNumber")
     private String phoneNumber;
 
     @Column(name = "numberOfPeople")
     private int numberOfPeople;
 
-    @Column(name = "price")
-    private int price;
-
     @Column(name = "reservationTime")
     @LastModifiedDate
     private LocalDateTime reservationTime;
 
     @Builder
-    public Reservation(String owner, LocalDateTime reservationDate, String roomName, String phoneNumber, int numberOfPeople, int price) {
+    public Reservation(String owner, LocalDateTime reservationDate, String phoneNumber, int numberOfPeople) {
         this.owner = owner;
         this.reservationDate = reservationDate;
-        this.roomName = roomName;
         this.phoneNumber = phoneNumber;
         this.numberOfPeople = numberOfPeople;
-        this.price = price;
     }
 
     public boolean isReserved(){
