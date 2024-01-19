@@ -331,7 +331,7 @@ ol {
 }
 
 .header__logo {
-	padding: 20px 0 17px;
+	width: 300px;
 }
 
 .header__logo a {
@@ -339,7 +339,9 @@ ol {
 }
 
 .header__menu {
-	text-align: center;
+	text-align: right;
+	transform: translate(200px,0);
+	height: 100px;
 }
 
 .header__menu ul li {
@@ -347,6 +349,7 @@ ol {
 	display: inline-block;
 	position: relative;
 	margin-right: 16px;
+	transform: translate(0,20px);
 }
 
 .header__menu ul li.active a {
@@ -359,7 +362,7 @@ ol {
 }
 
 .header__menu ul li:hover .dropdown {
-	top: 62px;
+	top: 40px;
 	opacity: 1;
 	visibility: visible;
 }
@@ -375,9 +378,10 @@ ol {
 .header__menu ul li .dropdown {
 	position: absolute;
 	left: 0;
-	top: 82px;
+	top: 75px;
 	width: 150px;
-	background: #ffffff;
+	background: #bdbbbb;
+	border-radius: 20px;
 	text-align: left;
 	padding: 5px 0;
 	z-index: 9;
@@ -396,7 +400,7 @@ ol {
 .header__menu ul li .dropdown li a {
 	font-size: 14px;
 	color: #111111;
-	font-weight: 500;
+	font-weight: 600;
 	padding: 5px 20px;
 }
 
@@ -417,21 +421,6 @@ ol {
 	top: 2px;
 }
 
-.header__right {
-	text-align: right;
-	padding: 20px 0 15px;
-}
-
-.header__right a {
-	display: inline-block;
-	font-size: 18px;
-	color: #ffffff;
-	margin-right: 30px;
-}
-
-.header__right a:last-child {
-	margin-right: 0;
-}
 
 .slicknav_menu {
 	display: none;
@@ -500,27 +489,23 @@ ol {
 	-webkit-transition: all, 0.6s;
 	-o-transition: all, 0.6s;
 	transition: all, 0.6s;
-	line-height: 1.8;
+	line-height: 1.6;
 	text-align: left;
 	padding-top: 20px;
 
 }
 
-.hero__text_1 {
-	font-family: 'Dokdo', system-ui;
-	font-size:16em;
+.hero__text_1 p{
+	font-family: 'Dokdo', system-ui !important;
+	font-size:1.6rem;
 	text-align:center;
-	text-shadow: 0 -3px 0 #333,
-	0 6px 8px rgba(0,0,0,.4),
-	0 9px 10px rgba(0,0,0,.15),
-	0 30px 10px rgba(0,0,0,.18),
-	0 15px 10px rgba(0,0,0,.21);
+	color: #d33333;
 
-	animation: fade 5s infinite;
+	animation: fade 15s infinite;
 }
 
 @keyframes fade {
-	0% {opacity: 0}
+	0% {opacity: 1}
 	5% {opacity: 1}
 	25% {opacity: 1}
 	50% {opacity: 1}
@@ -531,20 +516,15 @@ ol {
 }
 
 
-.hero__text_2 {
+.hero__text_2 p{
 
-	font-family: 'Dokdo', system-ui;
-	font-size:16em;
+	font-family: 'Dokdo', system-ui !important;
+	font-size:1.6rem;
 	text-align:center;
-	text-shadow: 0 -3px 0 #333,
-	0 6px 8px rgba(0,0,0,.4),
-	0 9px 10px rgba(0,0,0,.15),
-	0 30px 10px rgba(0,0,0,.18),
-	0 15px 10px rgba(0,0,0,.21);
+	transform: translate(0, -700px);
+	color: #d33333;
 
-	transform: translate(0, -650px);
-
-	animation: show 5s infinite;
+	animation: show 15s infinite;
 }
 
 @keyframes show {
@@ -911,6 +891,10 @@ ol {
 	transform: translate(0,150px);
 }
 
+.footer__logo {
+	transform: translate(440px,0);
+}
+
 .page-up {
 	position: absolute;
 	left: 50%;
@@ -938,6 +922,8 @@ ol {
 
 .footer__nav {
 	text-align: center;
+	transform: translate(0, 180px);
+	padding-bottom: 20px;
 }
 
 .footer__nav ul li {
