@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.recorder.nightfactory.domain.Theme;
 import org.recorder.nightfactory.dto.ScheduleListResponse;
 import org.recorder.nightfactory.dto.ThemeListResponse;
-import org.recorder.nightfactory.repository.ScheduleRepository;
+import org.recorder.nightfactory.service.ScheduleService;
 import org.recorder.nightfactory.service.ThemeService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +18,7 @@ import java.util.Optional;
 @RestController
 public class ThemeApiController {
     private final ThemeService themeService;
-    private final ScheduleRepository scheduleRepository;
+    private final ScheduleService scheduleService;
 
     @GetMapping("/api/themes")
     public ResponseEntity<ThemeListResponse> findAllThemes() {
@@ -37,7 +37,7 @@ public class ThemeApiController {
         } else {
             Theme theme = themeSource.get();
 
-            ScheduleListResponse schedules = new ScheduleListResponse(theme, theme.findSchedules(scheduleRepository));
+            ScheduleListResponse schedules = new ScheduleListResponse(theme, scheduleService.findAllByTheme(theme));
             return ResponseEntity.ok().body(schedules);
         }
     }
