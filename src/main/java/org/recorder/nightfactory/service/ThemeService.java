@@ -19,8 +19,14 @@ public class ThemeService {
         return Themes.ListThemes(themeRepository);
     }
 
-    public Optional<Theme> findById(Integer id) {
-        return themeRepository.findById(id);
+    public Theme findById(Integer id) {
+
+        Optional<Theme> theme = themeRepository.findById(id);
+        if (theme.isEmpty()) {
+            throw new IllegalArgumentException("No such Theme");
+        } else {
+            return theme.get();
+        }
     }
 
 
