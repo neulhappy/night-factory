@@ -14,21 +14,23 @@ import java.time.Duration;
 public class Theme {
     @Id()
     @Column(name = "room_id")
-    private int roomId;
+    private Integer roomId;
 
     private String name;
 
     private String description;
 
-    private int difficulty;
+    private Integer difficulty;
 
     private Duration estimatedTime;
 
     @Enumerated(EnumType.STRING)
     private Genre genre;
 
-}
 
+    Schedules findSchedules()
+
+}
 //@Converter(autoApply = true)
 //class DurationConverter implements AttributeConverter<Duration, Long>{
 //

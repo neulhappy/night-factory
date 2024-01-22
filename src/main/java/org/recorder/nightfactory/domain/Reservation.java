@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import java.time.LocalDateTime;
 
 @Table(name = "reservations")
@@ -34,10 +35,10 @@ public class Reservation {
     private String phoneNumber;
 
     @Column(name = "numberOfPeople")
-    private int numberOfPeople;
+    private Integer numberOfPeople;
 
     @Column(name = "price")
-    private int price;
+    private Long price;
 
     @Column(name = "reservationTime")
     @LastModifiedDate
@@ -53,7 +54,7 @@ public class Reservation {
         this.price = price;
     }
 
-    public boolean isReserved(){
+    public boolean isReserved() {
         //예약이 이미 되어있는지 확인하는 로직
 
         return false;
