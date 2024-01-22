@@ -2,13 +2,13 @@ package org.recorder.nightfactory.domain;
 
 
 import jakarta.persistence.*;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.recorder.nightfactory.service.ScheduleService;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.LocalDateTime;
+import java.util.Calendar;
 
 @Table(name = "reservations")
 @NoArgsConstructor
@@ -22,11 +22,15 @@ public class Reservation {
     @Column(name = "id", updatable = false)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "scheduleId", referencedColumnName = "id")
+    private Schedule schedule;
+
     @Column(name = "owner", nullable = false)
     private String owner;
 
     @Column(name = "reservationDate")
-    private LocalDateTime reservationDate;
+    private Calendar reservationDate;
 
     @Column(name = "phoneNumber")
     private String phoneNumber;
@@ -36,10 +40,10 @@ public class Reservation {
 
     @Column(name = "reservationTime")
     @LastModifiedDate
-    private LocalDateTime reservationTime;
+    private Calendar reservationTime;
 
-    @Builder
-    public Reservation(String owner, LocalDateTime reservationDate, String phoneNumber, int numberOfPeople) {
+    public Reservation(Schedule schedule, String owner, Calendar reservationDate, String phoneNumber, int numberOfPeople) {
+        this.schedule = schedule;
         this.owner = owner;
         this.reservationDate = reservationDate;
         this.phoneNumber = phoneNumber;
@@ -51,5 +55,7 @@ public class Reservation {
 
         return false;
     }
+
+
 
 }

@@ -25,11 +25,17 @@ public class Theme {
 
     private Duration estimatedTime;
 
+    private Long price;
+
     @Enumerated(EnumType.STRING)
     private Genre genre;
 
 
     public Schedules findSchedules(ScheduleRepository scheduleRepository) {
         return Schedules.ListSchedules(scheduleRepository, this);
+    }
+
+    public Long getPrice() {
+        return price;
     }
 }
