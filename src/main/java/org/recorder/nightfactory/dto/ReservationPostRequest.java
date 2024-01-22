@@ -11,11 +11,9 @@ import java.time.LocalTime;
 @Getter
 public class ReservationPostRequest {
     private LocalDateTime reservationDate;
-    private LocalTime startTime;
+    private int scheduleId;
     private String owner;
-    private String roomName;
     private String phoneNumber;
     private int numberOfPeople;
-    private int price;
     private LocalDateTime reservationAt;
 }
