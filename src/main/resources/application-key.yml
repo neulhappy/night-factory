@@ -1,0 +1,9 @@
+#file: noinspection SpringBootApplicationYaml
+#실제 배포 시에는 제외 되어야 하는 파일
+
+api:
+  portiOne:
+    mid: iamporttest_3
+    apiKey: test_ck_lpP2YxJ4K877JAdv7KX8RGZwXLOb
+    channelKey: channel-key-b30f7459-8a3f-42d4-8779-961d5e11b1d1
+    apiSecret: test_sk_d26DlbXAaV0xQbpa7y1VqY50Q9RB
