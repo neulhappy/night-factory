@@ -1,0 +1,8 @@
+#file: noinspection SpringBootApplicationYaml
+#실제 배포 시에는 제외 되어야 하는 파일
+
+api:
+  portiOne:
+    mid: imp61777328
+    apiKey: 1647378156023628
+    apiSecret: dRjgcatIxZnMotess7OqNwxxaPcbAuOcG8a0x3Wbxo2DuvEvk0mguTYpT5TafqMn6qatvXxHbm6gzBJC
