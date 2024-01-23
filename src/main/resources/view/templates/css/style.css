@@ -106,6 +106,7 @@ ul,
 ol {
 	padding: 0;
 	margin: 0;
+	list-style: none;
 }
 
 /*---------------------
@@ -434,6 +435,7 @@ ol {
 
 .hero {
 	padding-top: 50px;
+	padding-bottom: 80px;
 
 }
 
@@ -661,7 +663,21 @@ ol {
 	z-index: 1;
 }
 
+/*--product--*/
 
+.theme p  {
+	text-align: center; font-size: 3rem; font-weight: 700; color: #a83636; padding-top: 100px;
+	padding-bottom: 100PX;
+}
+.theme ul{display: flex; justify-content: center; gap: 50px; }
+
+.theme .menu {display: block; }
+.theme .menu li {text-align: center; padding-top: 30px; }
+
+.notice {padding-top: 150px;}
+.notice p {text-align: center; font-size: 3rem; font-weight: 700; color: #a83636; padding-top: 20px;
+	padding-bottom: 100PX;}
+.notice ul {display: flex; justify-content: center; gap: 50px;}
 
 
 
