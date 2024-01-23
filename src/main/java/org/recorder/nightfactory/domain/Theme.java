@@ -38,4 +38,6 @@ public class Theme {
     public Long getPrice() {
         return price;
     }
+
+    public String getName() { return name;}
 }
