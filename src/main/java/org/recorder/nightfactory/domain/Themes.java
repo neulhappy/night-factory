@@ -8,11 +8,15 @@ public class Themes {
     private final List<Theme> themes;
 
     private Themes(ThemeRepository themeRepository) {
-        this.themes = (themeRepository.findAllByOrderByRoomIdAsc());
+        this.themes = themeRepository.findAllByOrderByRoomIdAsc();
     }
 
-    public static Themes generateThemes(ThemeRepository themeRepository) {
+    public static Themes ListThemes(ThemeRepository themeRepository) {
         return new Themes(themeRepository);
+    }
+
+    public List<Theme> getThemes() {
+        return themes;
     }
 }
 

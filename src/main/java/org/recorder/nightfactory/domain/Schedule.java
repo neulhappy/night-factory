@@ -16,7 +16,7 @@ import java.time.LocalTime;
 public class Schedule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int Id;
+    private Integer Id;
     @ManyToOne
     @JoinColumn(name = "room_id")
     private Theme theme;
