@@ -3,6 +3,7 @@
 
 api:
   portiOne:
-    mid: imp61777328
-    apiKey: 1647378156023628
-    apiSecret: dRjgcatIxZnMotess7OqNwxxaPcbAuOcG8a0x3Wbxo2DuvEvk0mguTYpT5TafqMn6qatvXxHbm6gzBJC
+    mid: iamporttest_3
+    apiKey: test_ck_lpP2YxJ4K877JAdv7KX8RGZwXLOb
+    channelKey: channel-key-b30f7459-8a3f-42d4-8779-961d5e11b1d1
+    apiSecret: test_sk_d26DlbXAaV0xQbpa7y1VqY50Q9RB
