@@ -36,6 +36,8 @@ public class SmsApiController {
         //TODO: 예약 번호를 가져 오는 로직
         String reservationNumber = null;
 
+
+        //TODO: 밑의 로직 서비스 단으로 넘기고 받는 파라미터를 ID 받아서 하기
         //예약 정보를 가져 오는 로직
         String phoneNumber = reservation.getPhoneNumber();
         String owner = reservation.getOwner();
