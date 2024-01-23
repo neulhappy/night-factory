@@ -38,9 +38,9 @@ public class Reservation {
     @Column(name = "numberOfPeople")
     private Integer numberOfPeople;
 
-    @Column(name = "reservationTime")
+    @Column(name = "reservationAt")
     @LastModifiedDate
-    private Calendar reservationTime;
+    private Calendar reservationAt;
 
     public Reservation(Schedule schedule, String owner, Calendar reservationDate, String phoneNumber, int numberOfPeople) {
         this.schedule = schedule;

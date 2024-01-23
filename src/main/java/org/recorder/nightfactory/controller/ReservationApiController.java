@@ -9,11 +9,9 @@ import org.recorder.nightfactory.service.ReservationService;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.List;
-
 
 @RequiredArgsConstructor
-public class ReservationController {
+public class ReservationApiController {
     private final ReservationService reservationService;
 
 //

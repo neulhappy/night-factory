@@ -16,9 +16,19 @@ public class ReservationService {
     private final ReservationRepository reservationRepository;
     private final ScheduleService scheduleService;
 
+
+    //예약 저장
     public ReservationPostResponse save(ReservationPostRequest requestDto){//TODO: getPrice부분 확인
         return new ReservationPostResponse(reservationRepository.save(getReservation(requestDto)), getPrice(requestDto.getScheduleId()));
     }
+
+    //예약 취소
+    public void delete(ReservationPostRequest requestDto){
+        reservationRepository.delete(getReservation(requestDto));
+    }
+
+
+
 
     public Long getPrice(Integer id){
         Schedule schedule = getSchedule(id);

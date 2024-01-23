@@ -14,7 +14,7 @@ public class ReservationPostResponse {
 
     public ReservationPostResponse(Reservation reservation, Long price) {
         this.reservation = reservation;
-        this.price = price;
+        this.price = reservation.getSchedule().getTheme().getPrice();
     }
 
     public Reservation getReservation() {
