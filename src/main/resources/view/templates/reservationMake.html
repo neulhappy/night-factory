@@ -97,28 +97,38 @@
                     </div>
                     </div>
                     <div class="resv-box">
-                        <ul>
-                            <li><p>인원</p>
-                                <div class="selectBox">
-                                <select name="user" class="user" v>
-                                    <option value="2">2명</option>
-                                    <option value="3">3명</option>
-                                    <option value="4">4명</option>
-                                    <option value="5">5명</option>
-                                    <option value="6">6명</option>
-                                </select>
-                                </div>
-                            </li>
-                            <li><p>예약자</p>
-                                <input type="text" name="">
-                            </li>
-                            <li><p>연락처</p>
-                                <input type="" name="">
-                            </li>
-                            <li>
-                                <p>요금</p>
-                            </li>
-                        </ul>
+                        <form>
+                            <ul>
+                                <li class="select"><p>*인원</p>
+                                    <div class="selectBox">
+                                        <select name="people" class="people">
+                                            <ul>
+                                                <li><option value="two">2명</option></li>
+                                                <li><option value="three">3명</option></li>
+                                                <li><option value="four">4명</option></li>
+                                                <li><option value="five">5명</option></li>
+                                                <li><option value="six">6명</option></li>
+                                            </ul>
+                                        </select>
+                                    </div>
+                                </li>
+                                <li><p>*예약자</p>
+                                    <input type="text" name="name">
+                                </li>
+                                <li class="phone"><p>*연락처</p>
+                                    <input type="tel" name="phone-f" class="phone-f"><p class="hi">-</p>
+                                    <input type="tel" name="phone-m" class="phone-m"><p class="hi">-</p>
+                                    <input type="tel" name="phone-l" class="phone-l">
+                                </li>
+                                <li>
+                                    <p>*요금</p>
+                                    <p class="money">50000<span>원</span></p>
+                                </li>
+                                <li>
+                                    <input type="submit" class="submit" value="예약하기">
+                                </li>
+                            </ul>
+                        </form>
                     </div>
                 </div>
             </div>
