@@ -1,3 +1,5 @@
+// 사용할 View의 결제 버튼에 paymentBtn 클래스를 달아 사용 하면 됨. 해당 버튼에 PaymentRequest의 데이터를 데이터 셋으로 담아 줄 것.
+
 const paymentBtn = document.getElementById('PaymentBtn');
 
 const portOneLib = document.createElement('script');
@@ -33,16 +35,16 @@ async function requestPayment(target) {
 
 function setPaymentData(target) {
     return {
-        storeId: target.getAttribute("storeId"),
-        channelKey: target.getAttribute("channelKey"),
-        paymentId: `payment-` + target.getAttribute("paymentId"),
-        orderName: target.getAttribute("orderName"),
-        totalAmount: parseInt(target.getAttribute("totalAmount"),10),
+        storeId: target.getAttribute("data-storeId"),
+        channelKey: target.getAttribute("data-channelKey"),
+        paymentId: `payment-` + target.getAttribute("data-paymentId"),
+        orderName: target.getAttribute("data-orderName"),
+        totalAmount: parseInt(target.getAttribute("data-totalAmount"),10),
         currency: 'CURRENCY_KRW',
         payMethod: 'CARD',
         customer: {
-            fullName: target.getAttribute("fullName"),
-            phoneNumber: target.getAttribute("phoneNumber"),
+            fullName: target.getAttribute("data-fullName"),
+            phoneNumber: target.getAttribute("data-phoneNumber"),
         }
     };
 }
@@ -64,12 +66,6 @@ async function completePayment(response) {
                     reject(new Error("Payment completion failed"));
                 }
             }
-        };
-        xhr.onerror = function () {
-            const errorMessage = "서버와의 통신 중 오류가 발생했습니다. 연결을 확인하거나 잠시 후 다시 시도해 주세요.";
-            console.error(errorMessage);
-            alert(errorMessage);
-            reject(new Error("Server communication failed"));
         };
         xhr.send(JSON.stringify(response));
     });
