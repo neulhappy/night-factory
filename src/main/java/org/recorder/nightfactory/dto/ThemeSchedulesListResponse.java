@@ -1,10 +1,5 @@
 package org.recorder.nightfactory.dto;
-
-
 import org.recorder.nightfactory.domain.ThemeSets;
-
-import java.util.List;
-
 public class ThemeSchedulesListResponse {
     ThemeSets themeSets;
 
