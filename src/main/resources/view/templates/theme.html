@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="zxx" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -109,6 +109,14 @@
             <ul>
                 <li class="content">
                     <img src="img/theme1.png" alt="관리실 포스터">
+                    <ul>
+                        <li><span th:text="${theme.name}"></span></li>
+                        <li><span th:text="${theme.description}"></span></li>
+                        <li><span th:text="${theme.difficultyName}"></span></li>
+                        <li><span th:text="${theme.estimatedTime}"></span></li>
+                        <li><span th:text="${theme.genre}"></span></li>
+                    </ul>
+
                     <ul class="text">
                         <li style="font-size: 2rem; padding-bottom: 20px; font-weight: 600; color: white">관리실의 비밀 - 나폴리탄</li>
                         <li style="color: white">밤의 공장을 관리하는 관리실에서 미스테리한 사건이 일어난다.<br/>
@@ -165,6 +173,7 @@
                 </li>
             </ul>
             </div>
+        </div>
         </div>
 
     </section>

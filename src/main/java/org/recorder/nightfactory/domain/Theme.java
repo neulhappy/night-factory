@@ -46,4 +46,13 @@ public class Theme {
     public Schedules findSchedules(ScheduleRepository scheduleRepository) {
         return Schedules.ListSchedules(scheduleRepository, this);
     }
+
+    public Theme(String name, String description, String difficultyName, Duration estimatedTime, Genre genre){
+        this.name = name;
+        this.description = description;
+        this.difficultyName = difficultyName;
+        this.estimatedTime = estimatedTime;
+        this.genre = genre;
+    }
 }
+
