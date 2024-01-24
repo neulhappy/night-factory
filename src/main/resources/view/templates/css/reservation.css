@@ -95,4 +95,8 @@ ul {
     border-radius: 3px;
     color: #ffffff;
     border: 1px solid rgb(23, 43, 72);
+    transition: background-color .5s;
+}
+.resvs .box li:hover {
+    background: #aa1f1f;
 }
