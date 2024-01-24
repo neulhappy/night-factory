@@ -22,6 +22,7 @@ public class Schedule {
     @ManyToOne
     @JoinColumn(name = "room_id")
     private Theme theme;
+    @Column(name = "start_time")
     private LocalTime startTime;
     @Transient
     private Boolean able;
