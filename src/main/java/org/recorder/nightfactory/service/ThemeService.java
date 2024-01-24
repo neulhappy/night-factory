@@ -2,32 +2,20 @@ package org.recorder.nightfactory.service;
 
 
 import lombok.RequiredArgsConstructor;
-import org.recorder.nightfactory.domain.Theme;
-import org.recorder.nightfactory.domain.Themes;
+import org.recorder.nightfactory.domain.ThemeSets;
+import org.recorder.nightfactory.dto.ThemeSchedulesListResponse;
+import org.recorder.nightfactory.repository.ScheduleRepository;
 import org.recorder.nightfactory.repository.ThemeRepository;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 
 @RequiredArgsConstructor
 @Service
 public class ThemeService {
     private final ThemeRepository themeRepository;
+    private final ScheduleRepository scheduleRepository;
 
-    public Themes findAll() {
-        return Themes.ListThemes(themeRepository);
+    public ThemeSchedulesListResponse themeSchedulesList() {
+        return new ThemeSchedulesListResponse(ThemeSets.findAll(themeRepository, scheduleRepository));
     }
-
-    public Theme findById(Integer id) {
-
-        Optional<Theme> theme = themeRepository.findById(id);
-        if (theme.isEmpty()) {
-            throw new IllegalArgumentException("No such Theme");
-        } else {
-            return theme.get();
-        }
-    }
-
-
 }
