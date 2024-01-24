@@ -1,6 +1,5 @@
 package org.recorder.nightfactory.service;
 
-import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.RequiredArgsConstructor;
 import org.recorder.nightfactory.domain.Reservation;
 import org.recorder.nightfactory.domain.Schedule;
@@ -9,6 +8,9 @@ import org.recorder.nightfactory.dto.ReservationPostRequest;
 import org.recorder.nightfactory.dto.ReservationPostResponse;
 import org.recorder.nightfactory.repository.ReservationRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -36,15 +38,20 @@ public class ReservationService {
         return theme.getPrice();
     }
 
-    private static Theme getTheme(Schedule schedule) {
+    public Theme getTheme(Schedule schedule) {
         return schedule.getTheme();
     }
 
-    private Schedule getSchedule(Integer id) {
+    public Schedule getSchedule(Integer id) {
         return scheduleService.findById(id);
     }
 
-    private Reservation getReservation(ReservationPostRequest requestDto) {
+    public Reservation findById(Long id){
+        return reservationRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("예약번호 : " + id + "에 맞는 예약 정보가 없습니다."));
+    }
+
+    public Reservation getReservation(ReservationPostRequest requestDto) {
         return new Reservation(
                scheduleService.findById(requestDto.getScheduleId())
                 , requestDto.getOwner()
