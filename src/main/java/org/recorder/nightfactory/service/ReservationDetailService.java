@@ -15,7 +15,7 @@ public class ReservationDetailService {
 
     private final ReservationRepository reservationRepository;
     //예약자 이름으로 예약 정보 가져오기
-    public List<Reservation> findByOwner(String owner){
+    public Optional<Reservation> findByOwner(String owner){
         return reservationRepository.findByOwnerOrderByReservationDateDesc(owner);
     }
 
