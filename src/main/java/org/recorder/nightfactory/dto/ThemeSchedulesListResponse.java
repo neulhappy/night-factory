@@ -1,27 +1,13 @@
 package org.recorder.nightfactory.dto;
-
-
-import org.recorder.nightfactory.domain.Schedule;
-import org.recorder.nightfactory.domain.Schedules;
-import org.recorder.nightfactory.domain.Theme;
-
-import java.util.List;
-
+import org.recorder.nightfactory.domain.ThemeSets;
 public class ThemeSchedulesListResponse {
-    Theme theme;
-    Schedules schedules;
+    ThemeSets themeSets;
 
-    public ThemeSchedulesListResponse(Theme theme, Schedules schedules) {
-        this.theme = theme;
-        this.schedules = schedules;
+    public ThemeSchedulesListResponse(ThemeSets themeSets) {
+        this.themeSets = themeSets;
     }
 
-    public Theme getThemes() {
-        return theme;
+    public ThemeSets getThemeSets() {
+        return themeSets;
     }
-
-    public List<Schedule> getSchedules() {
-        return schedules.getSchedules();
-    }
-
 }
