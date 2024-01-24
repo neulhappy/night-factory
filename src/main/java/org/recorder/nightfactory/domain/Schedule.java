@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalTime;
+import java.util.HashSet;
+import java.util.Optional;
 
 
 @Table(name = "schedule")
@@ -21,5 +23,19 @@ public class Schedule {
     @JoinColumn(name = "room_id")
     private Theme theme;
     private LocalTime startTime;
+    @Transient
+    private Boolean able;
+
+    void setAble(boolean able) {
+        this.able = able;
+    }
+
+    public Boolean isAble() {
+        return this.able;
+    }
+
+    public boolean isIncludedByIds(HashSet<Integer> ids) {
+        return ids.contains(this.Id);
+    }
 
 }
