@@ -1,6 +1,8 @@
 spring:
   jpa:
     show-sql: true
+    hibernate:
+      ddl-auto: update #배포시 validate
   datasource:
     url: jdbc:mariadb://localhost:3306/test
     hikari:
