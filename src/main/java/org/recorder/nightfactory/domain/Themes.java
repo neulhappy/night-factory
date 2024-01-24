@@ -7,12 +7,12 @@ import java.util.List;
 public class Themes {
     private final List<Theme> themes;
 
-    private Themes(ThemeRepository themeRepository) {
-        this.themes = themeRepository.findAllByOrderByRoomIdAsc();
+    private Themes(List<Theme> themes) {
+        this.themes = themes;
     }
 
-    public static Themes ListThemes(ThemeRepository themeRepository) {
-        return new Themes(themeRepository);
+    public static Themes listTheme(ThemeRepository themeRepository) {
+        return new Themes(themeRepository.findAllByOrderByRoomIdAsc());
     }
 
     public List<Theme> getThemes() {

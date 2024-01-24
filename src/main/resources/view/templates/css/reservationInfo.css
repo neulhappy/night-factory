@@ -18,8 +18,9 @@ font-family: 'Ubuntu', sans-serif;*/
     color: #aa1f1f;
     padding: 20px 0;
     font-family: 'Rubik Burned', system-ui;
-    border-bottom: #6b1216 dashed 1px;
-    border-top: #6b1216 dashed 1px;
+}
+.reservation-text {
+    padding-left: 50px;
 }
 
 .reservation-info h4 {

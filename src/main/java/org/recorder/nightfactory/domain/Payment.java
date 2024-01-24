@@ -9,6 +9,7 @@ public class Payment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(columnDefinition = "BINARY(16)")
     UUID paymentId;
     String OrderName;
     Long totalAmount;

@@ -27,7 +27,7 @@ public class Theme {
     private String difficultyName;
 
     @Column(nullable = false)
-    private Duration estimatedTime;
+    private String estimatedTime;
 
     @Column(nullable = false)
     private Long price;

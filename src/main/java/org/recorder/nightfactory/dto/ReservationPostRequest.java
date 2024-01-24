@@ -5,13 +5,12 @@ import lombok.Setter;
 import org.recorder.nightfactory.domain.Schedule;
 
 import java.time.LocalDateTime;
-import java.util.Calendar;
-
+import java.util.Date;
 
 
 public class ReservationPostRequest {
     private int scheduleId;
-    private Calendar reservationDate;
+    private Date reservationDate;
     private String owner;
     private String phoneNumber;
     private int numberOfPeople;
@@ -21,7 +20,7 @@ public class ReservationPostRequest {
         return scheduleId;
     }
 
-    public Calendar getReservationDate() {
+    public Date getReservationDate() {
         return reservationDate;
     }
 

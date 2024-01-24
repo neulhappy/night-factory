@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="css/style.css" type="text/css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Dokdo&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/reservation.css" type="text/css">
+    <link rel="stylesheet" href="css/reservationMake.css" type="text/css">
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Dokdo&display=swap');
@@ -82,97 +82,53 @@
             <div class="resvs">
                 <div class="sec">
                     <ul>
-                        <li class="sp">예약하기</li>
-                        <li>예약정보</li>
+                        <li>예약하기</li>
+                        <li class="sp">예약정보</li>
                         <li>결제하기</li>
                         <li>예약완료</li>
                     </ul>
                 </div>
-                <div class="resv-days">
-                    <input type="text" name="resv-tt" id="resv-tt" value="2024-01-24"/>
-                </div>
                 <div class="box">
+                    <div class="tem-box">
                     <div class="box-img"><img src="img/theme1.png" alt="테마1">
                         <p class="box-tit">테마1</p>
+                        <p class="box-days">예약날짜</p>
+                        <p class="box-time">시간</p>
                     </div>
-                    <div class="box-time">
-                        <ul>
-                            <li>09:00</li>
-                            <li>10:00</li>
-                            <li>11:00</li>
-                            <li>12:00</li>
-                            <li>13:00</li>
-                            <li>14:00</li>
-                            <li>15:00</li>
-                            <li>16:00</li>
-                            <li>17:00</li>
-                            <li>18:00</li>
-                            <li>19:00</li>
-                            <li>20:00</li>
-                        </ul>
                     </div>
-                </div>
-                <div class="box">
-                    <div class="box-img"><img src="img/theme2.png" alt="테마2">
-                        <p class="box-tit">테마2</p>
-                    </div>
-                    <div class="box-time">
-                        <ul>
-                            <li>09:00</li>
-                            <li>10:00</li>
-                            <li>11:00</li>
-                            <li>12:00</li>
-                            <li>13:00</li>
-                            <li>14:00</li>
-                            <li>15:00</li>
-                            <li>16:00</li>
-                            <li>17:00</li>
-                            <li>18:00</li>
-                            <li>19:00</li>
-                            <li>20:00</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="box">
-                    <div class="box-img"><img src="img/theme3.png" alt="테마3">
-                        <p class="box-tit">테마3</p>
-                    </div>
-                    <div class="box-time">
-                        <ul>
-                            <li>09:00</li>
-                            <li>10:00</li>
-                            <li>11:00</li>
-                            <li>12:00</li>
-                            <li>13:00</li>
-                            <li>14:00</li>
-                            <li>15:00</li>
-                            <li>16:00</li>
-                            <li>17:00</li>
-                            <li>18:00</li>
-                            <li>19:00</li>
-                            <li>20:00</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="box">
-                    <div class="box-img"><img src="img/theme4.png" alt="테마4">
-                        <p class="box-tit">테마4</p>
-                    </div>
-                    <div class="box-time">
-                        <ul>
-                            <li>09:00</li>
-                            <li>10:00</li>
-                            <li>11:00</li>
-                            <li>12:00</li>
-                            <li>13:00</li>
-                            <li>14:00</li>
-                            <li>15:00</li>
-                            <li>16:00</li>
-                            <li>17:00</li>
-                            <li>18:00</li>
-                            <li>19:00</li>
-                            <li>20:00</li>
-                        </ul>
+                    <div class="resv-box">
+                        <form>
+                            <ul>
+                                <li class="select"><p>*인원</p>
+                                    <div class="selectBox">
+                                        <select name="people" class="people">
+                                            <ul>
+                                                <li><option value="two">2명</option></li>
+                                                <li><option value="three">3명</option></li>
+                                                <li><option value="four">4명</option></li>
+                                                <li><option value="five">5명</option></li>
+                                                <li><option value="six">6명</option></li>
+                                            </ul>
+                                        </select>
+                                    </div>
+                                </li>
+                                <li><p>*예약자</p>
+                                    <input type="text" name="name">
+                                </li>
+                                <li class="phone"><p>*연락처</p>
+                                    <input type="tel" name="phone-f" class="phone-f"><p class="hi">-</p>
+                                    <input type="tel" name="phone-m" class="phone-m"><p class="hi">-</p>
+                                    <input type="tel" name="phone-l" class="phone-l">
+                                </li>
+                                <li>
+                                    <p>*요금</p>
+                                    <p class="money">50000<span>원</span></p>
+                                </li>
+                                <li>
+                                    <input type="submit" class="submit" value="예약하기">
+                                </li>
+                            </ul>
+                        </form>
                     </div>
                 </div>
             </div>
