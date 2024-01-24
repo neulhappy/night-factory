@@ -4,11 +4,10 @@ package org.recorder.nightfactory.domain;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.recorder.nightfactory.service.ScheduleService;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import java.util.Calendar;
+import java.util.Date;
+import java.util.UUID;
 
 @Table(name = "reservations")
 @NoArgsConstructor
@@ -18,9 +17,9 @@ import java.util.Calendar;
 public class Reservation {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", updatable = false)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id", updatable = false, columnDefinition = "BINARY(16)")
+    private UUID id;
 
     @ManyToOne
     @JoinColumn(name = "scheduleId", referencedColumnName = "id")
@@ -29,8 +28,9 @@ public class Reservation {
     @Column(name = "owner", nullable = false)
     private String owner;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "reservationDate")
-    private Calendar reservationDate;
+    private Date reservationDate;
 
     @Column(name = "phoneNumber")
     private String phoneNumber;
@@ -38,11 +38,12 @@ public class Reservation {
     @Column(name = "numberOfPeople")
     private Integer numberOfPeople;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "reservationAt")
     @LastModifiedDate
-    private Calendar reservationAt;
+    private Date reservationAt;
 
-    public Reservation(Schedule schedule, String owner, Calendar reservationDate, String phoneNumber, int numberOfPeople) {
+    public Reservation(Schedule schedule, String owner, Date reservationDate, String phoneNumber, int numberOfPeople) {
         this.schedule = schedule;
         this.owner = owner;
         this.reservationDate = reservationDate;
@@ -55,7 +56,6 @@ public class Reservation {
 
         return false;
     }
-
 
 
 }
