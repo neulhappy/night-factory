@@ -14,7 +14,7 @@ public class ThemeSets {
     }
 
     public static ThemeSets findAll(ThemeRepository themeRepository, ScheduleRepository scheduleRepository) {
-        Themes themes = Themes.ListThemes(themeRepository);
+        Themes themes = Themes.listTheme(themeRepository);
         ArrayList<ThemeSet> themeSetList = new ArrayList<>();
         for (Theme theme : themes.getThemes()) {
             ThemeSet themeSet = ThemeSet.make(theme, scheduleRepository);

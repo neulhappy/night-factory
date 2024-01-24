@@ -14,6 +14,6 @@ public class PaymentService {
 
 
     public PortOneApiTokenResponse getPortOneApiToken(@Value("${api.portOne.apiSecret}") String secret) {
-        return new PortOnePaymentResponse();
+        return new PortOneApiTokenResponse();
     }
 }
