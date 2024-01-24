@@ -7,11 +7,11 @@ import org.recorder.nightfactory.domain.Theme;
 
 import java.util.List;
 
-public class ScheduleListResponse {
+public class ThemeSchedulesListResponse {
     Theme theme;
     Schedules schedules;
 
-    public ScheduleListResponse(Theme theme, Schedules schedules) {
+    public ThemeSchedulesListResponse(Theme theme, Schedules schedules) {
         this.theme = theme;
         this.schedules = schedules;
     }
