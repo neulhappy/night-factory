@@ -12,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/themes")
@@ -20,11 +22,11 @@ public class ThemesInformController {
 
     @GetMapping
     public String ThemesInform(Model model) {
-        ThemeSchedulesListResponse response = themeService.themeSchedulesList();
-        ThemeSets themeSets = response.getThemeSets();
-        model.addAttribute(themeSets);
+        ThemeListResponse response = themeService.themeList();
+        List<Theme> themes = response.getThemes();
+        model.addAttribute(themes);
 
-        return "themes";
+        return "theme";
     }
 
 
