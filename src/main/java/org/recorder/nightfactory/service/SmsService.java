@@ -80,7 +80,7 @@ public class SmsService {
         SimpleDateFormat reservationDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat reservationAtFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String reservationDateFormatted = reservationDateFormat.format(reservation.getReservationDate().getTime());
-        String reservationAtFormatted = reservationAtFormat.format(reservation.getReservationAt().getTime());
+        String reservationAtFormatted = reservationAtFormat.format(reservation.getReservationAt());
         return String.format(RESERVATION_TEXT,
                 reservation.getOwner(),
                 reservationDateFormatted,
