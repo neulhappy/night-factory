@@ -30,6 +30,6 @@ CREATE TABLE IF NOT EXISTS reservations
     amount          INT                          NOT NULL,
     payment_id      BINARY(16) COMMENT '결제 요청시 가맹점에서 채번하는 결제 아이디',
     imp_uid         VARCHAR COMMENT '결제 완료시 OnePort에서 채번 하는 결제 아이디',
-    payment_state   VARCHAR,
+    state   VARCHAR,
     paid_at         TIMESTAMP
 );

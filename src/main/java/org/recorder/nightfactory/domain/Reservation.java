@@ -54,7 +54,7 @@ public class Reservation {
     @Column(name = "amount")
     Long amount;
 
-    @Column(name = "payment_state")
+    @Column(name = "state")
     @Enumerated(EnumType.STRING)
     PaymentState state;
 
