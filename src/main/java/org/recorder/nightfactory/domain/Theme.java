@@ -5,8 +5,6 @@ import lombok.NoArgsConstructor;
 import org.recorder.nightfactory.repository.ScheduleRepository;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.Duration;
-
 
 @Table(name = "Theme")
 @NoArgsConstructor
@@ -35,6 +33,9 @@ public class Theme {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Genre genre;
+
+    public Theme(String name, String description, String difficultyName, String estimatedTime, String genre) {
+    }
 
     @PostLoad
     public void getDifficulty() {
