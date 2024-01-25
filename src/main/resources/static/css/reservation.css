@@ -38,8 +38,12 @@ ul {
 .resvs .sec .sp {
     border: solid 2px #ffffff;
 }
+.resvs{
+    position: relative;
+}
 .resvs .resv-days {
     padding: 30px 0 0 30px;
+
 }
 .resvs .resv-days input {
     font-family: 'Ubuntu', sans-serif;
@@ -52,16 +56,71 @@ ul {
     background: #0B0C2A url("../img/calendar-icon.png") no-repeat right 10px center /
     35px auto;
 }
-.resvs .resv-days input:focus {
-    outline: none;
+body .flatpickr-calendar.arrowTop:after{
+   display: none;
 }
-/*.flatpickr-calendar {*/
-/*    font-family: 'Hahmlet', serif;*/
-/*    margin-top: 1px;*/
-/*    margin-left: 6px;*/
-/*    background: #0B0C2A !important;!* 배경색 변경 *!*/
-/*    border-color: #0B0C2A; !* 테두리 색상 변경 *!*/
-/*}*/
+body .flatpickr-calendar.arrowTop:before {
+    border: none;
+}
+
+body .flatpickr-calendar {
+    position: fixed; /* 고정 위치 */
+    top: 50%;      /* 화면의 가운데 정도에 위치 */
+    left: 50%;     /* 화면의 가운데 정도에 위치 */
+    transform: translate(-50%, -50%); /* 정확히 중앙에 위치하도록 조정 */
+    z-index: 100;  /* 다른 요소들 위에 나타나도록 z-index 설정 */
+    box-shadow: none;
+    font-family: 'Hahmlet', serif;
+    border: 1px solid rgb(23, 43, 72);
+    background: #0B0C2A;
+    width: 320px;
+    height: 301px;
+    }
+
+body .flatpickr-day.today {
+    color: #ffffff;
+    background: #d75151;
+    border: none;
+}
+
+body .flatpickr-day {
+    color: white;
+}
+
+body .flatpickr-months .flatpickr-month {
+    color: white;
+}
+
+body .flatpickr-weekdays .flatpickr-weekday {
+    color: white;
+}
+
+body .flatpickr-calendar .flatpickr-day.prevMonthDay,
+body .flatpickr-calendar .flatpickr-day.nextMonthDay{
+    color: white;
+    background: #909091;
+}
+body .flatpickr-calendar .flatpickr-day.selected {
+    background: rgb(211, 95, 95);
+    color: white;
+    border: none;
+    }
+body .flatpickr-prev-month .flatpickr-prev-month, body .flatpickr-next-month .flatpickr-next-month {
+    color:white; /* 원하는 색상 코드로 변경 */
+}
+body .flatpickr-current-month .numInputWrapper span.arrowUp:after {
+    border-bottom-color: white;
+}
+body .flatpickr-current-month .numInputWrapper span.arrowDown:after {
+    border-top-color: white;
+}
+body .numInputWrapper span {
+    opacity: 1;
+}
+/* 다음 달로 가는 화살표 색상 변경 */
+body .flatpickr-next-month .flatpickr-prev-month, body .flatpickr-next-month .flatpickr-next-month {
+    color:white; /* 원하는 색상 코드로 변경 */
+}
 /*!* 날짜 셀 *!*/
 /*.flatpickr-day {*/
 /*    color: #ffffff; !* 날짜 텍스트 색상 변경 *!*/
