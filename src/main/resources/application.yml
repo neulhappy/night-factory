@@ -1,8 +1,12 @@
 spring:
+  profiles:
+    active: local
+    include:
+      - key
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: update #배포시 validate
+#      ddl-auto: update #배포시 validate
   datasource:
     url: jdbc:mariadb://localhost:3306/test
     hikari:
@@ -11,10 +15,10 @@ spring:
       driver-class-name: org.mariadb.jdbc.Driver
   devtools:
     livereload:
-      enabled : true
-    remote :
+      enabled: true
+    remote:
       restart:
-        enabled : false
+        enabled: false
   thymeleaf:
     cache: false
 
