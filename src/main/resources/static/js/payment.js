@@ -26,10 +26,12 @@ async function submitPayment(event) {
 async function requestPayment(target) {
     const paymentData = setPaymentData(target);
     const response = await PortOne.request_pay(paymentData);
-    if (response && response.code) {
-        alert(response.message);
-    } else {
+    if (response && response.success === false) {
+        alert(response.error_msg);
+    } else if (response && response.success === true) {
         await completePayment(response);
+    } else {
+        alert("오류가 발생했습니다. 다시 시도해주시기 바랍니다.");
     }
 }
 
@@ -37,7 +39,7 @@ function setPaymentData(target) {
     return {
         pg: 'kakaopay',
         pay_method: 'card',
-        merchant_uid: `test_` + target.getAttribute("data-merchant_uid"),
+        merchant_uid: `test_` + crypto.randomUUID(),
         name: "방 탈출 카페 밤의 공장",
         amount: parseInt(target.getAttribute("data-amount"), 10),
         buyer_tel: target.getAttribute("data-buyer_tel")
