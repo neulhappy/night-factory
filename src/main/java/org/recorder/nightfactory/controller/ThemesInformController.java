@@ -20,7 +20,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/themes")
 public class ThemesInformController {
-    private ThemeService themeService;
+    private final ThemeService themeService;
 
     @GetMapping
     public String ThemesInform(Model model) {
