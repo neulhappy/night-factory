@@ -29,8 +29,9 @@ public class ThemeSets {
 
 
     //대량 데이터 처리 시 캐싱 필요.
-    public void queryAllScheduleAble(Date date, ReservationRepository repository) {
-        List<Reservation> reservationsOfDate = repository.findAllByReservationDate(date);
+    public void queryAllScheduleAble(ReservationRepository repository, Date date) {
+        List<PaymentState> includeState = Arrays.asList(PaymentState.PAID, PaymentState.ADMIN);
+        List<Reservation> reservationsOfDate = repository.findAllByReservationDateAndStateIn(date, includeState);
         HashSet<Integer> reservedSchedulesIds = new HashSet<>();
         for (Reservation reservation : reservationsOfDate) {
             reservedSchedulesIds.add(reservation.getSchedule().getId());

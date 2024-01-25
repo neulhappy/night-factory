@@ -5,5 +5,6 @@ public enum PaymentState {
     PAID,
     FAILED,
     PARTIAL_CANCELLED,
-    VIRTUAL_ACCOUNT_ISSUED
+    VIRTUAL_ACCOUNT_ISSUED,
+    ADMIN
 }
