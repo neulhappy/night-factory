@@ -1,11 +1,15 @@
 package org.recorder.nightfactory.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.recorder.nightfactory.domain.Reservation;
+import org.recorder.nightfactory.dto.ReservationPostRequest;
+import org.recorder.nightfactory.dto.ReservationPostResponse;
 import org.recorder.nightfactory.service.PaymentService;
 import org.recorder.nightfactory.service.ReservationService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -24,18 +28,13 @@ public class ReservationController {
 
         return "reserve";
     }
-
-    @GetMapping("/detail")
-    public String reservationDetail(@RequestParam Long scheduleId, Model model) {
-
-
+    @PostMapping
+    public String postReservation(ReservationPostRequest request, Model model) {
+        ReservationPostResponse response = reservationService.save(request);
+        Reservation reservation = response.getReservation();
+        Long price = response.getPrice();
+        model.addAttribute("reservation", reservation);
+        model.addAttribute("price", price);
         return "payment";
     }
-//    @GetMapping("/payment")
-//    public String payment() {
-//
-//
-//    }
-//    @PostMapping("/payment"){
-//    }
 }

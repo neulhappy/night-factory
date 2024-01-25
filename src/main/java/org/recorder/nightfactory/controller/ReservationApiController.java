@@ -8,7 +8,7 @@ import org.recorder.nightfactory.dto.ReservationPostResponse;
 import org.recorder.nightfactory.service.ReservationService;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
-
+import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 public class ReservationApiController {
@@ -18,15 +18,7 @@ public class ReservationApiController {
 //    @GetMapping("/api/schedule")
 //    public ResponseEntity<>
 
-    @PostMapping("/api/reservation")
-    public String postReservation(ReservationPostRequest request, Model model){
-            ReservationPostResponse response =  reservationService.save(request);
-            Reservation reservation = response.getReservation();
-            Long price = response.getPrice();
-            model.addAttribute("reservation", reservation);
-            model.addAttribute("price", price);
-        return "payment";
-    }
+
 
 
 }
