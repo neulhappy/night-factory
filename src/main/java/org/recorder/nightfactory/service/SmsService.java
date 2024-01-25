@@ -1,6 +1,9 @@
 package org.recorder.nightfactory.service;
 
 import net.nurigo.sdk.NurigoApp;
+import net.nurigo.sdk.message.exception.NurigoEmptyResponseException;
+import net.nurigo.sdk.message.exception.NurigoMessageNotReceivedException;
+import net.nurigo.sdk.message.exception.NurigoUnknownException;
 import net.nurigo.sdk.message.model.Message;
 import net.nurigo.sdk.message.request.SingleMessageSendingRequest;
 import net.nurigo.sdk.message.response.SingleMessageSentResponse;
@@ -10,6 +13,7 @@ import org.recorder.nightfactory.dto.ReservationPostResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import java.text.SimpleDateFormat;
+import java.util.UUID;
 
 @Service
 public class SmsService {
@@ -19,6 +23,7 @@ public class SmsService {
 
     private final String SENDER_NUMBER = "01044444444";
     private final String RESERVATION_TEXT = "[예약 번호 안내]\n%s님\n%s에\n'%s'\n%d명 예약 되었습니다.\n예약 번호 : %d\n예약 시간 : %s";
+
 
     public SmsService (@Value("${api.coolSms.apiKey}") String apiKey
             , @Value("${api.coolSms.apiSecretKey}") String secretKey
@@ -30,17 +35,30 @@ public class SmsService {
     public DefaultMessageService getCoolSmsApiToken() {
         return messageService;
     }
-    
-    SingleMessageSentResponse sendReservationSMS(ReservationPostResponse response){
+
+//    SingleMessageSentResponse sendReservationSMS(ReservationPostResponse response){
+//        Reservation reservation = getReservationFromResponse(response);
+//        Message message = createReservationMessage(reservation);
+//        SingleMessageSentResponse resp = messageService.sendOne(new SingleMessageSendingRequest(message));
+//        System.out.println(resp);
+//        return resp;
+//    }
+
+    public void sendMessage(ReservationPostResponse response) {
         Reservation reservation = getReservationFromResponse(response);
         Message message = createReservationMessage(reservation);
-        SingleMessageSentResponse resp = this.messageService.sendOne(new SingleMessageSendingRequest(message));
-        System.out.println(resp);
-        return resp;
+        try {
+            messageService.send(message);
+        } catch (NurigoMessageNotReceivedException e) {
+            System.out.println(e.getFailedMessageList());
+            System.out.println(e.getMessage());
+        } catch (Exception exception) {
+            System.out.println(exception.getMessage());
+        }
     }
 
     private Reservation getReservationFromResponse(ReservationPostResponse response){
-        Long reservationId = response.getReservation().getId();
+        UUID reservationId = response.getReservation().getId();
         return reservationService.findById(reservationId);
     }
 

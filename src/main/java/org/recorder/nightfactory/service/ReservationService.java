@@ -8,12 +8,14 @@ import org.recorder.nightfactory.dto.ReservationPostRequest;
 import org.recorder.nightfactory.dto.ReservationPostResponse;
 import org.recorder.nightfactory.repository.ReservationRepository;
 import org.springframework.stereotype.Service;
-
 import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.UUID;
+
+
 
 @RequiredArgsConstructor
 @Service
+
 public class ReservationService {
     private final ReservationRepository reservationRepository;
     private final ScheduleService scheduleService;
@@ -46,8 +48,8 @@ public class ReservationService {
         return scheduleService.findById(id);
     }
 
-    public Reservation findById(Long id){
-        return reservationRepository.findById(id)
+    public Reservation findById(UUID id){
+        return reservationRepository.getById(id)
                 .orElseThrow(() -> new NoSuchElementException("예약번호 : " + id + "에 맞는 예약 정보가 없습니다."));
     }
 
