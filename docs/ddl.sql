@@ -12,24 +12,28 @@ CREATE TABLE IF NOT EXISTS theme
 
 CREATE TABLE IF NOT EXISTS schedule
 (
-    id         INT PRIMARY KEY auto_increment,
-    room_id    INT REFERENCES theme (room_id) NOT NULL,
-    start_time TIME                           NOT NULL UNIQUE
+    id         INT PRIMARY KEY AUTO_INCREMENT,
+    room_id    INT  NOT NULL,
+    start_time TIME NOT NULL,
+    UNIQUE (room_id, start_time),
+    FOREIGN KEY (room_id) REFERENCES theme (room_id)
 );
+
 
 
 CREATE TABLE IF NOT EXISTS reservations
 (
     id               BINARY(16) PRIMARY KEY,
-    schedule_id      INT REFERENCES schedule (id) NOT NULL,
-    owner            VARCHAR(255)                 NOT NULL,
-    reservation_date DATE                         NOT NULL,
-    phone_number     VARCHAR(255)                 NOT NULL,
-    number_of_people INT                          NOT NULL,
-    reservation_at   TIMESTAMP                    NOT NULL,
-    amount           INT                          NOT NULL,
+    schedule_id      INT          NOT NULL,
+    owner            VARCHAR(255) NOT NULL,
+    reservation_date DATE         NOT NULL,
+    phone_number     VARCHAR(255) NOT NULL,
+    number_of_people INT          NOT NULL,
+    reservation_at   TIMESTAMP    NOT NULL,
+    amount           INT          NOT NULL,
     payment_id       BINARY(16) COMMENT '결제 요청시 가맹점에서 채번하는 결제 아이디',
     imp_uid          VARCHAR(255) COMMENT '결제 완료시 OnePort에서 채번 하는 결제 아이디',
     state            VARCHAR(255),
-    paid_at          TIMESTAMP
+    paid_at          TIMESTAMP,
+    FOREIGN KEY (schedule_id) REFERENCES schedule (id)
 );
