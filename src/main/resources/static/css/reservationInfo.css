@@ -1,0 +1,43 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@100;200;300;400;500;600;700;800;900&family=Rubik+Burned&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+/*font-family: 'Hahmlet', serif;
+font-family: 'Rubik Burned', system-ui;
+font-family: 'Ubuntu', sans-serif;*/
+.reservation {
+    width: 100%;
+}
+.reservation .sec2 {
+    width: 1200px;
+    margin: auto;
+}
+
+.reservation-title h1 {
+    text-align: center;
+    font-size: 3rem;
+    color: #aa1f1f;
+    padding: 20px 0;
+    font-family: 'Rubik Burned', system-ui;
+}
+.reservation-text {
+    padding-left: 50px;
+}
+
+.reservation-info h4 {
+    padding: 10px 0;
+    color: #dedede;
+    font-family: 'Hahmlet', serif;
+    font-weight: 400;
+}
+
+.reservation-info span {
+    font-family: 'Rubik Burned', system-ui;
+    color: #aa1f1f;
+}
+
+.reservation-info p {
+    padding-left: 20px;
+    font-family: 'Hahmlet', serif;
+    font-weight: 400;
+    color: #9f9f9f;
+}
