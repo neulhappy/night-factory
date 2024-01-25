@@ -46,10 +46,4 @@ public class Theme {
     public Schedules findSchedules(ScheduleRepository scheduleRepository) {
         return Schedules.ListSchedules(scheduleRepository, this);
     }
-
-    public Long getPrice() {
-        return price;
-    }
-
-    public String getName() { return name;}
 }
