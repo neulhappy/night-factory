@@ -110,11 +110,11 @@
                 <li class="content">
                     <img src="../static/img/theme1.png" alt="관리실 포스터">
                     <ul>
-                        <li><span th:text="${theme.name}"></span></li>
-                        <li><span th:text="${theme.description}"></span></li>
-                        <li><span th:text="${theme.difficultyName}"></span></li>
-                        <li><span th:text="${theme.estimatedTime}"></span></li>
-                        <li><span th:text="${theme.genre}"></span></li>
+                        <li><span th:utext="${theme.name}"></span></li>
+                        <li><span th:utext="${theme.description}"></span></li>
+                        <li><span th:utext="${theme.difficultyName}"></span></li>
+                        <li><span th:utext="${theme.estimatedTime}"></span></li>
+                        <li><span th:utext="${theme.genre}"></span></li>
                     </ul>
 
                     <ul class="text">
