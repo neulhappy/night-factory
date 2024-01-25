@@ -24,23 +24,23 @@ public class Reservation {
     private UUID id;
 
     @ManyToOne
-    @JoinColumn(name = "scheduleId", referencedColumnName = "id")
+    @JoinColumn(name = "schedule_id", referencedColumnName = "id")
     private Schedule schedule;
 
     @Column(name = "owner", nullable = false)
     private String owner;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "reservationDate")
+    @Column(name = "reservation_date")
     private Date reservationDate;
 
-    @Column(name = "phoneNumber")
+    @Column(name = "phone_number")
     private String phoneNumber;
 
-    @Column(name = "numberOfPeople")
+    @Column(name = "number_of_people")
     private Integer numberOfPeople;
 
-    @Column(name = "reservationAt")
+    @Column(name = "reservation_at")
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
     private LocalDateTime reservationAt;
