@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.UUID;
@@ -16,7 +17,7 @@ import java.util.UUID;
 @Getter
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class Reservation {
+public class Reservation implements Smsable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -78,4 +79,16 @@ public class Reservation {
     }
 
 
+    @Override
+    public String getMessageText() {
+        SimpleDateFormat reservationDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String reservationDateFormatted = reservationDateFormat.format(this.getReservationDate().getTime());
+        return String.format("[예약 번호 안내]\n%s님\n%s에\n'%s'\n%d명 예약 되었습니다.\n예약 번호 : %s\n예약 시간 : %s"
+                , this.getOwner()
+                , reservationDateFormatted
+                , this.getSchedule().getTheme().getName()
+                , this.getNumberOfPeople()
+                , this.getId()
+                , this.getSchedule().getStartTime());
+    }
 }
