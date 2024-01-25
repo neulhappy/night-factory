@@ -21,12 +21,12 @@ CREATE TABLE IF NOT EXISTS schedule
 CREATE TABLE IF NOT EXISTS reservations
 (
     id              BINARY(16) PRIMARY KEY,
-    scheduleId      INT REFERENCES schedule (id) NOT NULL,
+    schedule_id      INT REFERENCES schedule (id) NOT NULL,
     owner           VARCHAR                      NOT NULL,
-    reservationDate DATE                         NOT NULL,
-    phoneNumber     VARCHAR                      NOT NULL,
-    numberOfPeople  INT                          NOT NULL,
-    reservationAt   TIMESTAMP                    NOT NULL,
+    reservation_date DATE                         NOT NULL,
+    phone_number     VARCHAR                      NOT NULL,
+    number_of_people  INT                          NOT NULL,
+    reservation_at   TIMESTAMP                    NOT NULL,
     amount          INT                          NOT NULL,
     payment_id      BINARY(16) COMMENT '결제 요청시 가맹점에서 채번하는 결제 아이디',
     imp_uid         VARCHAR COMMENT '결제 완료시 OnePort에서 채번 하는 결제 아이디',
