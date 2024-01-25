@@ -45,8 +45,8 @@ public class Reservation {
     @CreationTimestamp
     private LocalDateTime reservationAt;
 
-    @Column(columnDefinition = "BINARY(16)")
-    UUID id;
+    @Column(name = "payment_id", columnDefinition = "BINARY(16)")
+    UUID paymentId;
 
     @Column(name = "imp_uid")
     String impUid;
