@@ -42,6 +42,7 @@ ul {
     position: relative;
 }
 .resvs .resv-days {
+
     padding: 30px 0 0 30px;
 
 }
@@ -56,20 +57,26 @@ ul {
     background: #0B0C2A url("../img/calendar-icon.png") no-repeat right 10px center /
     35px auto;
 }
-
-body{
+body {
     position: relative;
 }
-
 body .flatpickr-calendar.arrowTop:after{
    display: none;
 }
 body .flatpickr-calendar.arrowTop:before {
     border: none;
 }
+body .flatpickr-calendar {
+     visibility: hidden; /* 초기에는 달력을 숨깁니다. */
+ }
+
+/* 달력이 활성화되었을 때 스타일을 설정합니다. */
+body .flatpickr-calendar.open {
+    visibility: visible;
+    z-index: 100; /* 다른 요소들 위에 달력이 오도록 z-index를 설정합니다. */
+}
 
 body .flatpickr-calendar {
-
     box-shadow: none;
     font-family: 'Hahmlet', serif;
     border: 1px solid rgb(23, 43, 72);
@@ -79,28 +86,59 @@ body .flatpickr-calendar {
     }
 
 body .flatpickr-day.today {
-    color: #ffffff;
-    background: #d75151;
+    border: 1px solid #d75151;
+    color: white;
+}
+body .flatpickr-prev-month .flatpickr-prev-month-arrow,
+body .flatpickr-prev-month:hover .flatpickr-prev-month-arrow {
+    fill: white; /* 원하는 색상 코드로 변경하세요 */
+}
+/* 다음 달 화살표 색상 변경 */
+body .flatpickr-months .flatpickr-next-month svg {
+    fill: white;  /* 원하는 색상 코드로 변경하세요 */
+}
+body .flatpickr-months .flatpickr-next-month:hover svg {
+    fill:rgb(211, 95, 95);
+}
+body .flatpickr-months .flatpickr-prev-month svg {
+    fill: white;  /* 원하는 색상 코드로 변경하세요 */
+}
+body .flatpickr-months .flatpickr-prev-month:hover svg {
+    fill:rgb(211, 95, 95);
+}
+body .flatpickr-current-month .flatpickr-monthDropdown-months {
+    background: #0B0C2A;
+    color: white;
+}
+body .flatpickr-monthDropdown-month {
+    font-size: 1rem ;
+}
+body .flatpickr-current-month .flatpickr-monthDropdown-months:hover {
+    background: #0B0C2A;
+    color: white;
+}
+body .flatpickr-current-month{
     border: none;
 }
-
+body .flatpickr-current-month .flatpickr-monthDropdown-months .flatpickr-monthDropdown-month{
+    border: none;
+}
+body .flatpickr-day.disabled, .flatpickr-day.flatpickr-disabled {
+    color: grey !important;
+}
+body .flatpickr-months .flatpickr-month,
 body .flatpickr-day {
     color: white;
 }
-
-body .flatpickr-months .flatpickr-month {
-    color: white;
+body .flatpickr-calendar .flatpickr-day.nextMonthDay,
+body .flatpickr-calendar .flatpickr-day.prevMonthDay {
+    color: #808080;
 }
 
 body .flatpickr-weekdays .flatpickr-weekday {
     color: white;
 }
 
-body .flatpickr-calendar .flatpickr-day.prevMonthDay,
-body .flatpickr-calendar .flatpickr-day.nextMonthDay{
-    color: white;
-    background: #909091;
-}
 body .flatpickr-calendar .flatpickr-day.selected {
     background: rgb(211, 95, 95);
     color: white;
@@ -121,6 +159,15 @@ body .numInputWrapper span {
 /* 다음 달로 가는 화살표 색상 변경 */
 body .flatpickr-next-month .flatpickr-prev-month, body .flatpickr-next-month .flatpickr-next-month {
     color:white; /* 원하는 색상 코드로 변경 */
+}
+body .flatpickr-calendar .flatpickr-day.nextMonthDay:hover,
+body .flatpickr-calendar .flatpickr-day.prevMonthDay:hover {
+    background: #0B0C2A;
+    color: white;
+}
+body .flatpickr-day:hover {
+    background: #0B0C2A;
+    color: white;
 }
 /*!* 날짜 셀 *!*/
 /*.flatpickr-day {*/

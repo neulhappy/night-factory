@@ -88,7 +88,7 @@
                         <li>예약완료</li>
                     </ul>
                 </div>
-                <div class="resv-days">
+                <div class="resv-days" id="datePickerContainer">
                     <input type="text" id="datePicker"/>
                 </div>
                 <div class="box">
@@ -231,41 +231,105 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var today = new Date();
+            today.setHours(0, 0, 0, 0); // 오늘 날짜를 자정으로 설정합니다.
 
-            flatpickr("#datePicker", {
-                dateFormat: "Y-m-d",
-                defaultDate: today,
-                minDate: today, // 오늘 날짜부터 선택 가능
-                locale: 'ko', // 한글 로캘 적용
-                onChange: function(selectedDates, dateStr, instance) {
-                    // 날짜가 선택되면 스케줄을 확인
-                    checkSchedule(dateStr);
-                }
-            });
-        });
+            var oneWeekAgo = new Date(today);
+            oneWeekAgo.setDate(today.getDate() - 7); // 일주일 전 날짜를 설정합니다.
 
-        function checkSchedule(date) {
-            fetch('/api/schedule/check?date=' + date)
-                .then(response => response.json())
-                .then(data => {
-                    let message = data.scheduleExists && data.schedule ? data.schedule : "아직 일정이 없습니다.";
-                    updateScheduleMessages(message);
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    updateScheduleMessages("일정 확인 중 오류가 발생했습니다.");
+            var oneWeekFromNow = new Date(today);
+            oneWeekFromNow.setDate(today.getDate() + 7); // 일주일 후 날짜를 설정합니다.
+
+            // 과거 날짜를 비활성화하는 함수입니다.
+            function disablePastDates(date) {
+                var tempDate = new Date(date);
+                tempDate.setHours(0, 0, 0, 0);
+                return tempDate < today; // 오늘 이전 날짜는 선택할 수 없도록 합니다.
+            }
+
+            // 달력을 초기화하고 설정하는 함수입니다.
+            function initializeDatePicker() {
+                var datePicker = flatpickr("#datePicker", {
+                    dateFormat: "Y-m-d",
+                    defaultDate: today,
+                    locale: 'ko',
+                    disable: [disablePastDates], // 과거 날짜 비활성화 옵션을 설정합니다.
+                    onDayCreate: function(dObj, dStr, fp, dayElem) {
+                        // 날짜가 생성될 때마다 호출되는 함수입니다.
+                        var date = dayElem.dateObj;
+                        date.setHours(0, 0, 0, 0);
+                        if (date >= oneWeekAgo && date <= oneWeekFromNow) {
+                            // 현재 날짜로부터 일주일 이내의 날짜는 특별한 스타일을 적용합니다.
+                            dayElem.style.color = 'white';
+                        }
+                    },
+                    onReady: function(selectedDates, dateStr, instance) {
+                        // 달력이 준비되었을 때 호출됩니다.
+                        var inputRect = instance.input.getBoundingClientRect();
+                        var calendarElement = instance.calendarContainer;
+                        calendarElement.style.position = 'absolute';
+                        calendarElement.style.top = inputRect.bottom + 'px';
+                        calendarElement.style.left = inputRect.left + 'px';
+                        setCalendarPosition(instance);
+                    },
+                    onChange: [function(selectedDates, dateStr, instance) {
+                        // 날짜가 선택되면 스케줄을 확인합니다.
+                        checkSchedule(dateStr);
+                    }]
                 });
-        }
 
-        function updateScheduleMessages(message) {
-            ['schedule-ms', 'schedule-2', 'schedule-ms3', 'schedule-ms4'].forEach(id => {
-                let element = document.getElementById(id);
-                if (element) {
-                    element.textContent = message;
+                // 스크롤 이벤트 리스너를 추가합니다.
+                window.addEventListener('scroll', function() {
+                    if (datePicker.isOpen) {
+                        var inputRect = datePicker.input.getBoundingClientRect();
+                        datePicker.calendarContainer.style.top = inputRect.bottom + window.scrollY + 'px';
+                    }
+                });
+                // 달력의 위치를 입력 필드 바로 아래로 설정하는 함수입니다.
+                function setCalendarPosition(pickerInstance) {
+                    var inputRect = pickerInstance.input.getBoundingClientRect();
+                    var calendarElement = pickerInstance.calendarContainer;
+                    calendarElement.style.top = (inputRect.bottom + window.scrollY) + 'px';
+                    calendarElement.style.left = inputRect.left + 'px';
                 }
-            });
-        }
 
+                // 달력의 위치를 업데이트하는 함수입니다.
+                function updateCalendarPosition(pickerInstance) {
+                    var inputRect = pickerInstance.input.getBoundingClientRect();
+                    console.log(inputRect);
+                    var calendarElement = pickerInstance.calendarContainer;
+                    calendarElement.style.position = 'absolute';
+                    calendarElement.style.top = (inputRect.bottom + window.pageYOffset) + 'px';
+                    calendarElement.style.left = inputRect.left + 'px';
+                    console.log(window.scrollY);
+                }
+            }
+
+            initializeDatePicker(); // 달력 초기화 함수를 호출합니다.
+
+            // 날짜별 스케줄을 확인하는 함수입니다.
+            function checkSchedule(date) {
+                fetch('/api/schedule/check?date=' + date) // 서버에 스케줄 확인 요청을 보냅니다.
+                    .then(response => response.json())
+                    .then(data => {
+                        let message = data.scheduleExists && data.schedule ? data.schedule : "아직 일정이 없습니다.";
+                        updateScheduleMessages(message); // 스케줄 메시지를 업데이트합니다.
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        updateScheduleMessages("일정 확인 중 오류가 발생했습니다."); // 오류 메시지를 표시합니다.
+                    });
+            }
+
+            // 스케줄 메시지를 업데이트하는 함수입니다.
+            function updateScheduleMessages(message) {
+                ['schedule-ms', 'schedule-2', 'schedule-ms3', 'schedule-ms4'].forEach(id => {
+                    let element = document.getElementById(id);
+                    if (element) {
+                        element.textContent = message;
+                    }
+                });
+            }
+        });
 
     </script>
 
