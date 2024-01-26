@@ -70,8 +70,8 @@ ul {
 }
 .resvs .box .resv-box {
     width: 750px;
-    padding-top: 40px;
-    padding-left: 40px;
+    padding-top: 60px;
+    padding-left: 0px;
     border: 1px solid rgb(65, 66, 77);
     background: #0d0e31;
 }
