@@ -16,15 +16,6 @@ import java.util.List;
 public class ThemesInformController {
     private final ThemeService themeService;
 
-    @GetMapping
-    public String ThemesInform(Model model) {
-        ThemeDTO.ThemeListResponse response = themeService.themeList();
-        List<ThemeDTO> themes = response.getThemes();
-        model.addAttribute(themes);
-
-        return "theme";
-    }
-
     @GetMapping("/content")
     public String ThemesContent(Model model) {
         String themeName = "ThemeName";
