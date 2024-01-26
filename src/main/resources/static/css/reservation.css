@@ -4,11 +4,14 @@
 
 body {
     overflow: visible !important;
-    font-family: 'Hahmlet', serif; /* 기본 폰트 설정 */
+
 }
 
 ul {
     list-style: none;
+}
+.reservation {
+    font-family: 'Hahmlet', serif; /* 기본 폰트 설정 */
 }
 
 .resv-title h1 {
@@ -42,20 +45,11 @@ ul {
     margin: auto;
 }
 
-.resv-title h1 {
-    text-align: center;
-    font-size: 3rem;
-    color: #aa1f1f;
-    padding: 80px 0;
-    font-family: 'Rubik Burned', system-ui;
-}
-
-.resvs .sec ul{
+.resvs .sec ul {
     display: flex;
     justify-content: space-around;
     padding-top: 30px;
 }
-
 .resvs .sec li {
     padding: 10px 79px;
     border-radius: 5px;
