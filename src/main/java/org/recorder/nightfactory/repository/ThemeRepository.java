@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface ThemeRepository extends JpaRepository<Theme, Integer> {
 
-    public List<Theme> findAllByOrderByRoomIdAsc();
+    List<Theme> findAllByOrderByRoomIdAsc();
 
 }

@@ -1,4 +1,5 @@
 package org.recorder.nightfactory.dto;
 
-public class ReservationCheckResponse {
+public class PortOnePaymentDTO {
+
 }

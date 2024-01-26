@@ -5,11 +5,14 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.boot.model.naming.IllegalIdentifierException;
+import org.recorder.nightfactory.repository.ReservationRepository;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.Optional;
 import java.util.UUID;
 
 @Table(name = "reservations")
@@ -17,7 +20,7 @@ import java.util.UUID;
 @Getter
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class Reservation implements Smsable{
+public class Reservation implements Smsable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -64,7 +67,17 @@ public class Reservation implements Smsable{
     LocalDateTime paidAt;
 
 
-    public Reservation(Schedule schedule, String owner, Date reservationDate, String phoneNumber, int numberOfPeople) {
+    public static Reservation findById(UUID id, ReservationRepository repository) {
+        Optional<Reservation> reservationRepo = repository.findById(id);
+        if (reservationRepo.isEmpty()) {
+            throw new IllegalIdentifierException("No such reservation");
+        } else {
+            return reservationRepo.get();
+        }
+    }
+
+
+    private Reservation(Schedule schedule, String owner, Date reservationDate, String phoneNumber, int numberOfPeople) {
         this.schedule = schedule;
         this.owner = owner;
         this.reservationDate = reservationDate;

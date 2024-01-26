@@ -21,7 +21,7 @@ public class ThemeSet {
         return theme;
     }
 
-    public List<Schedule> getSchedules() {
-        return schedules.getSchedules();
+    public Schedules getSchedules() {
+        return schedules;
     }
 }

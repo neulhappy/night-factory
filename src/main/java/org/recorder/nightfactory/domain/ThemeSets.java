@@ -16,7 +16,7 @@ public class ThemeSets {
     public static ThemeSets findAll(ThemeRepository themeRepository, ScheduleRepository scheduleRepository) {
         Themes themes = Themes.listTheme(themeRepository);
         ArrayList<ThemeSet> themeSetList = new ArrayList<>();
-        for (Theme theme : themes.getThemes()) {
+        for (Theme theme : themes.get()) {
             ThemeSet themeSet = ThemeSet.make(theme, scheduleRepository);
             themeSetList.add(themeSet);
         }
@@ -38,12 +38,12 @@ public class ThemeSets {
         }
         if (reservedSchedulesIds.isEmpty()) {
             for (ThemeSet set : this.getThemeSets())
-                for (Schedule schedule : set.getSchedules()) {
+                for (Schedule schedule : set.getSchedules().get()) {
                     schedule.setAble(true);
                 }
         } else {
             for (ThemeSet set : this.getThemeSets())
-                for (Schedule schedule : set.getSchedules()) {
+                for (Schedule schedule : set.getSchedules().get()) {
                     schedule.setAble(!schedule.isIncludedByIds(reservedSchedulesIds));
                 }
         }
