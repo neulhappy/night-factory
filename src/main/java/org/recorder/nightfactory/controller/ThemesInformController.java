@@ -1,8 +1,7 @@
 package org.recorder.nightfactory.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.recorder.nightfactory.domain.Theme;
-import org.recorder.nightfactory.dto.ThemeListResponse;
+import org.recorder.nightfactory.dto.ThemeDTO;
 import org.recorder.nightfactory.service.ThemeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,8 +18,8 @@ public class ThemesInformController {
 
     @GetMapping
     public String ThemesInform(Model model) {
-        ThemeListResponse response = themeService.themeList();
-        List<Theme> themes = response.getThemes();
+        ThemeDTO.ThemeListResponse response = themeService.themeList();
+        List<ThemeDTO> themes = response.getThemes();
         model.addAttribute(themes);
 
         return "theme";

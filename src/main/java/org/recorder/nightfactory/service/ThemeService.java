@@ -15,8 +15,8 @@ public class ThemeService {
     private final ScheduleRepository scheduleRepository;
 
 
-    public ThemeDTO.Themes themeSchedulesList() {
-        return ThemeDTO.Themes.of(org.recorder.nightfactory.domain.Themes.listTheme(themeRepository));
+    public ThemeDTO.ThemeListResponse themeList() {
+//        return new ThemeDTO.ThemeListResponse(org.recorder.nightfactory.domain.Themes.listTheme(themeRepository));
+        return null;
     }
-
 }
