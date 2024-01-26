@@ -30,8 +30,8 @@ public class BoardController {
     }
 
     @PostMapping("/post")
-    public String write(BoardDTO boardDTO) {
-        boardService.savePost(boardDTO);
+    public String write(BoardDTO boardDto) {
+        boardService.savePost(boardDto);
         return "redirect:/";
     }
 }

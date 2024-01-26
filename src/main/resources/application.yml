@@ -5,8 +5,12 @@ spring:
       - key
   jpa:
     show-sql: true
-    hibernate:
-#      ddl-auto: update #배포시 validate
+    properties:
+      hibernate:
+        id:
+          new_generator_mappings: false
+
+  #      ddl-auto: update #배포시 validate
   datasource:
     url: jdbc:mariadb://localhost:3306/test
     hikari:
@@ -21,5 +25,7 @@ spring:
         enabled: false
   thymeleaf:
     cache: false
+
+
 
 
