@@ -19,9 +19,7 @@ public class ScheduleDTO {
     private LocalTime startTime;
     private Boolean able;
 
-    public static ScheduleDTO of(Schedule schedule) {
-        return new ScheduleDTO(schedule.getId(), schedule.getTheme(), schedule.getStartTime(), schedule.getAble());
-    }
+
 
 
     @Getter
@@ -29,16 +27,6 @@ public class ScheduleDTO {
     @AllArgsConstructor
     public static class Schedules {
         List<ScheduleDTO> schedules;
-
-        public static Schedules of(org.recorder.nightfactory.domain.Schedules schedules) {
-            List<ScheduleDTO> scheduleDTOs = new ArrayList<>();
-            for (Schedule schedule : schedules.get())
-                scheduleDTOs.add(ScheduleDTO.of(schedule));
-
-            return new Schedules(scheduleDTOs);
-        }
-
-
     }
 
 }

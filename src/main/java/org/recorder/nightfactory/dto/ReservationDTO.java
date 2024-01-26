@@ -55,16 +55,10 @@ public class ReservationDTO {
         List<ThemeDTO.ThemeSet> allSchedules;
 
 
-        private AllSchduleResponse(List<ThemeDTO.ThemeSet> allSchedules) {
+        public AllSchduleResponse(List<ThemeDTO.ThemeSet> allSchedules) {
             this.allSchedules = allSchedules;
         }
 
-        public static AllSchduleResponse of(ThemeSets themeSets) {
-            List<ThemeDTO.ThemeSet> allSchedules = new ArrayList<>();
-            for (ThemeSet themeSet : themeSets.getThemeSets()) {
-                allSchedules.add(ThemeDTO.ThemeSet.of(themeSet));
-            }
-            return new AllSchduleResponse(allSchedules);
-        }
+
     }
 }
