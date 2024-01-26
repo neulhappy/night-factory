@@ -352,6 +352,7 @@ ol {
 	position: relative;
 	margin-right: 16px;
 	transform: translate(0,20px);
+	padding-bottom: 15px;
 }
 
 .header__menu ul li.active a {
@@ -364,13 +365,14 @@ ol {
 }
 
 .header__menu ul li:hover .dropdown {
-	top: 40px;
+	top: 50px;
 	opacity: 1;
 	visibility: visible;
 }
 
 .header__menu ul li:hover .dropdown li a {
 	background: transparent;
+	color: white;
 }
 
 .header__menu ul li:last-child {
@@ -378,13 +380,15 @@ ol {
 }
 
 .header__menu ul li .dropdown {
+	font-family: 'Hahmlet', serif;
 	position: absolute;
-	left: 0;
-	top: 75px;
-	width: 150px;
-	height: 80px;
-	background: #bdbbbb;
-	border-radius: 20px;
+	left: 5px;
+	top: 50px;
+	width: 145px;
+	height: 120px;
+	background: #0B0C2A;
+	border: 1px solid rgb(23, 43, 72);
+	border-radius: 5px;
 	text-align: left;
 	padding: 2px 0;
 	z-index: 9;
