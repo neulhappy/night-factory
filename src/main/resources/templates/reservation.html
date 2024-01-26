@@ -11,9 +11,9 @@
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
-    rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Mr+Dafoe" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dokdo&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="../static/css/bootstrap.min.css" type="text/css">
@@ -24,9 +24,9 @@
     <link rel="stylesheet" href="../static/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="../static/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="../static/css/style.css" type="text/css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Dokdo&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../static/css/reservation.css" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Dokdo&display=swap');
@@ -89,13 +89,14 @@
                     </ul>
                 </div>
                 <div class="resv-days">
-                    <input type="text" name="resv-tt" id="resv-tt" value="2024-01-24"/>
+                    <input type="text" id="datePicker"/>
                 </div>
                 <div class="box">
                     <div class="box-img"><img src="../static/img/theme1.png" alt="테마1">
                         <p class="box-tit">테마1</p>
                     </div>
                     <div class="box-time">
+                        <div id="schedule-ms" class="schedule-ms"></div>
                         <ul>
                             <li>09:00</li>
                             <li>10:00</li>
@@ -117,6 +118,7 @@
                         <p class="box-tit">테마2</p>
                     </div>
                     <div class="box-time">
+                        <div id="schedule-2" class="schedule-ms"></div>
                         <ul>
                             <li>09:00</li>
                             <li>10:00</li>
@@ -138,6 +140,7 @@
                         <p class="box-tit">테마3</p>
                     </div>
                     <div class="box-time">
+                        <div id="schedule-ms3" class="schedule-ms"></div>
                         <ul>
                             <li>09:00</li>
                             <li>10:00</li>
@@ -159,6 +162,7 @@
                         <p class="box-tit">테마4</p>
                     </div>
                     <div class="box-time">
+                        <div id="schedule-ms4" class="schedule-ms"></div>
                         <ul>
                             <li>09:00</li>
                             <li>10:00</li>
@@ -220,7 +224,50 @@
 <script src="../static/js/jquery.slicknav.js"></script>
 <script src="../static/js/owl.carousel.min.js"></script>
 <script src="../static/js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ko.js"></script>
 
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var today = new Date();
+
+            flatpickr("#datePicker", {
+                dateFormat: "Y-m-d",
+                defaultDate: today,
+                minDate: today, // 오늘 날짜부터 선택 가능
+                locale: 'ko', // 한글 로캘 적용
+                onChange: function(selectedDates, dateStr, instance) {
+                    // 날짜가 선택되면 스케줄을 확인
+                    checkSchedule(dateStr);
+                }
+            });
+        });
+
+        function checkSchedule(date) {
+            fetch('/api/schedule/check?date=' + date)
+                .then(response => response.json())
+                .then(data => {
+                    let message = data.scheduleExists && data.schedule ? data.schedule : "아직 일정이 없습니다.";
+                    updateScheduleMessages(message);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    updateScheduleMessages("일정 확인 중 오류가 발생했습니다.");
+                });
+        }
+
+        function updateScheduleMessages(message) {
+            ['schedule-ms', 'schedule-2', 'schedule-ms3', 'schedule-ms4'].forEach(id => {
+                let element = document.getElementById(id);
+                if (element) {
+                    element.textContent = message;
+                }
+            });
+        }
+
+
+    </script>
 
 </body>
 

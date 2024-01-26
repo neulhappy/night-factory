@@ -38,23 +38,130 @@ ul {
 .resvs .sec .sp {
     border: solid 2px #ffffff;
 }
+.resvs{
+    position: relative;
+}
 .resvs .resv-days {
     padding: 30px 0 0 30px;
+
 }
 .resvs .resv-days input {
     font-family: 'Ubuntu', sans-serif;
     font-size: 1.3rem;
     border: 1px solid rgb(23, 43, 72);
     color: rgb(255, 255, 255);
-    background: #0B0C2A;
     width: 320px;
     height: 50px;
     text-align: center;
+    background: #0B0C2A url("../img/calendar-icon.png") no-repeat right 10px center /
+    35px auto;
 }
-.resvs .resv-days input:focus {
-    outline: none;
+
+body{
+    position: relative;
 }
+
+body .flatpickr-calendar.arrowTop:after{
+   display: none;
+}
+body .flatpickr-calendar.arrowTop:before {
+    border: none;
+}
+
+body .flatpickr-calendar {
+
+    box-shadow: none;
+    font-family: 'Hahmlet', serif;
+    border: 1px solid rgb(23, 43, 72);
+    background: #0B0C2A;
+    width: 320px;
+    height: 301px;
+    }
+
+body .flatpickr-day.today {
+    color: #ffffff;
+    background: #d75151;
+    border: none;
+}
+
+body .flatpickr-day {
+    color: white;
+}
+
+body .flatpickr-months .flatpickr-month {
+    color: white;
+}
+
+body .flatpickr-weekdays .flatpickr-weekday {
+    color: white;
+}
+
+body .flatpickr-calendar .flatpickr-day.prevMonthDay,
+body .flatpickr-calendar .flatpickr-day.nextMonthDay{
+    color: white;
+    background: #909091;
+}
+body .flatpickr-calendar .flatpickr-day.selected {
+    background: rgb(211, 95, 95);
+    color: white;
+    border: none;
+    }
+body .flatpickr-prev-month .flatpickr-prev-month, body .flatpickr-next-month .flatpickr-next-month {
+    color:white; /* 원하는 색상 코드로 변경 */
+}
+body .flatpickr-current-month .numInputWrapper span.arrowUp:after {
+    border-bottom-color: white;
+}
+body .flatpickr-current-month .numInputWrapper span.arrowDown:after {
+    border-top-color: white;
+}
+body .numInputWrapper span {
+    opacity: 1;
+}
+/* 다음 달로 가는 화살표 색상 변경 */
+body .flatpickr-next-month .flatpickr-prev-month, body .flatpickr-next-month .flatpickr-next-month {
+    color:white; /* 원하는 색상 코드로 변경 */
+}
+/*!* 날짜 셀 *!*/
+/*.flatpickr-day {*/
+/*    color: #ffffff; !* 날짜 텍스트 색상 변경 *!*/
+/*}*/
+/*.flatpickr-months .flatpickr-month, .flatpickr-weekdays {*/
+/*    color: white;*/
+/*}*/
+/*!* 선택된 날짜의 스타일 *!*/
+/*.flatpickr-day.selected,*/
+/*.flatpickr-day.startRange,*/
+/*.flatpickr-day.endRange,*/
+/*.flatpickr-day.selected.inRange,*/
+/*.flatpickr-day.startRange.inRange,*/
+/*.flatpickr-day.endRange.inRange {*/
+/*    background: #e85555; !* 선택된 날짜의 배경색 변경 *!*/
+/*    color: white; !* 선택된 날짜의 텍스트 색상 변경 *!*/
+/*}*/
+
+/*!* 오늘 날짜의 스타일 *!*/
+/*.flatpickr-day.today {*/
+/*    background: #f0f0f0; !* 오늘 날짜의 배경색 변경 *!*/
+/*    color: #ffffff; !* 오늘 날짜의 텍스트 색상 변경 *!*/
+/*}*/
+
+/*!* 호버 효과 *!*/
+/*.flatpickr-day:hover {*/
+/*    background: #e85151;!* 마우스 호버 시 배경색 변경 *!*/
+/*}*/
+/*!* 비활성화된 날짜 스타일 *!*/
+/*.flatpickr-calendar .flatpickr-day.prevMonthDay {*/
+/*    color: #ccc;*/
+/*    background: #f0f0f0;*/
+/*}*/
+/*.flatpickr-calendar .flatpickr-day.selected {*/
+/*    background: rgb(23, 43, 72);*/
+/*    color: white;*/
+/*    border: rgb(23, 43, 72);*/
+/*}*/
 .resvs .box {
+    position: relative;
     padding-top: 30px;
     display: flex;
     padding-left: 30px;
@@ -77,6 +184,13 @@ ul {
     color: white;
     font-family: 'Hahmlet', serif;
     font-size: 1.2rem;
+}
+.resvs .box .schedule-ms {
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    color: white;
+    font-size: 2.3rem;
 }
 .resvs .box ul {
     display: flex;
