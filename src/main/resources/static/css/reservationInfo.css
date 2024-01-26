@@ -5,7 +5,6 @@
 font-family: 'Rubik Burned', system-ui;
 font-family: 'Ubuntu', sans-serif;*/
 .reservation {
-    width: 100%;
 }
 .reservation .sec2 {
     width: 1200px;
@@ -14,9 +13,9 @@ font-family: 'Ubuntu', sans-serif;*/
 
 .reservation-title h1 {
     text-align: center;
-    font-size: 3rem;
+    font-size: 3.5rem;
     color: #aa1f1f;
-    padding: 20px 0;
+    padding: 50px 0;
     font-family: 'Rubik Burned', system-ui;
 }
 .reservation-text {

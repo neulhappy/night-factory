@@ -9,10 +9,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface ReservationRepository extends JpaRepository<Reservation, Long> {
+public interface ReservationRepository extends JpaRepository<Reservation, UUID> {
     Optional<Reservation> findByOwnerOrderByReservationDateDesc(String owner);
 
     List<Reservation> findAllByReservationDateAndStateIn(Date reservationDate, List<PaymentState> states);
-
-    Optional<Reservation> getById(UUID id);
 }

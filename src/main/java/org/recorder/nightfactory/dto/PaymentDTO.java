@@ -1,8 +1,44 @@
 package org.recorder.nightfactory.dto;
 
-public class PortOnePaymentResponse {
-    String imp_uid; //포트원에서 채번한 결제 트랜잭션 ID
-    String merchant_uid; //string
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+import java.util.UUID;
+
+
+@NoArgsConstructor
+@Getter
+public class PaymentDTO {
+    public static class PortOneApiTokenResponse {
+    }
+
+    public static class PortOneApiTokenRequest {
+        private final String key;
+        private final String secret;
+
+        public PortOneApiTokenRequest(String key, String secret) {
+            this.key = key;
+            this.secret = secret;
+        }
+    }
+
+    @Getter
+    public static class PortOnePaymentRequest {
+        private String storeId;
+        private String channelKey;
+
+        private UUID paymentId;
+        private String orderName;
+        private Long totalAmount;
+        public String fullname;
+        public String phoneNumber;
+
+    }
+
+    @Getter
+    public static class PortOnePaymentResponse {
+        String imp_uid; //포트원에서 채번한 결제 트랜잭션 ID
+        String merchant_uid; //string
 
 //
 //    {
@@ -31,5 +67,5 @@ public class PortOnePaymentResponse {
 //            "card_quota": 0,
 //            "card_number": ""
 //    }
-
+    }
 }

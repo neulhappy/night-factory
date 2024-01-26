@@ -3,6 +3,7 @@ package org.recorder.nightfactory.domain;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.recorder.nightfactory.repository.ScheduleRepository;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalTime;
@@ -39,4 +40,11 @@ public class Schedule {
         return ids.contains(this.Id);
     }
 
+    public static Schedule findById(ScheduleRepository repository, Integer id) {
+        Optional<Schedule> schedule = repository.findById(id);
+        if (schedule.isEmpty()) {
+            throw new IllegalArgumentException("No such schedule");
+        } else
+            return schedule.get();
+    }
 }

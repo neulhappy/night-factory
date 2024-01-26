@@ -15,7 +15,7 @@ public class Themes {
         return new Themes(themeRepository.findAllByOrderByRoomIdAsc());
     }
 
-    public List<Theme> getThemes() {
+    public List<Theme> get() {
         return themes;
     }
 }

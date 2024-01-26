@@ -1,16 +1,16 @@
 package org.recorder.nightfactory.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.recorder.nightfactory.domain.Reservation;
-import org.recorder.nightfactory.dto.ReservationPostRequest;
-import org.recorder.nightfactory.dto.ReservationPostResponse;
+import org.recorder.nightfactory.dto.ReservationDTO;
 import org.recorder.nightfactory.service.PaymentService;
 import org.recorder.nightfactory.service.ReservationService;
+import org.recorder.nightfactory.service.ThemeService;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
 
 @Controller
 @RequiredArgsConstructor
@@ -18,22 +18,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ReservationController {
 
     private ReservationService reservationService;
+    private ThemeService themeService;
     private PaymentService paymentService;
 
 
     @GetMapping
-    public String reservationView(Model model) {
-
+    public String reservationView(
+            @RequestParam(name = "room") int themeId
+            , @RequestParam(name = "time") int scheduleId
+            , @RequestParam(name = "day") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date
+            , Model model) {
 
         return "reserve";
     }
+
     @PostMapping
-    public String postReservation(ReservationPostRequest request, Model model) {
-        ReservationPostResponse response = reservationService.save(request);
-        Reservation reservation = response.getReservation();
+    public String postReservation(@ModelAttribute ReservationDTO.PostRequest request, Model model) {
+        ReservationDTO.PostResponse response = reservationService.save(request);
         Long price = response.getPrice();
-        model.addAttribute("reservation", reservation);
-        model.addAttribute("price", price);
+        model.addAttribute("response", response);
         return "payment";
     }
 }

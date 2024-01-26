@@ -1,7 +1,6 @@
 package org.recorder.nightfactory.domain;
 
 import org.recorder.nightfactory.repository.ScheduleRepository;
-import org.recorder.nightfactory.repository.ThemeRepository;
 
 import java.util.List;
 
@@ -16,7 +15,7 @@ public class Schedules {
         return new Schedules(scheduleRepository, theme);
     }
 
-    public List<Schedule> getSchedules() {
+    public List<Schedule> get() {
         return schedules;
     }
 }
