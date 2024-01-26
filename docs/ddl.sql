@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS theme
     description    VARCHAR(255) NOT NULL,
     difficulty     INT          NOT NULL,
     alt_difficulty VARCHAR(255),
-    estimatedTime  VARCHAR(255) NOT NULL,
+    estimated_time  VARCHAR(255) NOT NULL,
     price          INT          NOT NULL,
     genre          VARCHAR(255) NOT NULL
 );
