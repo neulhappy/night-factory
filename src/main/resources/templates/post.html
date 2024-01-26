@@ -27,7 +27,13 @@
     <link rel="stylesheet" href="/css/post.css" type="text/css">
 </head>
 <body>
-<header>  <div class="container">
+
+<div id="preloder">
+    <div class="loader"></div>
+</div>
+
+<header>
+    <div class="container">
     <div class="row">
         <div class="col-lg-2">
             <div class="header__logo">
@@ -60,7 +66,7 @@
 </div>
 </header>
 
-<div class="container">
+<div class="content">
     <form action="/post" method="post">
         <div class="form-group row">
             <label for="inputTitle" class="col-sm-2 col-form-label"><strong>제목</strong></label>
@@ -87,6 +93,17 @@
             </div>
         </div>
     </form>
+</div>
+
+<div th:include="footer.html"></div>
+
+<div class="search-model">
+    <div class="h-100 d-flex align-items-center justify-content-center">
+        <div class="search-close-switch"><i class="icon_close"></i></div>
+        <form class="search-model-form">
+            <input type="text" id="search-input" placeholder="Search here.....">
+        </form>
+    </div>
 </div>
 
 <script src="/js/jquery-3.3.1.min.js"></script>

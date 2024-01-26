@@ -32,6 +32,6 @@ public class BoardController {
     @PostMapping("/post")
     public String write(BoardDTO boardDto) {
         boardService.savePost(boardDto);
-        return "redirect:/";
+        return "redirect:/list";
     }
 }
