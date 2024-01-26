@@ -16,6 +16,15 @@ public class ReservationPostRequest {
     private int numberOfPeople;
     private LocalDateTime reservationAt;
 
+    public ReservationPostRequest(int scheduleId, Date reservationDate, String owner, String phoneNumber, int numberOfPeople, LocalDateTime reservationAt) {
+        this.scheduleId = scheduleId;
+        this.reservationDate = reservationDate;
+        this.owner = owner;
+        this.phoneNumber = phoneNumber;
+        this.numberOfPeople = numberOfPeople;
+        this.reservationAt = reservationAt;
+    }
+
     public int getScheduleId() {
         return scheduleId;
     }
