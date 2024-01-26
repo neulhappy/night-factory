@@ -1,25 +1,31 @@
 package org.recorder.nightfactory.dto;
 
+import org.recorder.nightfactory.domain.PaymentState;
 import org.recorder.nightfactory.domain.Reservation;
+import org.recorder.nightfactory.domain.Schedule;
 import org.recorder.nightfactory.domain.Theme;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Date;
+import java.util.UUID;
 
 public class ReservationPostResponse {
 
-    Reservation reservation;
-
+    private UUID id;
+    private int schedule_id;
+    private String owner;
+    private Date reservationDate;
+    private String phoneNumber;
+    private Integer numberOfPeople;
+    private LocalDateTime reservationAt;
+    private UUID paymentId;
+    private String impUid;
+    private Long amount;
+    private PaymentState state;
+    LocalDateTime paidAt;
     Long price;
 
-
-    public ReservationPostResponse(Reservation reservation, Long price) {
-        this.reservation = reservation;
-        this.price = reservation.getSchedule().getTheme().getPrice();
-    }
-
-    public Reservation getReservation() {
-        return reservation;
-    }
 
     public Long getPrice() {
         return price;
