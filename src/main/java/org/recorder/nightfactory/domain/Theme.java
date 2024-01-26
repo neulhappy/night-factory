@@ -65,4 +65,27 @@ public class Theme {
         return Schedules.ListSchedules(scheduleRepository, this);
     }
 
+    public Long getPrice() {
+        return price;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getDifficultyName() {
+        return difficultyName;
+    }
+
+    public String getEstimatedTime() {
+        return estimatedTime;
+    }
+
+    public Genre getGenre() {
+        return genre;
+    }
 }
