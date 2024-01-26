@@ -31,7 +31,7 @@ public class Theme {
     @Column(name = "alt_difficulty")
     private String difficultyName;
 
-    @Column(nullable = false)
+    @Column(name = "estimated_time", nullable = false)
     private String estimatedTime;
 
     @Column(nullable = false)
