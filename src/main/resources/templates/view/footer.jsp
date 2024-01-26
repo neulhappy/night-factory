@@ -23,7 +23,7 @@
                     <ul>
                         <li class="active"><a href="../index.html">Homepage</a></li>
                         <li><a href="../theme.html">Theme</a></li>
-                        <li><a href="../blog.html">Reservation</a></li>
+                        <li><a href="../list.html">Reservation</a></li>
                         <li><a href="#">FAQ</a></li>
                     </ul>
                 </div>
