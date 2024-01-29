@@ -1,0 +1,42 @@
+.outer_eye {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 369px;
+    height: 547px;
+    transform-style: preserve-3d;
+}
+
+.outer_eye::before {
+    overflow: hidden;
+    position: absolute;
+    content: '';
+    width: 150px;
+    height: 150px;
+    top: 50px;
+    left: 108px;
+    background: url('../img/outer_eye.png') no-repeat center;
+    /*animation: blinkAnimation 1s 1s;*/
+
+}
+
+.eye, .eye::before {
+    width: 105px;
+    height: 105px;
+    position: absolute;
+    top: 70px;
+    left: 125px;
+    z-index:-1;
+    background: url('../img/eye_look_front.png') no-repeat;
+    /*animation: blinkAnimation 1s 1s;*/
+}
+
+/*@keyframes blinkAnimation {*/
+/*    0% {*/
+/*        transform: scaleY(0);*/
+/*    }*/
+/*    100% {*/
+/*        transform: scaleY(1);*/
+/*    }*/
+/*}*/
