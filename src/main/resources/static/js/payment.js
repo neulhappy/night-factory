@@ -1,6 +1,6 @@
 // 사용할 View의 결제 버튼에 paymentBtn id 달아 사용 하면 됨. 해당 버튼에 PaymentRequest의 데이터를 데이터 셋으로 담아 줄 것.
 // 서로 다른 데이터를 사용하는 복수의 결제 버튼을 구현할 경우 ID가 아니라 클래스로 관리하고 가맹점 식별코드를 받아오는 방식만 변경.
-
+const MERCHANT_UID_PREFIX = "test"                          // 이 값이 falsy할 경우 UUID만 사용함.
 const paymentBtn = document.getElementById('PaymentBtn');
 
 const portOneLib = document.createElement('script');
@@ -39,7 +39,9 @@ function setPaymentData(target) {
     return {
         pg: 'kakaopay',
         pay_method: 'card',
-        merchant_uid: `test_` + crypto.randomUUID(),
+        merchant_uid: merchant_uid = MERCHANT_UID_PREFIX ?
+            MERCHANT_UID_PREFIX + '_' + crypto.randomUUID()
+            : crypto.randomUUID(),
         name: "방 탈출 카페 밤의 공장",
         amount: parseInt(target.getAttribute("data-amount"), 10),
         buyer_tel: target.getAttribute("data-buyer_tel")

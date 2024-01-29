@@ -184,19 +184,15 @@ body .flatpickr-monthDropdown-month {
     font-size: 1rem ;
 }
 
-body .flatpickr-day.disabled, .flatpickr-day.flatpickr-disabled {
+body .flatpickr-disabled {
     color: grey !important;
 }
 
 body .flatpickr-months .flatpickr-month,
 body .flatpickr-day,
-body .flatpickr-next-month .flatpickr-prev-month, body .flatpickr-next-month .flatpickr-next-month {
+body .flatpickr-day.prevMonthDay,
+body .flatpickr-day.nextMonthDay {
     color: white;
-}
-
-body .flatpickr-calendar .flatpickr-day.nextMonthDay,
-body .flatpickr-calendar .flatpickr-day.prevMonthDay {
-    color: #808080;
 }
 
 body .flatpickr-weekdays .flatpickr-weekday {
@@ -242,5 +238,12 @@ body .flatpickr-close-button {
     outline: none;
     border: 0;
     font-size: 1rem;
+}
+body .flatpickr-day.sunday,
+body .flatpickr-day.holiday {
+    color: #e54f4f;
+}
+body .flatpickr-day.saturday {
+    color: #5b5bfc;
 }
 /*flatpickr 디자인 END*/

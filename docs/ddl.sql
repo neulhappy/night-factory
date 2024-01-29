@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS theme
     description    VARCHAR(255) NOT NULL,
     difficulty     INT          NOT NULL,
     alt_difficulty VARCHAR(255),
-    estimated_time  VARCHAR(255) NOT NULL,
+    estimated_time VARCHAR(255) NOT NULL,
     price          INT          NOT NULL,
     genre          VARCHAR(255) NOT NULL
 );
@@ -35,5 +35,6 @@ CREATE TABLE IF NOT EXISTS reservations
     imp_uid          VARCHAR(255) COMMENT '결제 완료시 OnePort에서 채번 하는 결제 아이디',
     state            VARCHAR(255),
     paid_at          TIMESTAMP,
+    receipt_url      VARCHAR(2047),
     FOREIGN KEY (schedule_id) REFERENCES schedule (id)
 );

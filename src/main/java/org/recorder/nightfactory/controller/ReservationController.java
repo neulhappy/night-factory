@@ -33,8 +33,8 @@ public class ReservationController {
     }
 
     @PostMapping
-    public String postReservation(@ModelAttribute ReservationDTO.PostRequest request, Model model) {
-        ReservationDTO.PostResponse response = reservationService.save(request);
+    public String postReservation(@ModelAttribute ReservationDTO.RegisterRequest request, Model model) {
+        ReservationDTO.RegisterResponse response = reservationService.save(request);
         Long price = response.getPrice();
         model.addAttribute("response", response);
         return "payment";
