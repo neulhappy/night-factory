@@ -70,6 +70,9 @@ public class Reservation implements Smsable {
     @Temporal(TemporalType.TIMESTAMP)
     LocalDateTime paidAt;
 
+    @Column(name = "receipt_url")
+    String receipt;
+
 
     public static Reservation findById(UUID id, ReservationRepository repository) {
         Optional<Reservation> reservationRepo = repository.findById(id);
