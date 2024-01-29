@@ -32,8 +32,7 @@ dependencies {
     //DB
     implementation("org.mariadb.jdbc:mariadb-java-client")
 
-    //Sms: 껍데기만 존재할 부분이라 실현가능한 구현방법이 있을시 제거
-    implementation("net.nurigo:sdk:4.2.7");
+    implementation("net.nurigo:sdk:4.2.7")
 
     compileOnly("org.projectlombok:lombok")
     developmentOnly("org.springframework.boot:spring-boot-devtools")

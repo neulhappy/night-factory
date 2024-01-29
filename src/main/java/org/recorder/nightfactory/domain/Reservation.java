@@ -8,10 +8,14 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.boot.model.naming.IllegalIdentifierException;
 import org.recorder.nightfactory.repository.ReservationRepository;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -85,12 +89,23 @@ public class Reservation implements Smsable {
         this.numberOfPeople = numberOfPeople;
     }
 
-    public boolean isReserved() {
-        //예약이 이미 되어있는지 확인하는 로직
 
-        return false;
+    boolean isExpired(LocalDateTime now) {
+        final Duration EXPIRE_TIME = Duration.ofMinutes(30);
+        boolean isElapsed = Duration.between(this.reservationAt, now).compareTo(EXPIRE_TIME) > 0;
+        return state == PaymentState.READY && isElapsed;
     }
 
+    @Transactional(propagation = Propagation.MANDATORY)
+    public void expire() {
+        this.updateStatus(PaymentState.FAILED);
+    }
+
+
+    @Transactional(propagation = Propagation.MANDATORY)
+    public void updateStatus(PaymentState paymentState) {
+        this.state = paymentState;
+    }
 
     @Override
     public String getMessageText() {
@@ -104,4 +119,21 @@ public class Reservation implements Smsable {
                 , this.getId()
                 , this.getSchedule().getStartTime());
     }
+}
+
+class Reservations {
+    private final List<Reservation> reservations;
+
+    public Reservations(List<Reservation> reservations) {
+        this.reservations = reservations;
+    }
+
+    @Transactional(propagation = Propagation.MANDATORY)
+    public void performExpiration(LocalDateTime now) {
+        for (Reservation reservation : reservations)
+            if (reservation.isExpired(now)) {
+                reservation.expire();
+            }
+    }
+
 }
