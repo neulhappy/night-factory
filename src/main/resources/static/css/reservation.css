@@ -231,4 +231,16 @@ body .flatpickr-current-month .flatpickr-monthDropdown-months {
     background: #0B0C2A;
     color: white;
 }
+body .flatpickr-close-button {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    padding: 10px;
+    color: transparent;
+    background: transparent;
+    box-shadow: none;
+    outline: none;
+    border: 0;
+    font-size: 1rem;
+}
 /*flatpickr 디자인 END*/

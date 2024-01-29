@@ -76,38 +76,16 @@
     </div>
 
     <div class="container">
-        <table class="table">
-            <thead class="thead-light">
-            <tr class="text-center">
-                <th scope="col">번호</th>
-                <th scope="col">제목</th>
-                <th scope="col">작성자</th>
-                <th scope="col">작성일</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr class="text-center" th:each="post : ${postList}">
-                <th scope="row">
-                    <span th:text="${post.id}"></span>
-                </th>
-                <td>
-                    <a th:href="@{'/page/' + ${post.id}}">
-                        <span th:text="${post.title}"></span>
-                    </a>
-                </td>
-                <td>
-                    <span th:text="${post.author}"></span>
-                </td>
-                <td>
-                    <span th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd HH:mm')}"></span>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+
+        <p>ID: <span th:text="${post.id}"></span></p>
+        <p>Title: <span th:text="${post.title}"></span></p>
+        <p>Author: <span th:text="${post.author}"></span></p>
+        <p>Created Date: <span th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd HH:mm')}"></span></p>
+
         <div class="row">
             <div class="col-auto mr-auto"></div>
             <div class="col-auto">
-                <a class="btn btn-primary" th:href="@{/post}" role="button" >글쓰기</a>
+                <a class="btn btn-primary" th:href="@{/list}" role="button" >목록</a>
             </div>
         </div>
     </div>
