@@ -44,7 +44,6 @@ public class BoardController {
     }
 
 
-
     @PostMapping("/post")
     public String write(BoardDTO boardDto) {
         boardService.savePost(boardDto);

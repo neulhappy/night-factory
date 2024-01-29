@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="UTF-8">
@@ -81,6 +81,7 @@
         <p>Title: <span th:text="${post.title}"></span></p>
         <p>Author: <span th:text="${post.author}"></span></p>
         <p>Created Date: <span th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd HH:mm')}"></span></p>
+        <p>Content: <span th:text="${post.content}"></span> </p>
 
         <div class="row">
             <div class="col-auto mr-auto"></div>
