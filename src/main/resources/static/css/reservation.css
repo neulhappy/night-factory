@@ -186,8 +186,9 @@ body .flatpickr-monthDropdown-month {
 
 body .flatpickr-disabled {
     color: grey !important;
+    border: none !important;
 }
-
+body .flatpickr-day.today,
 body .flatpickr-months .flatpickr-month,
 body .flatpickr-day,
 body .flatpickr-day.prevMonthDay,
@@ -219,10 +220,16 @@ body .numInputWrapper span {
     opacity: 1;
 }
 
+body .flatpickr-calendar .flatpickr-day.selected:hover,
+body .flatpickr-day.today:hover,
 body .flatpickr-day:hover,
 body .flatpickr-calendar .flatpickr-day.nextMonthDay:hover,
 body .flatpickr-calendar .flatpickr-day.prevMonthDay:hover,
-body .flatpickr-current-month .flatpickr-monthDropdown-months:hover,
+body .flatpickr-current-month .flatpickr-monthDropdown-months:hover {
+    background: #0B0C2A;
+    color: white;
+    border: 1px solid white;
+}
 body .flatpickr-current-month .flatpickr-monthDropdown-months {
     background: #0B0C2A;
     color: white;
