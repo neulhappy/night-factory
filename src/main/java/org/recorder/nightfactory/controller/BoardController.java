@@ -43,10 +43,15 @@ public class BoardController {
         return "textPage";
     }
 
-
     @PostMapping("/post")
     public String write(BoardDTO boardDto) {
         boardService.savePost(boardDto);
+        return "redirect:/list";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deletePost(@PathVariable Long id) {
+        boardService.deleteBoardById(id);
         return "redirect:/list";
     }
 }
