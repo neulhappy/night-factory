@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 public class BoardService {
-    private BoardRepository boardRepository;
+    private final BoardRepository boardRepository;
 
     public BoardService(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
@@ -20,15 +20,21 @@ public class BoardService {
 
     @Transactional
     public Long savePost(BoardDTO boardDto) {
+        if (boardDto == null || boardDto.isContentBlank() || boardDto.isAuthorBlank() || boardDto.isTitleBlank()) {
+            throw new IllegalArgumentException("내용을 작성해주세요");
+        }
+
         return boardRepository.save(boardDto.toEntity()).getId();
+
     }
+
 
     @Transactional
     public List<BoardDTO> getBoardList() {
         List<Board> boardList = boardRepository.findAll();
         List<BoardDTO> boardDtoList = new ArrayList<>();
 
-        for(Board board : boardList) {
+        for (Board board : boardList) {
             BoardDTO boardDto = BoardDTO.builder()
                     .id(board.getId())
                     .author(board.getAuthor())
@@ -60,5 +66,4 @@ public class BoardService {
     public void deleteBoardById(Long id) {
         boardRepository.deleteById(id);
     }
-
 }

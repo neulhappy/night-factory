@@ -2,15 +2,16 @@ package org.recorder.nightfactory.controller;
 
 import org.recorder.nightfactory.dto.BoardDTO;
 import org.recorder.nightfactory.service.BoardService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
+@ControllerAdvice
 public class BoardController {
     private BoardService boardService;
 
@@ -54,4 +55,18 @@ public class BoardController {
         boardService.deleteBoardById(id);
         return "redirect:/list";
     }
+
+    @PostMapping("/save")
+    public ResponseEntity<String> savePost(@ModelAttribute BoardDTO boardDto) {
+        try {
+            Long postId = boardService.savePost(boardDto);
+            // 성공적으로 저장된 경우 postId를 응답으로 전송
+            return ResponseEntity.ok(postId.toString());
+        } catch (IllegalArgumentException e) {
+            // 에러가 발생한 경우 "error" 문자열을 응답으로 전송
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("error");
+
+        }
+    }
+
 }
