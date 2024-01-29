@@ -228,64 +228,122 @@
 <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ko.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        let today = new Date();
-        today.setHours(0, 0, 0, 0); // 오늘 날짜를 자정으로 설정
-        let sevenDays = new Date();
-        sevenDays.setDate(today.getDate()+7);
-        sevenDays.setHours(23,59,59,999);
+        // 페이지 로드 시 실행될 코드
 
+        // 현재 날짜를 설정하고, 오늘부터 일주일 뒤의 날짜 설정
+        let today = new Date();
+        today.setHours(0, 0, 0, 0); // 현재 날짜 시간 설정
+        let sevenDays = new Date();
+        sevenDays.setDate(today.getDate() + 7); // 일주일 후의 날짜 설정
+        sevenDays.setHours(23, 59, 59, 999); // 일주일 후의 날짜 마지막 시간 설정
+
+        // 공휴일을 저장할 배열
+        let holidays = [];
+
+        // 공휴일 정보를 가져오는 함수
+        function fetchHolidays() {
+            const year = today.getFullYear(); // 현재 연도
+            const serviceKey = 'cXqy1Bo%2BU2YYoMeXnWfQ5WoxpJJY0aQJG4ZIUQ74IZTnphFIKnxeNyGJA7u%2BccuDvKZEcUBxfRh8C%2BPCC1MvLg%3D%3D'; // 서비스 키 보안 생각해서 나중에 바꿀 예정!
+            const url = `http://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/getRestDeInfo?ServiceKey=${serviceKey}&solYear=${year}&_type=json`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    // API 응답에서 공휴일 정보 추출
+                    holidays = data.response.body.items.item.map(holiday => holiday.locdate);
+                    initializeDatePicker(); // 데이터 받은 후 달력 초기화
+                })
+                .catch(error => console.error('Error fetching holidays:', error));
+        }
+
+        // 선택할 수 없는 날짜를 결정 함수
         function disableDates(date) {
             let current = new Date();
             current.setHours(0, 0, 0, 0);
             let sevenDaysLater = new Date(current);
             sevenDaysLater.setDate(sevenDaysLater.getDate() + 7);
-
-            // 선택된 날짜가 오늘보다 이전이거나 7일을 넘어서는 경우 true를 반환합니다.
+            // 오늘 이전 또는  7일 후 날짜 선택 불가
             return (date < current || date > sevenDaysLater);
         }
-        // 달력 초기화 시키는 함수
+
+        // 주어진 날짜가 일요일, 공휴일, 토요일인지 확인하는 함수들
+        function isSunday(date) { return date.getDay() === 0; }
+        function isHoliday(date) {
+            let dateString = date.getFullYear() + '-' + (date.getMonth() + 1).toString().padStart(2, '0') + '-' + date.getDate().toString().padStart(2, '0');
+            return holidays.includes(dateString);
+        }
+        function isSaturday(date) { return date.getDay() === 6; }
+
+
+        // Flatpickr 달력의 각 날짜 요소에 스타일 적용하는 함수
+        function applyStylesToDateElements(instance) {
+            let days = instance.calendarContainer.querySelectorAll('.flatpickr-day');
+            days.forEach(day => {
+                if (day.dateObj) {
+                    let date = day.dateObj;
+                    if (isHoliday(date)) {
+                        day.classList.add("holiday"); // 공휴일 스타일 적용
+                    } else {
+                        day.classList.remove("holiday");
+                    }
+                    if (isSaturday(date)) {
+                        day.classList.add("saturday"); // 토요일 스타일 적용
+                    } else {
+                        day.classList.remove("saturday");
+                    }
+                    if (isSunday(date)) {
+                        day.classList.add("sunday"); // 일요일 스타일 적용
+                    } else {
+                        day.classList.remove("sunday");
+                    }
+                }
+            });
+        }
+
+        // Flatpickr 달력을 초기화 함수
         function initializeDatePicker() {
             datePicker = flatpickr("#datePicker", {
                 dateFormat: "Y-m-d",
                 defaultDate: today,
                 locale: 'ko',
-                disable: [disableDates], // 과거 날짜 비활성화 옵션을 설정
+                disable: [disableDates],
                 onChange: [function(selectedDates, dateStr, instance) {
-                    // 날짜가 선택되면 스케줄을 확인
-                    checkSchedule(dateStr);
+                    checkSchedule(dateStr); // 날짜 선택 시 스케줄 확인
                 }],
+                onMonthChange: function(selectedDates, dateStr, instance) {
+                    applyStylesToDateElements(instance); // 월 변경 시 스타일 적용
+                },
                 onReady: function(selectedDates, dateStr, instance) {
-                    // 닫기 버튼 생성
+                    applyStylesToDateElements(instance); // 달력 준비 시 스타일 적용
                     let closeButton = document.createElement("button");
                     closeButton.textContent = "닫기";
                     closeButton.className = "flatpickr-close-button";
                     closeButton.type = "button";
-
-                    // 닫기 버튼에 클릭 이벤트 리스너 추가
                     closeButton.addEventListener("click", function() {
-                        instance.close();
+                        instance.close(); // 닫기 버튼 클릭 시 달력 닫힘
                     });
-                    // 달력에 닫기 버튼 추가
-                    instance.calendarContainer.appendChild(closeButton);
+                    instance.calendarContainer.appendChild(closeButton); // 닫기 버튼 추가
                 }
             });
-
         }
-        initializeDatePicker();
 
+        // 선택된 날짜에 대한 스케줄을 확인 및 메시지 업데이트 함수
         function checkSchedule(date) {
-            fetch('/api/schedule/check?date=' + date) // 서버에 스케줄 확인 요청
+            fetch('/api/schedule/check?date=' + date)
                 .then(response => response.json())
                 .then(data => {
                     let message = data.scheduleExists && data.schedule ? data.schedule : "아직 일정이 없습니다.";
-                    updateScheduleMessages(message); // 스케줄 메시지를 업데이트
+                    updateScheduleMessages(message);
+                    applyStylesToDateElements(datePicker);
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    updateScheduleMessages("일정 확인 중 오류가 발생했습니다."); // 오류 메시지를 표시
+                    updateScheduleMessages("일정 확인 중 오류가 발생했습니다.");
+                    applyStylesToDateElements(datePicker);
                 });
         }
-        // 스케줄 메시지를 업데이트하는 함수
+
+        // 스케줄 메시지 업데이트 함수
         function updateScheduleMessages(message) {
             ['schedule-ms', 'schedule-2', 'schedule-ms3', 'schedule-ms4'].forEach(id => {
                 let element = document.getElementById(id);
@@ -294,6 +352,8 @@
                 }
             });
         }
+        // 현재 연도의 공휴일을 가져옴
+        fetchHolidays(today.getFullYear());
     });
 </script>
 
