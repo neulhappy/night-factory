@@ -41,4 +41,19 @@ public class BoardService {
         return boardDtoList;
     }
 
+    @Transactional
+    public BoardDTO getBoardById(Long id) {
+        Board board = boardRepository.findById(id)
+                .orElseGet(() -> Board.builder().build()); // 게시글이 없을 때만 새로운 Board 생성
+
+        // Board 엔티티를 BoardDTO로 변환
+        return BoardDTO.builder()
+                .id(board.getId())
+                .author(board.getAuthor())
+                .title(board.getTitle())
+                .content(board.getContent())
+                .createdDate(board.getCreatedDate())
+                .build();
+    }
+
 }
