@@ -1,16 +1,10 @@
 package org.recorder.nightfactory.service;
 
 import lombok.RequiredArgsConstructor;
-import org.recorder.nightfactory.domain.Reservation;
-import org.recorder.nightfactory.domain.Schedule;
-import org.recorder.nightfactory.domain.Theme;
 import org.recorder.nightfactory.dto.ReservationDTO;
 import org.recorder.nightfactory.repository.ReservationRepository;
 import org.recorder.nightfactory.repository.ScheduleRepository;
 import org.springframework.stereotype.Service;
-
-import java.util.NoSuchElementException;
-import java.util.UUID;
 
 
 @RequiredArgsConstructor
@@ -22,10 +16,10 @@ public class ReservationService {
 
 
     //예약 저장
-    public ReservationDTO.PostResponse save(ReservationDTO.PostRequest request) {
+    public ReservationDTO.RegisterResponse save(ReservationDTO.RegisterRequest request) {
 //        Reservation reservation = Reservation;
 //        reservationRepository.save(reservation);
-        return new ReservationDTO.PostResponse();
+        return new ReservationDTO.RegisterResponse();
     }
 
     //예약 취소

@@ -1,7 +1,7 @@
 package org.recorder.nightfactory.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.recorder.nightfactory.dto.PaymentDTO;
+import org.recorder.nightfactory.dto.PortOneApiDTO;
 import org.recorder.nightfactory.service.PaymentService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +16,7 @@ public class PaymentApiController {
     private final PaymentService paymentService;
 
     @PostMapping("/complete")
-    public ResponseEntity<String> completePayment(@RequestBody PaymentDTO.PortOnePaymentResponse portOnePaymentResponse) {
+    public ResponseEntity<String> completePayment(@RequestBody PortOneApiDTO.PortOnePaymentResponse portOnePaymentResponse) {
         return null;
     }
 }
