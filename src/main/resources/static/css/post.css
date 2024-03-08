@@ -1,2 +1,4 @@
-.content {padding: 100px}
-.content strong {font-size: 2rem; color: white; font-weight: 600}
+header {background: #070720;}
+
+.content {padding: 0 500px;}
+.content strong {font-size:1.5rem; color: white; font-weight: 600}

@@ -313,7 +313,15 @@
                 onMonthChange: function(selectedDates, dateStr, instance) {
                     applyStylesToDateElements(instance); // 월 변경 시 스타일 적용
                 },
-                onReady: function(selectedDates, dateStr, instance) {
+                onOpen: function(selectedDates, dateStr, instance) {
+                    applyStylesToDateElements(instance); // 달력이 열릴 때마다 공휴일 스타일 적용
+                },
+                onClose: function(selectedDates, dateStr, instance) {
+                    if (selectedDates.length > 0) {
+                        instance.setDate(selectedDates[0]); // 선택한 날짜로 설정
+                    }
+                },
+                onReady:  function(selectedDates, dateStr, instance) {
                     applyStylesToDateElements(instance); // 달력 준비 시 스타일 적용
                     let closeButton = document.createElement("button");
                     closeButton.textContent = "닫기";

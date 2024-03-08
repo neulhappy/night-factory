@@ -20,8 +20,6 @@ public class ScheduleDTO {
     private Boolean able;
 
 
-
-
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor

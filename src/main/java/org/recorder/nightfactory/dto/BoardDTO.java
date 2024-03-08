@@ -36,4 +36,15 @@ public class BoardDTO {
         this.createdDate = createdDate;
         this.modifiedDate = modifiedDate;
     }
+
+    public boolean isContentBlank() {
+        return content == null || content.trim().isEmpty();
+    }
+    public boolean isAuthorBlank() {
+        return author == null || author.trim().isEmpty();
+    }
+
+    public boolean isTitleBlank() {
+        return title == null || title.trim().isEmpty();
+    }
 }
