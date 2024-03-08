@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Service
 @RequiredArgsConstructor
 public class SchedulerService {
-    private static final Long RATE_OF_RESERVATION_EXPIRING = (long) (1000 * 60 * 15);// 15 Minute
+    private static final long RATE_OF_RESERVATION_EXPIRING = 900000L;
     private static final Duration RANGE_OF_RESERVATION_EXPIRING = Duration.ofDays(1);
     private final ReservationRepository repository;
 
