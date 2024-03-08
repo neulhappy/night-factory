@@ -38,3 +38,13 @@ CREATE TABLE IF NOT EXISTS reservations
     receipt_url      VARCHAR(2047),
     FOREIGN KEY (schedule_id) REFERENCES schedule (id)
 );
+
+CREATE TABLE `board` (
+                         `id` int(11) NOT NULL AUTO_INCREMENT,
+                         `author` varchar(255) NOT NULL,
+                         `title` varchar(255) NOT NULL,
+                         `content` varchar(255) NOT NULL,
+                         `created_date` datetime DEFAULT NULL,
+                         `modified_date` datetime DEFAULT NULL,
+                         PRIMARY KEY (`id`)
+);
