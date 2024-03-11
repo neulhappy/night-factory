@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS theme
+CREATE OR REPLACE TABLE theme
 (
     room_id        INT PRIMARY KEY,
     name           VARCHAR(255) NOT NULL,
@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS theme
     genre          VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS schedule
+CREATE OR REPLACE TABLE schedule
 (
     id         INT PRIMARY KEY AUTO_INCREMENT,
     room_id    INT  NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS schedule
 
 
 
-CREATE TABLE IF NOT EXISTS reservations
+CREATE OR REPLACE TABLE reservations
 (
     id               BINARY(16) PRIMARY KEY,
     schedule_id      INT          NOT NULL,
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS reservations
     FOREIGN KEY (schedule_id) REFERENCES schedule (id)
 );
 
-CREATE TABLE `board` (
+CREATE OR REPLACE TABLE `board` (
                          `id` int(11) NOT NULL AUTO_INCREMENT,
                          `author` varchar(255) NOT NULL,
                          `title` varchar(255) NOT NULL,
@@ -48,3 +48,5 @@ CREATE TABLE `board` (
                          `modified_date` datetime DEFAULT NULL,
                          PRIMARY KEY (`id`)
 );
+
+# 지금은 이래도 되지만 실제 운영 서버에서는 OR REPLACE나 IF NOT EXIST로 DDL을 관리하는 건 위험해요.
