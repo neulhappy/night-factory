@@ -1,6 +1,7 @@
 package org.recorder.nightfactory.service;
 
 import lombok.RequiredArgsConstructor;
+import org.recorder.nightfactory.domain.NurigoService;
 import org.recorder.nightfactory.dto.ReservationDTO;
 import org.recorder.nightfactory.repository.ReservationRepository;
 import org.recorder.nightfactory.repository.ScheduleRepository;
@@ -13,14 +14,17 @@ import org.springframework.stereotype.Service;
 public class ReservationService {
     private final ReservationRepository reservationRepository;
     private final ScheduleRepository scheduleRepository;
+    private final NurigoService nurigoService;
 
 
     //예약 저장
     public ReservationDTO.RegisterResponse save(ReservationDTO.RegisterRequest request) {
 //        Reservation reservation = Reservation;
 //        reservationRepository.save(reservation);
+        nurigoService.sendSMS();
         return new ReservationDTO.RegisterResponse();
     }
+
 
     //예약 취소
     public ReservationDTO.DeleteResponse delete(ReservationDTO.DeleteRequest request) {
