@@ -14,7 +14,7 @@ import java.time.LocalDate;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/reserve")
+@RequestMapping("/reservation")
 public class ReservationController {
 
     private ReservationService reservationService;
@@ -29,7 +29,7 @@ public class ReservationController {
             , @RequestParam(name = "day") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date
             , Model model) {
 
-        return "reserve";
+        return "reservation";
     }
 
     @PostMapping

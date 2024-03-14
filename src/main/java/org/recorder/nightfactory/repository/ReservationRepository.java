@@ -2,6 +2,7 @@ package org.recorder.nightfactory.repository;
 
 import org.recorder.nightfactory.domain.PaymentState;
 import org.recorder.nightfactory.domain.Reservation;
+import org.recorder.nightfactory.domain.Schedule;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -19,4 +20,5 @@ public interface ReservationRepository extends JpaRepository<Reservation, UUID> 
     List<Reservation> findAllByStateAndReservationAtAfter(PaymentState state, LocalDateTime time);
 
     List<Reservation> findAllByReservationDateAndStateIn(Date reservationDate, List<PaymentState> states);
+    Reservation findBySchedule(Schedule schedule);
 }

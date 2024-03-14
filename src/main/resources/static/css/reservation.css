@@ -4,10 +4,9 @@
 
 body {
     overflow: visible !important;
-
 }
 
-ul {
+li {
     list-style: none;
 }
 .reservation {
@@ -32,9 +31,6 @@ ul {
     font-size: 1.3rem;
 }
 
-.resvs .box ul li:hover {
-    background: #d35656;
-}
 
 .reservation {
     font-family: 'Hahmlet', serif;
@@ -82,33 +78,46 @@ ul {
     background: #0B0C2A url("../img/calendar-icon.png") no-repeat right 10px center / 35px auto;
 }
 
-.resvs .box {
+.resvs .resv-main {
     position: relative;
     padding-top: 30px;
     display: flex;
     padding-left: 30px;
 }
 
-.resvs .box .box-img{
-    width: 320px;
+.resvs .theme-container .theme {
+    padding: 20px 0;
+    text-align: center;
+    color: white;
+    font-family: 'Hahmlet', serif;
+    font-size: 1.2rem;
     background: rgba(15, 15, 58, 0.27);
     border: 1px solid rgb(65, 66, 77);
+    width: 320px;
+    height: 500px;
+    margin-bottom: 20px;
 }
-
-.resvs .box .box-img img{
+.resvs .theme-container img{
     width: 250px;
     display: block;
     padding-top: 30px;
     margin-left: 32px;
 }
 
-.resvs .box .box-tit {
-    padding: 20px 0;
-    text-align: center;
-    color: white;
+.resvs .theme-container h2 {
     font-family: 'Hahmlet', serif;
     font-size: 1.2rem;
+    color: white;
+    padding-top: 10px;
 }
+.resvs .theme-container p {
+    font-family: 'Hahmlet', serif;
+    font-size: 1rem;
+    color: white;
+    padding-top: 10px;
+    font-weight: 400;
+}
+
 
 .resvs .box .schedule-ms {
     position: absolute;
@@ -118,25 +127,34 @@ ul {
     font-size: 2.3rem;
 }
 
-.resvs .box ul {
+.resvs .schedule-container ul {
     display: flex;
     gap: 20px;
     flex-direction: row;
     flex-wrap: wrap;
     width: 800px;
-    margin-left: 50px;
-    padding-top: 50px;
+    height: calc(2100px / 4);
+    margin-left: 100px;
+    padding-top: 30px;
+
+
 }
 
-.resvs .box ul li {
+.resvs .schedule-container ul li {
     background: #0e1036;
     padding: 20px 60px;
-    font-size: 1.3rem;
+    font-size: 1.9rem;
     font-family: 'Ubuntu', sans-serif;
     border-radius: 3px;
     color: #ffffff;
     border: 1px solid rgb(23, 43, 72);
     transition: background-color 0.5s;
+    height: 95px;
+}
+
+
+.resvs .schedule-container  li:hover {
+    background: #d35656;
 }
 
 /*flatpickr 디자인*/

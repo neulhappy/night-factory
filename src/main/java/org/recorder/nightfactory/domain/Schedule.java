@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.recorder.nightfactory.repository.ScheduleRepository;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.HashSet;
 import java.util.Optional;
@@ -27,6 +28,8 @@ public class Schedule {
     private LocalTime startTime;
     @Transient
     private Boolean able;
+    @Column(name = "date")
+    private LocalDate date;
 
     void setAble(boolean able) {
         this.able = able;
@@ -47,4 +50,5 @@ public class Schedule {
         } else
             return schedule.get();
     }
+
 }

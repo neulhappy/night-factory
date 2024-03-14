@@ -1,11 +1,14 @@
 package org.recorder.nightfactory.service;
 
 import lombok.RequiredArgsConstructor;
-import org.recorder.nightfactory.domain.NurigoService;
 import org.recorder.nightfactory.dto.ReservationDTO;
 import org.recorder.nightfactory.repository.ReservationRepository;
 import org.recorder.nightfactory.repository.ScheduleRepository;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @RequiredArgsConstructor
@@ -16,7 +19,16 @@ public class ReservationService {
     private final ScheduleRepository scheduleRepository;
     private final NurigoService nurigoService;
 
+    public List<ReservationDTO> getReservationsByDate(LocalDate date) {
+        // 해당 날짜에 대한 모든 스케줄을 가져옵니다.
+        List<Schedule> schedules = scheduleRepository.findAllByDate(date);
 
+        // 스케줄과 관련된 예약 정보를 가져와 DTO로 변환합니다.
+        return schedules.stream().map(schedule -> {
+            Reservation reservation = reservationRepository.findBySchedule(schedule);
+            return new ReservationDTO(reservation);
+        }).collect(Collectors.toList());
+    }
     //예약 저장
     public ReservationDTO.RegisterResponse save(ReservationDTO.RegisterRequest request) {
 //        Reservation reservation = Reservation;

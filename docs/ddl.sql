@@ -39,6 +39,7 @@ CREATE OR REPLACE TABLE reservations
     FOREIGN KEY (schedule_id) REFERENCES schedule (id)
 );
 
+
 CREATE OR REPLACE TABLE `board` (
                          `id` int(11) NOT NULL AUTO_INCREMENT,
                          `author` varchar(255) NOT NULL,

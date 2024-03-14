@@ -16,17 +16,17 @@
     <link href="https://fonts.googleapis.com/css?family=Mr+Dafoe" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="../static/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="../static/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="../static/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="../static/css/plyr.css" type="text/css">
-    <link rel="stylesheet" href="../static/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="../static/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="../static/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="../static/css/style.css" type="text/css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="../css/plyr.css" type="text/css">
+    <link rel="stylesheet" href="../css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="../css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/style.css" type="text/css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Dokdo&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../static/css/reservationPay.css" type="text/css">
+    <link rel="stylesheet" href="../css/reservationMake.css" type="text/css">
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Dokdo&display=swap');
@@ -45,8 +45,8 @@
             <div class="row">
                 <div class="col-lg-2">
                     <div class="header__logo">
-                        <a href="index.html">
-                            <img src="../static/img/Logo.jpg" alt="메인로고">
+                        <a href="../index.html">
+                            <img src="../img/Logo.jpg" alt="메인로고">
                         </a>
                     </div>
                 </div>
@@ -83,14 +83,14 @@
                 <div class="sec">
                     <ul>
                         <li>예약하기</li>
-                        <li >예약정보</li>
-                        <li class="sp">결제하기</li>
+                        <li class="sp">예약정보</li>
+                        <li>결제하기</li>
                         <li>예약완료</li>
                     </ul>
                 </div>
                 <div class="box">
                     <div class="tem-box">
-                    <div class="box-img"><img src="../static/img/theme1.png" alt="테마1">
+                    <div class="box-img"><img src="../img/theme1.png" alt="테마1">
                         <p class="box-tit">테마1</p>
                         <p class="box-days">예약날짜</p>
                         <p class="box-time">시간</p>
@@ -100,19 +100,32 @@
                         <form>
                             <ul>
                                 <li class="select"><p>*인원</p>
+                                    <div class="selectBox">
+                                        <select name="people" class="people">
+                                            <ul>
+                                                <li><option value="two">2명</option></li>
+                                                <li><option value="three">3명</option></li>
+                                                <li><option value="four">4명</option></li>
+                                                <li><option value="five">5명</option></li>
+                                                <li><option value="six">6명</option></li>
+                                            </ul>
+                                        </select>
+                                    </div>
                                 </li>
                                 <li><p>*예약자</p>
-
+                                    <input type="text" name="name">
                                 </li>
                                 <li class="phone"><p>*연락처</p>
-
+                                    <input type="tel" name="phone-f" class="phone-f"><p class="hi">-</p>
+                                    <input type="tel" name="phone-m" class="phone-m"><p class="hi">-</p>
+                                    <input type="tel" name="phone-l" class="phone-l">
                                 </li>
                                 <li>
                                     <p>*요금</p>
-
+                                    <p class="money">50000<span>원</span></p>
                                 </li>
                                 <li>
-                                    <button class="submit" data-userCode="request.get()" data-amount="request.get()" data-buyer_tel="request.get()">결제하기</button>
+                                    <input type="submit" class="submit" value="예약하기">
                                 </li>
                             </ul>
                         </form>
@@ -132,13 +145,13 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="footer__logo">
-                    <a href="index.html"><img src="../static/img/footerlogo.jpg" alt="하단 로고"></a>
+                    <a href="../index.html"><img src="../img/footerlogo.jpg" alt="하단 로고"></a>
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="footer__nav">
                     <ul>
-                        <li class="active"><a href="index.html">Homepage</a></li>
+                        <li class="active"><a href="../index.html">Homepage</a></li>
                         <li><a href="./categories.html">Theme</a></li>
                         <li><a href="list.html">Reservation</a></li>
                         <li><a href="#">FAQ</a></li>
@@ -155,14 +168,14 @@
 
 
 <!-- Js Plugins -->
-<script src="../static/js/jquery-3.3.1.min.js"></script>
-<script src="../static/js/bootstrap.min.js"></script>
-<script src="../static/js/player.js"></script>
-<script src="../static/js/jquery.nice-select.min.js"></script>
-<script src="../static/js/mixitup.min.js"></script>
-<script src="../static/js/jquery.slicknav.js"></script>
-<script src="../static/js/owl.carousel.min.js"></script>
-<script src="../static/js/main.js"></script>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/player.js"></script>
+<script src="../js/jquery.nice-select.min.js"></script>
+<script src="../js/mixitup.min.js"></script>
+<script src="../js/jquery.slicknav.js"></script>
+<script src="../js/owl.carousel.min.js"></script>
+<script src="../js/main.js"></script>
 
 
 </body>

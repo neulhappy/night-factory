@@ -3,6 +3,7 @@ package org.recorder.nightfactory.dto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.recorder.nightfactory.domain.PaymentState;
+import org.recorder.nightfactory.domain.Reservation;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -92,5 +93,9 @@ public class ReservationDTO {
         public AllSchduleResponse(List<ThemeDTO.ThemeSet> allSchedules) {
             this.allSchedules = allSchedules;
         }
+    }
+
+    public ReservationDTO(Reservation reservation) {
+        // reservation 객체에서 필드 값을 추출하여 DTO 필드에 할당
     }
 }
