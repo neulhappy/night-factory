@@ -1,6 +1,9 @@
 package org.recorder.nightfactory.service;
 
 import lombok.RequiredArgsConstructor;
+import org.recorder.nightfactory.domain.NurigoService;
+import org.recorder.nightfactory.domain.Reservation;
+import org.recorder.nightfactory.domain.Schedule;
 import org.recorder.nightfactory.dto.ReservationDTO;
 import org.recorder.nightfactory.repository.ReservationRepository;
 import org.recorder.nightfactory.repository.ScheduleRepository;
