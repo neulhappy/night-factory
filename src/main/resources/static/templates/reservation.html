@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Anime Template">
+    <meta name="keywords" content="Anime, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Anime | Template</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Mr+Dafoe" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dokdo&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="../css/plyr.css" type="text/css">
+    <link rel="stylesheet" href="../css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="../css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/style.css" type="text/css">
+    <link rel="stylesheet" href="../css/reservation.css" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dokdo&display=swap');
+    </style>
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2">
+                    <div class="header__logo">
+                        <a href="../index.html">
+                            <img src="../img/Logo.jpg" alt="메인로고">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="header__nav">
+                        <nav class="header__menu mobile-menu">
+                            <ul>
+                                <li><a href="./categories.html">THEME </a></li>
+                                <li><a href="list.html">RESERVATION<span class="arrow_carrot-down"></span></a>
+                                    <ul class="dropdown">
+                                    <li><a href="./categories.html">예약안내</a></li>
+                                    <li><a href="anime-details.html">예약하기</a></li>
+                                    <li><a href="anime-watching.html">예약확인 및 취소</a></li>
+                                </ul>
+                                </li>
+                                <li><a href="#">FAQ</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <div id="mobile-menu-wrap"></div>
+        </div>
+    </header>
+    <!-- Header End -->
+
+    <!-- Reservation Section Begin -->
+    <main class="reservation">
+        <div class="wrap">
+            <div class="resv-title">
+                    <h1>Reservation</h1>
+            </div>
+            <div class="resvs">
+                <div class="sec">
+                    <ul>
+                        <li class="sp">예약하기</li>
+                        <li>예약정보</li>
+                        <li>결제하기</li>
+                        <li>예약완료</li>
+                    </ul>
+                </div>
+                <div class="resv-days">
+                    <input type="text" id="datePicker"/>
+                </div>
+                <div class="resv-main">
+
+                <div id="theme-container" class="theme-container"></div>
+                <div id="schedule-container" class="schedule-container"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!--Reservation Section End -->
+
+<!-- Footer Section Begin -->
+<footer class="footer">
+    <div class="page-up">
+        <a href="#" id="scrollToTopButton"><span class="arrow_carrot-up"></span></a>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="footer__logo">
+                    <a href="../index.html"><img src="../img/footerlogo.jpg" alt="하단 로고"></a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="footer__nav">
+                    <ul>
+                        <li class="active"><a href="../index.html">Homepage</a></li>
+                        <li><a href="./categories.html">Theme</a></li>
+                        <li><a href="list.html">Reservation</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+          </div>
+<!--        <div>-->
+<!--            Copyright ©2024 All rights reserved | This template is made by Colorlib-->
+<!--        </div>-->
+      </div>
+  </footer>
+  <!-- Footer Section End -->
+
+
+<!-- Js Plugins -->
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/player.js"></script>
+<script src="../js/jquery.nice-select.min.js"></script>
+<script src="../js/mixitup.min.js"></script>
+<script src="../js/jquery.slicknav.js"></script>
+<script src="../js/owl.carousel.min.js"></script>
+<script src="../js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ko.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 현재 날짜를 설정하고, 오늘부터 일주일 뒤의 날짜 설정
+        let today = new Date();
+        today.setHours(0, 0, 0, 0); // 현재 날짜 시간 설정
+        let sevenDays = new Date();
+        sevenDays.setDate(today.getDate() + 7); // 일주일 후의 날짜 설정
+        sevenDays.setHours(23, 59, 59, 999); // 일주일 후의 날짜 마지막 시간 설정
+
+        // 공휴일을 저장할 배열
+        let holidays = [];
+
+
+        // 공휴일 정보를 가져오는 함수
+        function fetchHolidays() {
+            return new Promise((resolve, reject) => {
+            const year = today.getFullYear(); // 현재 연도
+            const serviceKey = 'cXqy1Bo%2BU2YYoMeXnWfQ5WoxpJJY0aQJG4ZIUQ74IZTnphFIKnxeNyGJA7u%2BccuDvKZEcUBxfRh8C%2BPCC1MvLg%3D%3D'; // 서비스 키 보안 생각해서 나중에 바꿀 예정!
+            const url = `http://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/getRestDeInfo?ServiceKey=${serviceKey}&solYear=${year}&_type=json`;
+
+                    fetch(url)
+                        .then(response => response.json())
+                        .then(data => {
+                            const holidays = data.response.body.items.item.map(holiday => holiday.locdate);
+                            resolve(holidays);
+                        })
+                        .catch(error => {
+                            console.error('Error fetching holidays:', error);
+                            reject(error); // 오류가 발생하면 거부
+                        });
+            });
+        }
+        function fetchThemes() {
+            return fetch('http://localhost:8080/api/themes')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (!data || !Array.isArray(data)) {
+                        throw new Error('Data is not an array');
+                    }
+                    console.log('Themes from server:', data);
+                    return data; // 배열 데이터를 반환해야 합니다.
+                })
+                .catch(error => {
+                    console.error('Error fetching themes:', error);
+                    throw error; // 오류를 밖으로 전파하여, Promise.all에서 캐치할 수 있게 합니다.
+                });
+        }
+        // 선택할 수 없는 날짜를 결정 함수
+        function disableDates(date) {
+            let current = new Date();
+            current.setHours(0, 0, 0, 0);
+            let sevenDaysLater = new Date(current);
+            sevenDaysLater.setDate(sevenDaysLater.getDate() + 7);
+            // 오늘 이전 또는  7일 후 날짜 선택 불가
+            return (date < current || date > sevenDaysLater);
+        }
+
+        // 주어진 날짜가 일요일, 공휴일, 토요일인지 확인하는 함수들
+        function isSunday(date) { return date.getDay() === 0; }
+        function isHoliday(date) {
+            let dateString = date.getFullYear() + '-' + (date.getMonth() + 1).toString().padStart(2, '0') + '-' + date.getDate().toString().padStart(2, '0');
+            return holidays.includes(dateString);
+        }
+        function isSaturday(date) { return date.getDay() === 6; }
+
+
+        // Flatpickr 달력의 각 날짜 요소에 스타일 적용하는 함수
+        function applyStylesToDateElements(instance) {
+            let days = instance.calendarContainer.querySelectorAll('.flatpickr-day');
+            days.forEach(day => {
+                if (day.dateObj) {
+                    let date = day.dateObj;
+                    if (isHoliday(date)) {
+                        day.classList.add("holiday"); // 공휴일 스타일 적용
+                    } else {
+                        day.classList.remove("holiday");
+                    }
+                    if (isSaturday(date)) {
+                        day.classList.add("saturday"); // 토요일 스타일 적용
+                    } else {
+                        day.classList.remove("saturday");
+                    }
+                    if (isSunday(date)) {
+                        day.classList.add("sunday"); // 일요일 스타일 적용
+                    } else {
+                        day.classList.remove("sunday");
+                    }
+                }
+            });
+        }
+
+        // Flatpickr 달력을 초기화 함수
+        function initializeDatePicker() {
+                datePicker = flatpickr("#datePicker", {
+                dateFormat: "Y-m-d",
+                defaultDate: today,
+                locale: 'ko',
+                disable: [disableDates],
+                onChange: [function(selectedDates, dateStr, instance) {
+                    checkSchedule(dateStr); // 날짜 선택 시 스케줄 확인
+                }],
+                onMonthChange: function(selectedDates, dateStr, instance) {
+                    applyStylesToDateElements(instance); // 월 변경 시 스타일 적용
+                },
+                onOpen: function(selectedDates, dateStr, instance) {
+                    applyStylesToDateElements(instance); // 달력이 열릴 때마다 공휴일 스타일 적용
+                },
+                onClose: function(selectedDates, dateStr, instance) {
+                    if (selectedDates.length > 0) {
+                        instance.setDate(selectedDates[0]); // 선택한 날짜로 설정
+                    }
+                },
+                onReady:  function(selectedDates, dateStr, instance) {
+                    applyStylesToDateElements(instance); // 달력 준비 시 스타일 적용
+                    let closeButton = document.createElement("button");
+                    closeButton.textContent = "닫기";
+                    closeButton.className = "flatpickr-close-button";
+                    closeButton.type = "button";
+                    closeButton.addEventListener("click", function() {
+                        instance.close(); // 닫기 버튼 클릭 시 달력 닫힘
+                    });
+                    instance.calendarContainer.appendChild(closeButton); // 닫기 버튼 추가
+                }
+            });
+        }
+        // 테마 정보를 가져오고 화면에 표시하는 함수
+
+
+        function checkSchedule(dateStr) {
+            fetch(`http://localhost:8080/api/schedule?date=${dateStr}`)
+                .then(response => response.json())
+                .then(data => {
+                    const allSchedules = Object.values(data.allSchedules).flat(); // 모든 스케줄 데이터를 가져옵니다.
+                    if (!Array.isArray(allSchedules)) {
+                        console.error('Received schedules is not an array:', allSchedules);
+                        return;
+                    }
+
+                    updateScheduleDisplay(allSchedules); // 수정된 schedules 배열을 전달합니다.
+                })
+                .catch(error => {
+                    console.error('Error fetching schedule:', error);
+                });
+        }
+
+
+        // 화면에 테마 정보를 표시하는 함수
+// 화면에 테마 정보를 표시하는 함수
+        function displayThemes(themes) {
+            const themeContainer = document.getElementById('theme-container');
+            themeContainer.innerHTML = ''; // 기존 내용 초기화
+
+            if (!Array.isArray(themes)) {
+                console.error('Received themes is not an array:', themes);
+                return;
+            }
+
+            themes.forEach((theme, index) => {
+                const themeDiv = document.createElement('div');
+                themeDiv.className = 'theme';
+                themeDiv.dataset.index = index;
+
+                // 이미지 엘리먼트 생성 및 설정
+                const img = document.createElement('img');
+                img.src = `/img/theme${index + 1}.png`;
+                img.alt = theme.name;
+
+                // 테마 이름과 소요 시간 설정
+                const themeName = document.createElement('h2');
+                themeName.textContent = theme.name;
+                const estimatedTime = document.createElement('p');
+                estimatedTime.textContent = `소요 시간: ${theme.estimatedTime}`;
+
+                // themeDiv에 이미지와 테마 내용 추가
+                themeDiv.appendChild(img);
+                themeDiv.appendChild(themeName);
+                themeDiv.appendChild(estimatedTime);
+
+                themeContainer.appendChild(themeDiv);
+            });
+        }
+
+        // 스케줄 메시지 업데이트 함수
+
+        function updateScheduleDisplay(allSchedules) {
+            const scheduleContainer = document.getElementById('schedule-container');
+            if (!scheduleContainer) {
+                console.error('scheduleContainer를 찾을 수 없음');
+                return;
+            }
+            scheduleContainer.innerHTML = ''; // 기존 내용 초기화
+
+            // 스케줄 정보가 포함된 객체의 배열을 순회합니다.
+            allSchedules.forEach(scheduleSet => {
+                // 각 스케줄 세트에서 내부 스케줄 배열에 접근합니다.
+                const schedules = scheduleSet.schedules.schedules;
+                if (!Array.isArray(schedules)) {
+                    console.error('schedules is not an array:', schedules);
+                    return;
+                }
+                // 스케줄 데이터를 표시할 새로운 ul 요소를 생성합니다.
+                const scheduleList = document.createElement('ul');
+                scheduleList.className = 'schedule-list';
+
+                // 내부 스케줄 배열을 순회하면서 각 스케줄에 대한 li 요소를 생성합니다.
+                schedules.forEach(schedule => {
+                    const startTime = schedule.startTime;
+                    const timeItem = document.createElement('li');
+                    timeItem.className = 'time-slot';
+                    timeItem.textContent = startTime; // 예: '09:00'
+                    timeItem.dataset.index = String(schedule.id);
+                    scheduleList.appendChild(timeItem); // ul에 li 추가
+                });
+                // 생성된 ul 요소를 scheduleContainer에 추가합니다.
+                scheduleContainer.appendChild(scheduleList);
+            });
+        }
+
+        // 데이터를 불러온 후 실행할 작업들
+        Promise.all([fetchHolidays(), fetchThemes()])
+            .then(results => {
+                // results[0]는 holidays 배열, results[1]는 themes 배열입니다.
+                const [holidays, themes] = results;
+                if (!Array.isArray(themes)) {
+                    throw new Error('Themes is not an array');
+                }
+                initializeDatePicker(holidays); // 공휴일 데이터를 이용해 달력 초기화
+                displayThemes(themes); // 테마 데이터를 이용해 화면 표시
+                // ...
+            })
+            .catch(error => {
+                console.error('An error occurred:', error);
+            });
+        initializeDatePicker()
+        checkSchedule(today.toISOString().split('T')[0]);
+    });
+
+</script>
+
+</body>
+
+</html>
