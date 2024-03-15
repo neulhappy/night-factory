@@ -1,8 +1,20 @@
 
 /* 공통 폰트 임포트 */
 @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@100;200;300;400;500;600;700;800;900&family=Rubik+Burned&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
-
 @import url('https://fonts.googleapis.com/css2?family=Rubik+Doodle+Shadow&family=Rubik+Vinyl&family=Rubik+Wet+Paint&display=swap');
+@font-face {
+    font-family: 'Ansungtangmyun-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/Ansungtangmyun-Bold.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.header__nav {
+    font-family: 'Ansungtangmyun-Bold', serif;
+}
+.header__nav li {
+    font-family: 'Ansungtangmyun-Bold', serif;
+}
 
 body {
     overflow: visible !important;
@@ -11,10 +23,6 @@ body {
 li {
     list-style: none;
 }
-.reservation {
-    font-family: 'Hahmlet', serif; /* 기본 폰트 설정 */
-}
-
 .resv-title h1 {
     text-align: center;
     font-size: 3.5rem;
@@ -29,14 +37,14 @@ li {
     background: #0d0e31;
     border-radius: 5px;
     border: 1px solid rgb(23, 43, 72);
-    color: #ffffff;
+    color: #B7B7B7;
     padding: 10px 79px;
     font-size: 1.3rem;
 }
 
 
 .reservation {
-    font-family: 'Hahmlet', serif;
+    font-family: 'Ansungtangmyun-Bold', serif;
 }
 
 .reservation .resvs {
@@ -55,13 +63,14 @@ li {
     border-radius: 5px;
     font-size: 1.3rem;
     background: #0d0e31;
-    color: #ffffff;
+    color: #B7B7B7;
     border: 1px solid rgb(23, 43, 72);
     user-select: none;
 }
 
 .resvs .sec .sp {
-    border: solid 2px #ffffff;
+    border: solid 2px white;
+    color: white;
 }
 
 .resvs{
@@ -73,10 +82,10 @@ li {
 }
 
 .resvs .resv-days input {
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Ansungtangmyun-Bold', sans-serif;
     font-size: 1.3rem;
     border: 1px solid rgb(23, 43, 72);
-    color: rgb(255, 255, 255);
+    color: white;
     width: 320px;
     height: 50px;
     text-align: center;
@@ -93,8 +102,8 @@ li {
 .resvs .theme-container .theme {
     padding: 20px 0;
     text-align: center;
-    color: white;
-    font-family: 'Hahmlet', serif;
+    color:#B7B7B7;
+    font-family: 'Ansungtangmyun-Bold', serif;
     font-size: 1.2rem;
     background: rgba(15, 15, 58, 0.27);
     border: 1px solid rgb(65, 66, 77);
@@ -111,15 +120,15 @@ li {
 }
 
 .resvs .theme-container h2 {
-    font-family: 'Hahmlet', serif;
+    font-family: 'Ansungtangmyun-Bold', serif;
     font-size: 1.2rem;
-    color: white;
+    color: #B7B7B7;
     padding-top: 10px;
 }
 .resvs .theme-container p {
-    font-family: 'Hahmlet', serif;
+    font-family: 'Ansungtangmyun-Bold', serif;
     font-size: 1rem;
-    color: white;
+    color: #B7B7B7;
     padding-top: 10px;
     font-weight: 400;
 }
@@ -129,7 +138,7 @@ li {
     position: absolute;
     top: 40%;
     left: 40%;
-    color: white;
+    color: #B7B7B7;
     font-size: 2.3rem;
 }
 
@@ -150,9 +159,9 @@ li {
     background: #0e1036;
     padding: 20px 60px;
     font-size: 1.9rem;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Ansungtangmyun-Bold', sans-serif;
     border-radius: 7px;
-    color: #ffffff;
+    color: #B7B7B7;
     border: 1px solid rgb(23, 43, 72);
     transition: background-color 0.5s;
     height: 90px;
@@ -162,6 +171,7 @@ li {
 
 .resvs .schedule-container  li:hover {
     background: #d35656;
+    color: white;
 }
 
 /*flatpickr 디자인*/
@@ -181,7 +191,7 @@ body .flatpickr-calendar.open {
 
 body .flatpickr-calendar {
     box-shadow: none;
-    font-family: 'Hahmlet', serif;
+    font-family: 'Ansungtangmyun-Bold', serif;
     border: 1px solid rgb(23, 43, 72);
     background: #0B0C2A;
     width: 320px;
