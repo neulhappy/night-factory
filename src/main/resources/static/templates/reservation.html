@@ -54,12 +54,12 @@
                     <div class="header__nav">
                         <nav class="header__menu mobile-menu">
                             <ul>
-                                <li><a href="./categories.html">THEME </a></li>
-                                <li><a href="list.html">RESERVATION<span class="arrow_carrot-down"></span></a>
+                                <li><a href="theme.html">THEME </a></li>
+                                <li><a href="reservation.html">RESERVATION<span class="arrow_carrot-down"></span></a>
                                     <ul class="dropdown">
-                                    <li><a href="./categories.html">예약안내</a></li>
-                                    <li><a href="anime-details.html">예약하기</a></li>
-                                    <li><a href="anime-watching.html">예약확인 및 취소</a></li>
+                                    <li><a href="reservationInfo.html">예약안내</a></li>
+                                    <li><a href="reservation.html">예약하기</a></li>
+                                    <li><a href="reservationCheck.html">예약확인 및 취소</a></li>
                                 </ul>
                                 </li>
                                 <li><a href="#">FAQ</a></li>
@@ -179,6 +179,14 @@
             });
         }
 
+        // 주어진 날짜가 일요일, 공휴일, 토요일인지 확인하는 함수들
+        function isSunday(date) { return date.getDay() === 0; }
+        function isHoliday(date) {
+            let dateString = date.getFullYear() + '-' + (date.getMonth() + 1).toString().padStart(2, '0') + '-' + date.getDate().toString().padStart(2, '0');
+            return holidays.includes(dateString);
+        }
+        function isSaturday(date) { return date.getDay() === 6; }
+
         // 테마 정보를 서버에서 가져오는 함수
         function fetchThemes() {
             // fetch API를 사용하여 비동기로 테마 정보를 가져옴
@@ -210,14 +218,6 @@
             // 오늘 이전이거나 일주일 후 날짜를 선택할 수 없도록 하는 로직
             return (date < current || date > sevenDaysLater);
         }
-
-        // 주어진 날짜가 일요일, 공휴일, 토요일인지 확인하는 함수들
-        function isSunday(date) { return date.getDay() === 0; }
-        function isHoliday(date) {
-            let dateString = date.getFullYear() + '-' + (date.getMonth() + 1).toString().padStart(2, '0') + '-' + date.getDate().toString().padStart(2, '0');
-            return holidays.includes(dateString);
-        }
-        function isSaturday(date) { return date.getDay() === 6; }
 
 
         // Flatpickr 달력의 각 날짜 요소에 스타일 적용하는 함수
