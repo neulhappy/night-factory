@@ -7,7 +7,7 @@
     <meta name="keywords" content="Anime, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Anime | Template</title>
+    <title>예약 확인 및 취소</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -41,35 +41,7 @@
 
     <!-- Header Section Begin -->
     <header class="header">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-2">
-                    <div class="header__logo">
-                        <a href="../index.html">
-                            <img src="../img/Logo.png" alt="메인로고">
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-8">
-                    <div class="header__nav">
-                        <nav class="header__menu mobile-menu">
-                            <ul>
-                                <li><a href="./categories.html">THEME </a></li>
-                                <li><a href="list.html">RESERVATION<span class="arrow_carrot-down"></span></a>
-                                    <ul class="dropdown">
-                                        <li><a href="reservationInfo.html">예약안내</a></li>
-                                        <li><a href="reservation.html">예약하기</a></li>
-                                        <li><a href="reservationCheck.html">예약확인 및 취소</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">FAQ</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            <div id="mobile-menu-wrap"></div>
-        </div>
+        <div th:include="header.html"></div>
     </header>
     <!-- Header End -->
 
@@ -122,31 +94,7 @@
 
 <!-- Footer Section Begin -->
 <footer class="footer">
-    <div class="page-up">
-        <a href="#" id="scrollToTopButton"><span class="arrow_carrot-up"></span></a>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3">
-                <div class="footer__logo">
-                    <a href="../index.html"><img src="../img/footerlogo.jpg" alt="하단 로고"></a>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="footer__nav">
-                    <ul>
-                        <li class="active"><a href="../index.html">Homepage</a></li>
-                        <li><a href="./categories.html">Theme</a></li>
-                        <li><a href="list.html">Reservation</a></li>
-                        <li><a href="#">FAQ</a></li>
-                    </ul>
-                </div>
-            </div>
-          </div>
-<!--        <div>-->
-<!--            Copyright ©2024 All rights reserved | This template is made by Colorlib-->
-<!--        </div>-->
-      </div>
+    <div th:include="footer.html"></div>
   </footer>
   <!-- Footer Section End -->
 

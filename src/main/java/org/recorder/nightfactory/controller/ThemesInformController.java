@@ -25,4 +25,9 @@ public class ThemesInformController {
 
     }
 
+
+    @GetMapping("/list")
+    public String ThemesString(Model model){
+        return "theme";
+    }
 }

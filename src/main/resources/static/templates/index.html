@@ -7,7 +7,7 @@
     <meta name="keywords" content="Anime, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Anime | Template</title>
+    <title>Night Factory</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -40,35 +40,7 @@
 
     <!-- Header Section Begin -->
     <header class="header">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-2">
-                    <div class="header__logo">
-                        <a href="./index.html">
-                            <img src="/img/Logo.png" alt="메인로고">
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-8">
-                    <div class="header__nav">
-                        <nav class="header__menu mobile-menu">
-                            <ul>
-                                <li><a href="templates/theme.html">THEME </a></li>
-                                <li><a href="templates/reservation.html">RESERVATION<span class="arrow_carrot-down"></span></a>
-                                    <ul class="dropdown">
-                                    <li><a href="templates/theme.html">예약안내</a></li>
-                                    <li><a href="templates/anime-details.html">예약하기</a></li>
-                                    <li><a href="templates/anime-watching.html">예약확인 및 취소</a></li>
-                                </ul>
-                                </li>
-                                <li><a href="/list">QNA</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            <div id="mobile-menu-wrap"></div>
-        </div>
+        <div th:include="header.html"></div>
     </header>
     <!-- Header End -->
 
@@ -83,7 +55,7 @@
                             <div class="label">ESCAPE</div>
                             <h2>secrets of factory management - Napolitan</h2>
                             <p style="text-align: center">A mysterious incident occurs in the management office that manages the night factory...</p>
-                            <a href="#"><span>Reservation Now</span> <i class="fa fa-angle-right"></i></a>
+                            <a href="/reservation"><span>Reservation Now</span> <i class="fa fa-angle-right"></i></a>
                         </div>
 
                         </div>
@@ -96,7 +68,7 @@
                                 <div class="label">ESCAPE</div>
                                 <h2>Factory Workplace - Murder Case</h2>
                                 <p style="text-align: center">A mysterious murder case that occurred at workpalce. Who is the culprit?</p>
-                                <a href="#"><span>Reservation Now</span> <i class="fa fa-angle-right"></i></a>
+                                <a href="/reservation"><span>Reservation Now</span> <i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
                     </div>

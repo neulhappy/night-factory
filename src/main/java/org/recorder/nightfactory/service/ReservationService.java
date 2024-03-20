@@ -34,8 +34,8 @@ public class ReservationService {
     }
     //예약 저장
     public ReservationDTO.RegisterResponse save(ReservationDTO.RegisterRequest request) {
-//        Reservation reservation = Reservation;
-//        reservationRepository.save(reservation);
+        Reservation reservation = new Reservation();
+        reservationRepository.save(reservation);
         nurigoService.sendSMS();
         return new ReservationDTO.RegisterResponse();
     }

@@ -84,7 +84,7 @@ public class Reservation implements Smsable {
     }
 
 
-    private Reservation(Schedule schedule, String owner, Date reservationDate, String phoneNumber, int numberOfPeople) {
+    public Reservation(Schedule schedule, String owner, Date reservationDate, String phoneNumber, int numberOfPeople) {
         this.schedule = schedule;
         this.owner = owner;
         this.reservationDate = reservationDate;

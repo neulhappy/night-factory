@@ -1,10 +1,11 @@
 package org.recorder.nightfactory.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.recorder.nightfactory.domain.Reservation;
+import org.recorder.nightfactory.domain.Schedule;
 import org.recorder.nightfactory.dto.ReservationDTO;
-import org.recorder.nightfactory.service.PaymentService;
-import org.recorder.nightfactory.service.ReservationService;
-import org.recorder.nightfactory.service.ThemeService;
+import org.recorder.nightfactory.dto.ScheduleDTO;
+import org.recorder.nightfactory.service.*;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,9 +18,13 @@ import java.time.LocalDate;
 @RequestMapping("/reservation")
 public class ReservationController {
 
-    private ReservationService reservationService;
+    private final ReservationService reservationService;
     private ThemeService themeService;
     private PaymentService paymentService;
+
+    private final ScheduleService scheduleService;
+
+    private final ReservationDetailService reservationDetailService;
 
 
     @GetMapping
@@ -38,5 +43,68 @@ public class ReservationController {
         Long price = response.getPrice();
         model.addAttribute("response", response);
         return "payment";
+    }
+
+    @GetMapping("/reservationCheck")
+    public String reservationCancel(){
+        return "reservationCheck";
+    }
+
+    @GetMapping("/reservationInfo")
+    public String reservationInfo(){
+        return "reservationInfo";
+    }
+
+    @GetMapping("/do")
+    public String reservation(Model model){
+        return "reservation";
+    }
+
+    @GetMapping("/make")
+    public String makeReservation(Model model){
+        return "reservationMake";
+    }
+
+    @PostMapping("/check")
+    public String checkReservation(
+            @RequestParam("resv-num") String scheduleId,
+            @RequestParam("name") String owner,
+            @RequestParam("phone-f") String phoneFirstPart,
+            @RequestParam("phone-m") String phoneMiddlePart,
+            @RequestParam("phone-l") String phoneLastPart) {
+
+        ReservationDTO.GetRequest request = new ReservationDTO.GetRequest();
+        ReservationDTO.GetResponse response = reservationDetailService.findByOwner(request);
+        System.out.println("예약 정보: " + response.getReservation().toString());
+        System.out.println("테마 이름: " + response.getThemeName());
+
+        return "reservationCheckPost";
+    }
+
+    @PostMapping("/make")
+    public String makeReservation(
+            @RequestParam("people") String numberOfPeople,
+            @RequestParam("name") String owner,
+            @RequestParam("phone-f") String phoneFirstPart,
+            @RequestParam("phone-m") String phoneMiddlePart,
+            @RequestParam("phone-l") String phoneLastPart,
+            Model model) {
+        String phoneNumber = phoneFirstPart + "-" + phoneMiddlePart + "-" + phoneLastPart;
+        model.addAttribute("numberOfPeople", numberOfPeople);
+        model.addAttribute("owner", owner);
+        model.addAttribute("phoneNumber", phoneNumber);
+        model.addAttribute("amount", 50000);
+
+        return "reservationPay";
+    }
+
+    @PostMapping("/pay")
+    public String payReservation(){
+
+//TODO:작업중이었음
+        reservationService.save(new ReservationDTO.RegisterRequest());
+
+        // 예약이 저장된 후에는 적절한 페이지로 리다이렉트합니다.
+        return "reservationSuccess";
     }
 }

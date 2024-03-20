@@ -23,6 +23,7 @@ spring:
         enabled: false
   thymeleaf:
     cache: false
+    prefix: classpath:/static/templates/
   web:
     cors:
       allow-credentials: true
@@ -42,3 +43,4 @@ spring:
       max-age: 3600
   server:
     port: 8080
+
