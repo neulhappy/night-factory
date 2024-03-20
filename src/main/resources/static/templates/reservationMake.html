@@ -62,14 +62,15 @@
                 </div>
                 <div class="box">
                     <div class="tem-box">
-                    <div class="box-img"><img src="../img/theme1.png" alt="테마1">
-                        <p class="box-tit">테마1</p>
-                        <p class="box-days">예약날짜</p>
-                        <p class="box-time">시간</p>
+                        <div class="box-img"><img th:src="'../img/theme' + (${roomId} - 100) + '.png'" alt="테마 포스터">
+
+                        <p class="box-tit" th:text="${themeName}"></p>
+                        <p class="box-days" th:text="${reservationDate}"></p>
+                        <p class="box-time" th:text="${startTime}"></p>
                     </div>
                     </div>
                     <div class="resv-box">
-                        <form id="reservationForm" action="/reservation/make" method="post" onsubmit="return validatePhoneNumber();">
+                        <form id="reservationForm" action="/reservation/pay" method="post" onsubmit="return validatePhoneNumber();">
                             <ul>
                                 <li class="select"><p>*인원</p>
                                     <div class="selectBox">
@@ -128,7 +129,7 @@
 <script>
     // 문서가 모두 로드된 후에 실행되도록 설정
     document.addEventListener("DOMContentLoaded", function() {
-        // validatePhoneNumber() 함수 정의
+
         function validatePhoneNumber() {
             var phoneFirstPart = document.getElementById("phone-f").value;
             var phoneMiddlePart = document.getElementById("phone-m").value;

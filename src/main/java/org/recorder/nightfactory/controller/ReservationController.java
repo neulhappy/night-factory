@@ -5,6 +5,7 @@ import org.recorder.nightfactory.domain.Reservation;
 import org.recorder.nightfactory.domain.Schedule;
 import org.recorder.nightfactory.dto.ReservationDTO;
 import org.recorder.nightfactory.dto.ScheduleDTO;
+import org.recorder.nightfactory.repository.ScheduleRepository;
 import org.recorder.nightfactory.service.*;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -12,15 +13,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/reservation")
 public class ReservationController {
 
+
     private final ReservationService reservationService;
     private ThemeService themeService;
     private PaymentService paymentService;
+
+    private final ScheduleRepository scheduleRepository;
 
     private final ScheduleService scheduleService;
 
@@ -60,10 +65,20 @@ public class ReservationController {
         return "reservation";
     }
 
-    @GetMapping("/make")
-    public String makeReservation(Model model){
+    @PostMapping("/make")
+    public String makeReservation(@RequestParam String dateStr, @RequestParam int scheduleId, Model model) {
+        System.out.println("Received dateStr: " + dateStr);
+        System.out.println("Received scheduleId: " + scheduleId);
+        model.addAttribute("roomId", Schedule.findById(scheduleRepository, scheduleId).getTheme().getRoomId());
+        model.addAttribute("themeName", Schedule.findById(scheduleRepository, scheduleId).getTheme().getName());
+        model.addAttribute("reservationDate", dateStr);
+        model.addAttribute("startTime", Schedule.findById(scheduleRepository, scheduleId).getStartTime());
+
         return "reservationMake";
     }
+
+
+
 
     @PostMapping("/check")
     public String checkReservation(
@@ -81,7 +96,7 @@ public class ReservationController {
         return "reservationCheckPost";
     }
 
-    @PostMapping("/make")
+    @PostMapping("/pay")
     public String makeReservation(
             @RequestParam("people") String numberOfPeople,
             @RequestParam("name") String owner,
@@ -98,13 +113,13 @@ public class ReservationController {
         return "reservationPay";
     }
 
-    @PostMapping("/pay")
-    public String payReservation(){
-
-//TODO:작업중이었음
-        reservationService.save(new ReservationDTO.RegisterRequest());
-
-        // 예약이 저장된 후에는 적절한 페이지로 리다이렉트합니다.
-        return "reservationSuccess";
-    }
+//    @PostMapping("/payDone")
+//    public String payReservation(){
+//
+////TODO:작업중이었음
+//        reservationService.save(new ReservationDTO.RegisterRequest());
+//
+//        // 예약이 저장된 후에는 적절한 페이지로 리다이렉트합니다.
+//        return "reservationSuccess";
+//    }
 }

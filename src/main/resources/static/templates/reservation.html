@@ -99,9 +99,13 @@
         let sevenDays = new Date();
         sevenDays.setDate(today.getDate() + 7); // 일주일 후의 날짜 설정
         sevenDays.setHours(23, 59, 59, 999); // 일주일 후 날짜의 마지막 시간 설정
-
         // 공휴일을 저장할 배열
         let holidays = [];
+
+        let year = today.getFullYear();
+        let month = (today.getMonth() + 1).toString().padStart(2, '0'); // 월은 0부터 시작하므로 1을 더하고, 문자열로 변환하여 2자리로 맞춤
+        let day = today.getDate().toString().padStart(2, '0'); // 일자를 문자열로 변환하여 2자리로 맞춤
+        let formattedToday = `${year}-${month}-${day}`;
 
 
         // 공휴일 정보를 비동기적으로 가져오는 함수
@@ -308,11 +312,16 @@
                 schedules.forEach(schedule => {
                     const startTime = schedule.startTime;
                     const timeItem = document.createElement('li');
-                    timeItem.className = 'time-slot';
-                    timeItem.textContent = startTime; // 예: '09:00'
-                    timeItem.dataset.index = String(schedule.id);
+                    timeItem.textContent = startTime; // 시작 시간 표시
+                    timeItem.dataset.index = String(schedule.id); // 데이터 설정
+                    timeItem.className = 'time-slot-button'; // 클래스 설정
+                    timeItem.addEventListener('click', () => {
+                        console.log(`리스트가 클릭되었습니다. 스케줄 ID: ${schedule.id}`);
+                        goToMakeReservation(`${schedule.id}`)
+                    });
                     scheduleList.appendChild(timeItem); // ul에 li 추가
                 });
+
                 // 생성된 ul 요소를 scheduleContainer에 추가
                 scheduleContainer.appendChild(scheduleList);
             });
@@ -334,12 +343,32 @@
                 console.error('An error occurred:', error);
             });
         initializeDatePicker();// 달력 초기화
-        checkSchedule(today.toISOString().split('T')[0]);// 현재 날짜에 대한 스케줄 확인
+        // checkSchedule(today.toISOString().split('T')[0]); //toISOString() 메서드는 UTC 기준으로 날짜 및 시간을 반환
+        checkSchedule(formattedToday); //현재 날짜에 대한 스케줄 확인
     });
 
+    function goToMakeReservation(scheduleId) {
 
+        const form = document.createElement('form');
+        form.setAttribute('method', 'post');
+        form.setAttribute('action', '/reservation/make');
 
+        const datePickerValue = document.getElementById('datePicker').value;
+        const dateStrInput = document.createElement('input');
+        dateStrInput.setAttribute('type', 'hidden');
+        dateStrInput.setAttribute('name', 'dateStr');
+        dateStrInput.setAttribute('value', datePickerValue);
+        form.appendChild(dateStrInput);
 
+        const scheduleIdInput = document.createElement('input');
+        scheduleIdInput.setAttribute('type', 'hidden');
+        scheduleIdInput.setAttribute('name', 'scheduleId');
+        scheduleIdInput.setAttribute('value', scheduleId);
+        form.appendChild(scheduleIdInput);
+        document.body.appendChild(form);
+        form.submit();
+        document.body.removeChild(form);
+    }
 
 //추가 한부분
     window.addEventListener('load', () => {
@@ -355,10 +384,6 @@
         }
     });
 
-    window.addEventListener('scroll', () => {
-        const scrollPosition = window.scrollY;
-        console.log('현재 스크롤 위치:', scrollPosition);
-    });
 </script>
 
 </body>
