@@ -1,14 +1,15 @@
-CREATE OR REPLACE TABLE theme
+CREATE TABLE theme
 (
     room_id        INT PRIMARY KEY,
-    name           VARCHAR(255) NOT NULL,
-    description    VARCHAR(255) NOT NULL,
-    difficulty     INT          NOT NULL,
-    alt_difficulty VARCHAR(255),
-    estimated_time VARCHAR(255) NOT NULL,
-    price          INT          NOT NULL,
-    genre          VARCHAR(255) NOT NULL
-);
+    name           VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+    description    VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+    difficulty     INT NOT NULL,
+    alt_difficulty VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+    estimated_time VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+    price          INT NOT NULL,
+    genre          VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 
 CREATE OR REPLACE TABLE schedule
 (
