@@ -41,7 +41,7 @@
 
     <!-- Header Section Begin -->
     <header class="header">
-        <div th:include="~{header.html}"></div>
+        <div th:insert="~{header.html}"></div>
     </header>
     <!-- Header End -->
 
@@ -69,7 +69,7 @@
                     </div>
                     </div>
                     <div class="resv-box">
-                        <form action="/reservation/pay" method="post">
+                        <form action="/payments/api/complete" method="post">
                             <ul>
                                 <li class="select"><p>*인원</p>
                                     <p th:text="${numberOfPeople}"></p>
@@ -88,7 +88,7 @@
                                     <!--TODO:이게 뭐에요...?-->
 <!--                                    <button class="submit" data-userCode="request.get()" data-amount="request.get()" data-buyer_tel="request.get()">결제하기</button>-->
 
-                                    <button class="submit">결제하기</button>
+                                    <button id="paymentButton" class="submit">결제하기</button>
                                 </li>
                             </ul>
                         </form>
@@ -101,7 +101,7 @@
 
 <!-- Footer Section Begin -->
 <footer class="footer">
-    <div th:include="~{footer.html}"></div>
+    <div th:insert="~{footer.html}"></div>
   </footer>
   <!-- Footer Section End -->
 
@@ -116,6 +116,36 @@
 <script src="../js/owl.carousel.min.js"></script>
 <script src="../js/main.js"></script>
 
+<script>
+    document.getElementById("paymentButton").addEventListener("click", function() {
+        // 결제 정보
+        const paymentInfo = {
+            // 결제 정보를 여기에 포함시킵니다.
+        };
+
+        // AJAX 요청 설정
+        fetch("/payments/api/complete", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(paymentInfo)
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // 결제 성공 시, 예약 완료 페이지로 리디렉션
+                    window.location.href = "/path/to/reservationSuccess.html";
+                } else {
+                    // 결제 실패 처리
+                    alert("결제 실패: " + data.message);
+                }
+            })
+            .catch((error) => {
+                console.error('결제 처리 중 오류 발생:', error);
+            });
+    });
+</script>
 </body>
 
 </html>
