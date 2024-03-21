@@ -36,7 +36,7 @@
 
     <!-- Header Section Begin -->
     <header class="header">
-        <div th:include="header.html"></div>
+        <div th:include="~{header.html}"></div>
         <div style="display: none" class="test-eye" th:include="test_eye.html"></div>
     </header>
     <!-- Header End -->
@@ -95,7 +95,7 @@
 
 <!-- Footer Section Begin -->
 <footer class="footer">
-    <div th:include="footer.html"></div>
+    <div th:include="~{footer.html}"></div>
   </footer>
   <!-- Footer Section End -->
 

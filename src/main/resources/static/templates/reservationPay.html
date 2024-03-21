@@ -41,7 +41,7 @@
 
     <!-- Header Section Begin -->
     <header class="header">
-        <div th:include="header.html"></div>
+        <div th:include="~{header.html}"></div>
     </header>
     <!-- Header End -->
 
@@ -62,10 +62,10 @@
                 </div>
                 <div class="box">
                     <div class="tem-box">
-                    <div class="box-img"><img src="../img/theme1.png" alt="테마1">
-                        <p class="box-tit">테마1</p>
-                        <p class="box-days">예약날짜</p>
-                        <p class="box-time">시간</p>
+                        <div class="box-img"><img th:src="'../img/theme' + (${session.roomId} - 100) + '.png'" alt="테마 포스터">
+                            <p class="box-tit" th:text="${session.themeName}"></p>
+                            <p class="box-days" th:text="${session.reservationDate}"></p>
+                            <p class="box-time" th:text="${session.startTime}"></p>
                     </div>
                     </div>
                     <div class="resv-box">
@@ -82,7 +82,7 @@
                                 </li>
                                 <li>
                                     <p>*요금</p>
-                                    <p th:text="${amount}"></p>
+                                    <p th:text="${session.amount}"></p>
                                 </li>
                                 <li>
                                     <!--TODO:이게 뭐에요...?-->
@@ -101,7 +101,7 @@
 
 <!-- Footer Section Begin -->
 <footer class="footer">
-    <div th:include="footer.html"></div>
+    <div th:include="~{footer.html}"></div>
   </footer>
   <!-- Footer Section End -->
 

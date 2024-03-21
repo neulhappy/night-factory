@@ -1,5 +1,6 @@
 package org.recorder.nightfactory.controller;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.recorder.nightfactory.domain.Reservation;
 import org.recorder.nightfactory.domain.Schedule;
@@ -66,13 +67,13 @@ public class ReservationController {
     }
 
     @PostMapping("/make")
-    public String makeReservation(@RequestParam String dateStr, @RequestParam int scheduleId, Model model) {
-        System.out.println("Received dateStr: " + dateStr);
-        System.out.println("Received scheduleId: " + scheduleId);
-        model.addAttribute("roomId", Schedule.findById(scheduleRepository, scheduleId).getTheme().getRoomId());
-        model.addAttribute("themeName", Schedule.findById(scheduleRepository, scheduleId).getTheme().getName());
-        model.addAttribute("reservationDate", dateStr);
-        model.addAttribute("startTime", Schedule.findById(scheduleRepository, scheduleId).getStartTime());
+    public String makeReservation(@RequestParam String dateStr, @RequestParam int scheduleId, Model model, HttpSession session) {
+
+        session.setAttribute("roomId", Schedule.findById(scheduleRepository, scheduleId).getTheme().getRoomId());
+        session.setAttribute("themeName", Schedule.findById(scheduleRepository, scheduleId).getTheme().getName());
+        session.setAttribute("reservationDate", dateStr);
+        session.setAttribute("startTime", Schedule.findById(scheduleRepository, scheduleId).getStartTime());
+        session.setAttribute("amount", Schedule.findById(scheduleRepository, scheduleId).getTheme().getPrice());
 
         return "reservationMake";
     }
@@ -103,12 +104,14 @@ public class ReservationController {
             @RequestParam("phone-f") String phoneFirstPart,
             @RequestParam("phone-m") String phoneMiddlePart,
             @RequestParam("phone-l") String phoneLastPart,
+            HttpSession session,
             Model model) {
+
+
         String phoneNumber = phoneFirstPart + "-" + phoneMiddlePart + "-" + phoneLastPart;
         model.addAttribute("numberOfPeople", numberOfPeople);
         model.addAttribute("owner", owner);
         model.addAttribute("phoneNumber", phoneNumber);
-        model.addAttribute("amount", 50000);
 
         return "reservationPay";
     }

@@ -41,7 +41,7 @@
 
     <!-- Header Section Begin -->
     <header class="header">
-        <div th:include="header.html"></div>
+        <div th:include="~{header.html}"></div>
     </header>
     <!-- Header End -->
 
@@ -62,11 +62,11 @@
                 </div>
                 <div class="box">
                     <div class="tem-box">
-                        <div class="box-img"><img th:src="'../img/theme' + (${roomId} - 100) + '.png'" alt="테마 포스터">
+                        <div class="box-img"><img th:src="'../img/theme' + (${session.roomId} - 100) + '.png'" alt="테마 포스터">
 
-                        <p class="box-tit" th:text="${themeName}"></p>
-                        <p class="box-days" th:text="${reservationDate}"></p>
-                        <p class="box-time" th:text="${startTime}"></p>
+                        <p class="box-tit" th:text="${session.themeName}"></p>
+                        <p class="box-days" th:text="${session.reservationDate}"></p>
+                        <p class="box-time" th:text="${session.startTime}"></p>
                     </div>
                     </div>
                     <div class="resv-box">
@@ -95,7 +95,7 @@
                                 </li>
                                 <li>
                                     <p>*요금</p>
-                                    <p class="money">50000<span>원</span></p>
+                                    <p class="money" th:text="${session.amount}"></p>
                                 </li>
                                 <li>
                                     <input type="submit" class="submit" value="예약하기">
@@ -111,7 +111,7 @@
 
 <!-- Footer Section Begin -->
 <footer class="footer">
-    <div th:include="footer.html"></div>
+    <div th:include="~{footer.html}"></div>
   </footer>
   <!-- Footer Section End -->
 
