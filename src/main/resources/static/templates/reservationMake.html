@@ -134,14 +134,14 @@
         var reservationNumber = new Date().getTime();
         document.getElementById("reservationNumber").value = reservationNumber;
         function validatePhoneNumber() {
-            var phoneFirstPart = document.getElementById("phone-f").value;
-            var phoneMiddlePart = document.getElementById("phone-m").value;
-            var phoneLastPart = document.getElementById("phone-l").value;
+            const phoneFirstPart = document.getElementById("phone-f").value;
+            const phoneMiddlePart = document.getElementById("phone-m").value;
+            const phoneLastPart = document.getElementById("phone-l").value;
 
-            var phoneNumber = phoneFirstPart + phoneMiddlePart + phoneLastPart;
+            const phoneNumber = phoneFirstPart + phoneMiddlePart + phoneLastPart;
 
             // 정규 표현식을 사용하여 전화번호 형식을 확인
-            var phoneNumberPattern = /^\d{3}\d{3,4}\d{4}$/;
+            const phoneNumberPattern = /^\d{3}\d{3,4}\d{4}$/;
 
             if (!phoneNumberPattern.test(phoneNumber)) {
                 alert("올바른 전화번호 형식이 아닙니다. 다시 입력해주세요.\n올바른 전화번호를 입력하지 않아서 발생하는 책임은 모두 본인에게 있습니다.");
@@ -152,7 +152,7 @@
         }
 
         // 폼 제출 시 유효성 검사 실행
-        var form = document.getElementById("reservationForm");
+        const form = document.getElementById("reservationForm");
         form.onsubmit = function() {
             return validatePhoneNumber();
         };

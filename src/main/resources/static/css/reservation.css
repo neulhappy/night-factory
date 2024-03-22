@@ -133,7 +133,6 @@ li {
     font-weight: 400;
 }
 
-
 .resvs .box .schedule-ms {
     position: absolute;
     top: 40%;
@@ -151,8 +150,6 @@ li {
     height: calc(2100px / 4);
     margin-left: 100px;
     padding-top: 30px;
-
-
 }
 
 .resvs .schedule-container ul li {
@@ -191,7 +188,16 @@ li {
     color: white;
 }
 
+.resvs .time-slot-button.disabled {
+    background-color: #0e1036; /* 어둡게 표시 */
+    color: #666;
 
+}
+.resvs .time-slot-button.disabled:hover {
+    background-color: #0e1036; /* 어둡게 표시 */
+    color: #666;
+
+}
 
 /*flatpickr 디자인*/
 body .flatpickr-calendar.arrowTop:after,
