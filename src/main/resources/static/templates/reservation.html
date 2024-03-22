@@ -311,7 +311,7 @@
                 // 내부 스케줄 배열을 순회하면서 각 스케줄에 대한 li 요소를 생성
                 schedules.forEach(schedule => {
                     const startTime = schedule.startTime;
-                    const timeItem = document.createElement('li');
+                    const timeItem = document.createElement('button');
                     timeItem.textContent = startTime; // 시작 시간 표시
                     timeItem.dataset.index = String(schedule.id); // 데이터 설정
                     timeItem.className = 'time-slot-button'; // 클래스 설정
