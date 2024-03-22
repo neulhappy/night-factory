@@ -23,9 +23,9 @@ CREATE OR REPLACE TABLE schedule
 
 CREATE OR REPLACE TABLE reservations
 (
-    id               BINARY(16) PRIMARY KEY,
+    id               BINARY(16)   PRIMARY KEY,
     schedule_id      INT          NOT NULL,
-    owner            VARCHAR(255) NOT NULL,
+    owner            VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
     reservation_date DATE         NOT NULL,
     phone_number     VARCHAR(255) NOT NULL,
     number_of_people INT          NOT NULL,

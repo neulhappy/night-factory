@@ -4,6 +4,7 @@ package org.recorder.nightfactory.domain;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.boot.model.naming.IllegalIdentifierException;
 import org.recorder.nightfactory.repository.ReservationRepository;
@@ -22,6 +23,7 @@ import java.util.UUID;
 @Table(name = "reservations")
 @NoArgsConstructor
 @Getter
+@Setter
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 public class Reservation implements Smsable {
@@ -35,10 +37,10 @@ public class Reservation implements Smsable {
     @JoinColumn(name = "schedule_id", referencedColumnName = "id")
     private Schedule schedule;
 
-    @Column(name = "owner", nullable = false)
+    @Column(name = "owner")
     private String owner;
 
-    @Temporal(TemporalType.DATE)
+//    @Temporal(TemporalType.DATE)
     @Column(name = "reservation_date")
     private Date reservationDate;
 

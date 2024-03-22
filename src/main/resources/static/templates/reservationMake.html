@@ -70,7 +70,7 @@
                     </div>
                     </div>
                     <div class="resv-box">
-                        <form id="reservationForm" action="/reservation/pay" method="post" onsubmit="return validatePhoneNumber();">
+                        <form id="reservationForm" action="/reservation/pay" method="post" onsubmit="return validatePhoneNumber();" accept-charset="UTF-8">
                             <ul>
                                 <li class="select"><p>*인원</p>
                                     <div class="selectBox">
@@ -98,6 +98,7 @@
                                     <p class="money" th:text="${session.amount}"></p>
                                 </li>
                                 <li>
+                                    <input type="hidden" id="reservationNumber" name="reservationNumber">
                                     <input type="submit" class="submit" value="예약하기">
                                 </li>
                             </ul>
@@ -130,6 +131,8 @@
     // 문서가 모두 로드된 후에 실행되도록 설정
     document.addEventListener("DOMContentLoaded", function() {
 
+        var reservationNumber = new Date().getTime();
+        document.getElementById("reservationNumber").value = reservationNumber;
         function validatePhoneNumber() {
             var phoneFirstPart = document.getElementById("phone-f").value;
             var phoneMiddlePart = document.getElementById("phone-m").value;

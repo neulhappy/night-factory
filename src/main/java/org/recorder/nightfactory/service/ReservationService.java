@@ -10,8 +10,12 @@ import org.recorder.nightfactory.repository.ScheduleRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
+
+import static org.recorder.nightfactory.domain.PaymentState.*;
 
 
 @RequiredArgsConstructor
@@ -21,6 +25,9 @@ public class ReservationService {
     private final ReservationRepository reservationRepository;
     private final ScheduleRepository scheduleRepository;
     private final NurigoService nurigoService;
+
+    private Reservation currentReservation;
+
 
     public List<ReservationDTO> getReservationsByDate(LocalDate date) {
         // 해당 날짜에 대한 모든 스케줄을 가져옵니다.
@@ -33,10 +40,50 @@ public class ReservationService {
         }).collect(Collectors.toList());
     }
     //예약 저장
-    public ReservationDTO.RegisterResponse save(ReservationDTO.RegisterRequest request) {
+    public ReservationDTO.RegisterResponse make(ReservationDTO.RegisterRequest request) {
         Reservation reservation = new Reservation();
-        reservationRepository.save(reservation);
-        nurigoService.sendSMS();
+        reservation.setAmount(request.getAmount());
+        reservation.setReservationDate(request.getReservationDate());
+        reservation.setState(READY);
+
+        Optional<Schedule> optionalSchedule = scheduleRepository.findById(request.getScheduleId());
+        if (optionalSchedule.isPresent()) {
+            Schedule schedule = optionalSchedule.get();
+            reservation.setSchedule(schedule);
+            reservationRepository.save(reservation);
+            currentReservation = reservation;
+        }
+
+        return new ReservationDTO.RegisterResponse();
+    }
+
+    public ReservationDTO.RegisterResponse paying(ReservationDTO.RegisterRequest request) {
+
+        if (currentReservation != null) { // 클래스 필드에 예약 객체가 있는지 확인
+            currentReservation.setOwner(request.getOwner());
+            currentReservation.setPhoneNumber(request.getPhoneNumber());
+            currentReservation.setNumberOfPeople(request.getNumberOfPeople());
+
+            // nurigoService.sendSMS();
+            reservationRepository.save(currentReservation);
+        } else{
+            return new ReservationDTO.RegisterResponse();
+        }
+
+        return new ReservationDTO.RegisterResponse();
+    }
+
+
+    public ReservationDTO.RegisterResponse paymentSave(ReservationDTO.RegisterRequest request) {
+        currentReservation.setPaidAt(LocalDateTime.now());
+        currentReservation.setState(PAID);
+        currentReservation.setAmount(request.getAmount());
+            reservationRepository.save(currentReservation);
+
+//        nurigoService.sendSMS();
+
+
+
         return new ReservationDTO.RegisterResponse();
     }
 

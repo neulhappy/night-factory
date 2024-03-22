@@ -2,6 +2,7 @@ package org.recorder.nightfactory.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.recorder.nightfactory.domain.PaymentState;
 import org.recorder.nightfactory.domain.Reservation;
 
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Getter
+@Setter
 @NoArgsConstructor
 public class ReservationDTO {
     UUID id;
@@ -41,6 +43,7 @@ public class ReservationDTO {
 
     @NoArgsConstructor
     @Getter
+    @Setter
     public static class RegisterRequest {
         private int scheduleId;
         private Date reservationDate;
@@ -48,6 +51,7 @@ public class ReservationDTO {
         private String phoneNumber;
         private int numberOfPeople;
         private LocalDateTime reservationAt;
+        private Long amount;
     }
 
 
@@ -98,4 +102,5 @@ public class ReservationDTO {
     public ReservationDTO(Reservation reservation) {
         // reservation 객체에서 필드 값을 추출하여 DTO 필드에 할당
     }
+
 }

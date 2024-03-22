@@ -6,6 +6,7 @@ import org.recorder.nightfactory.domain.Reservation;
 import org.recorder.nightfactory.domain.Schedule;
 import org.recorder.nightfactory.dto.ReservationDTO;
 import org.recorder.nightfactory.dto.ScheduleDTO;
+import org.recorder.nightfactory.repository.PaymentRepository;
 import org.recorder.nightfactory.repository.ScheduleRepository;
 import org.recorder.nightfactory.service.*;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -13,24 +14,25 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.Map;
+import java.util.UUID;
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/reservation")
 public class ReservationController {
 
-
     private final ReservationService reservationService;
     private ThemeService themeService;
     private PaymentService paymentService;
-
     private final ScheduleRepository scheduleRepository;
-
     private final ScheduleService scheduleService;
-
     private final ReservationDetailService reservationDetailService;
+    private final PaymentRepository paymentRepository;
 
 
     @GetMapping
@@ -45,7 +47,7 @@ public class ReservationController {
 
     @PostMapping
     public String postReservation(@ModelAttribute ReservationDTO.RegisterRequest request, Model model) {
-        ReservationDTO.RegisterResponse response = reservationService.save(request);
+        ReservationDTO.RegisterResponse response = reservationService.paymentSave(request);
         Long price = response.getPrice();
         model.addAttribute("response", response);
         return "payment";
@@ -67,13 +69,30 @@ public class ReservationController {
     }
 
     @PostMapping("/make")
-    public String makeReservation(@RequestParam String dateStr, @RequestParam int scheduleId, Model model, HttpSession session) {
+    public String makeReservation(@RequestParam String dateStr, @RequestParam int scheduleId, Model model, HttpSession session) throws ParseException {
 
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date reservationDate = inputFormat.parse(dateStr);
+
+        SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String formattedDate = outputFormat.format(reservationDate);
+
+        session.setAttribute("scheduleId", scheduleId);
         session.setAttribute("roomId", Schedule.findById(scheduleRepository, scheduleId).getTheme().getRoomId());
         session.setAttribute("themeName", Schedule.findById(scheduleRepository, scheduleId).getTheme().getName());
-        session.setAttribute("reservationDate", dateStr);
+        session.setAttribute("reservationDate", formattedDate);
+        session.setAttribute("reservationDateParsing", reservationDate);
         session.setAttribute("startTime", Schedule.findById(scheduleRepository, scheduleId).getStartTime());
         session.setAttribute("amount", Schedule.findById(scheduleRepository, scheduleId).getTheme().getPrice());
+
+        ReservationDTO.RegisterRequest request = new ReservationDTO.RegisterRequest();
+        long amount = (Long) session.getAttribute("amount");
+
+        request.setScheduleId(scheduleId);
+        request.setReservationDate(reservationDate);
+        request.setAmount(amount);
+
+        ReservationDTO.RegisterResponse response = reservationService.make(request);
 
         return "reservationMake";
     }
@@ -98,31 +117,52 @@ public class ReservationController {
     }
 
     @PostMapping("/pay")
-    public String makeReservation(
+    public String payReservation(
             @RequestParam("people") String numberOfPeople,
             @RequestParam("name") String owner,
             @RequestParam("phone-f") String phoneFirstPart,
             @RequestParam("phone-m") String phoneMiddlePart,
             @RequestParam("phone-l") String phoneLastPart,
+            @RequestParam("reservationNumber") String reservationNumber,
             HttpSession session,
             Model model) {
 
 
         String phoneNumber = phoneFirstPart + "-" + phoneMiddlePart + "-" + phoneLastPart;
-        model.addAttribute("numberOfPeople", numberOfPeople);
-        model.addAttribute("owner", owner);
-        model.addAttribute("phoneNumber", phoneNumber);
+        session.setAttribute("numberOfPeople", numberOfPeople);
+        session.setAttribute("owner", owner);
+        session.setAttribute("phoneNumber", phoneNumber);
+        session.setAttribute("reservationNumber", reservationNumber);
 
+        ReservationDTO.RegisterRequest request = new ReservationDTO.RegisterRequest();
+
+        request.setOwner(owner);
+        request.setPhoneNumber(phoneNumber);
+        request.setNumberOfPeople(Integer.parseInt(numberOfPeople));
+
+        ReservationDTO.RegisterResponse response = reservationService.paying(request);
         return "reservationPay";
     }
 
-//    @PostMapping("/payDone")
-//    public String payReservation(){
-//
-////TODO:작업중이었음
+    @PostMapping("/paying")
+    public String payingReservation(HttpSession session){
+
+
 //        reservationService.save(new ReservationDTO.RegisterRequest());
-//
-//        // 예약이 저장된 후에는 적절한 페이지로 리다이렉트합니다.
-//        return "reservationSuccess";
-//    }
+
+        // 예약이 저장된 후에는 적절한 페이지로 리다이렉트합니다.
+        return "reservationPay";
+    }
+
+    @GetMapping("/success")
+    public String SuccessReservation(HttpSession session){
+        ReservationDTO.RegisterRequest request = new ReservationDTO.RegisterRequest();
+        long amount = (Long) session.getAttribute("amount");
+        request.setAmount(amount);
+
+        ReservationDTO.RegisterResponse response = reservationService.paymentSave(request);
+
+
+        return "reservationSuccess";
+    }
 }
