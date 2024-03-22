@@ -21,4 +21,9 @@ public interface ReservationRepository extends JpaRepository<Reservation, UUID> 
 
     List<Reservation> findAllByReservationDateAndStateIn(Date reservationDate, List<PaymentState> states);
     Reservation findBySchedule(Schedule schedule);
+
+    Reservation findByOwner(String owner);
+
+    Reservation findByReservationAt(LocalDateTime reservationAt);
+
 }

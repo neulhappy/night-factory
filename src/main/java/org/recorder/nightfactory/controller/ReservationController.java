@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Map;
 import java.util.UUID;
@@ -94,26 +95,8 @@ public class ReservationController {
 
         ReservationDTO.RegisterResponse response = reservationService.make(request);
 
+
         return "reservationMake";
-    }
-
-
-
-
-    @PostMapping("/check")
-    public String checkReservation(
-            @RequestParam("resv-num") String scheduleId,
-            @RequestParam("name") String owner,
-            @RequestParam("phone-f") String phoneFirstPart,
-            @RequestParam("phone-m") String phoneMiddlePart,
-            @RequestParam("phone-l") String phoneLastPart) {
-
-        ReservationDTO.GetRequest request = new ReservationDTO.GetRequest();
-        ReservationDTO.GetResponse response = reservationDetailService.findByOwner(request);
-        System.out.println("예약 정보: " + response.getReservation().toString());
-        System.out.println("테마 이름: " + response.getThemeName());
-
-        return "reservationCheckPost";
     }
 
     @PostMapping("/pay")
@@ -123,7 +106,6 @@ public class ReservationController {
             @RequestParam("phone-f") String phoneFirstPart,
             @RequestParam("phone-m") String phoneMiddlePart,
             @RequestParam("phone-l") String phoneLastPart,
-            @RequestParam("reservationNumber") String reservationNumber,
             HttpSession session,
             Model model) {
 
@@ -132,15 +114,20 @@ public class ReservationController {
         session.setAttribute("numberOfPeople", numberOfPeople);
         session.setAttribute("owner", owner);
         session.setAttribute("phoneNumber", phoneNumber);
-        session.setAttribute("reservationNumber", reservationNumber);
 
         ReservationDTO.RegisterRequest request = new ReservationDTO.RegisterRequest();
-
         request.setOwner(owner);
         request.setPhoneNumber(phoneNumber);
         request.setNumberOfPeople(Integer.parseInt(numberOfPeople));
+        LocalDateTime reservationAt = LocalDateTime.now();
+        request.setReservationAt(reservationAt);
 
         ReservationDTO.RegisterResponse response = reservationService.paying(request);
+        Reservation reservation = reservationDetailService.findByReservationAt(reservationAt);
+
+        String reservationNumber = String.valueOf(reservation.getId()).substring(9, 13);
+        session.setAttribute("reservationNumber", reservationNumber);
+
         return "reservationPay";
     }
 
@@ -163,6 +150,41 @@ public class ReservationController {
         ReservationDTO.RegisterResponse response = reservationService.paymentSave(request);
 
 
+
         return "reservationSuccess";
     }
+
+    @PostMapping("/check")
+    public String checkReservation(
+            @RequestParam("resv-num") String uuid,
+            @RequestParam("name") String owner,
+            @RequestParam("phone-f") String phoneFirstPart,
+            @RequestParam("phone-m") String phoneMiddlePart,
+            @RequestParam("phone-l") String phoneLastPart,
+    Model model) {
+
+//        ReservationDTO.GetRequest request = new ReservationDTO.GetRequest();
+//        request.setOwner(owner);
+
+        String phoneNumber = phoneFirstPart + "-" + phoneMiddlePart + "-" + phoneLastPart;
+        Reservation reservation = reservationDetailService.findByReservationId(uuid, owner, phoneNumber);
+
+        if(reservation !=null){
+        model.addAttribute("reservationNumber", uuid);
+        model.addAttribute("owner", reservation.getOwner());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        model.addAttribute("reservationDate", dateFormat.format(reservation.getReservationDate()));
+        model.addAttribute("phoneNumber", reservation.getPhoneNumber());
+        model.addAttribute("amount", reservation.getAmount());
+        model.addAttribute("numberOfPeople", reservation.getNumberOfPeople());
+        model.addAttribute("roomId", reservation.getSchedule().getTheme().getRoomId());
+        model.addAttribute("themeName", reservation.getSchedule().getTheme().getName());
+        model.addAttribute("startTime", reservation.getSchedule().getStartTime());
+
+            return "reservationCheckPost";
+        }else {
+            return "reservationAlert";
+        }
+    }
+
 }

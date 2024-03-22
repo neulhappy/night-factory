@@ -98,7 +98,7 @@
                                     <p class="money" th:text="${session.amount}"></p>
                                 </li>
                                 <li>
-                                    <input type="hidden" id="reservationNumber" name="reservationNumber">
+                                    <input type="hidden" id="reservationNumber" name="reservationNumber" th:value="${session.reservationNumber}">
                                     <input type="submit" class="submit" value="예약하기">
                                 </li>
                             </ul>
@@ -130,9 +130,8 @@
 <script>
     // 문서가 모두 로드된 후에 실행되도록 설정
     document.addEventListener("DOMContentLoaded", function() {
-
-        var reservationNumber = new Date().getTime();
-        document.getElementById("reservationNumber").value = reservationNumber;
+        // var reservationNumber = new Date().getTime()
+        // document.getElementById("reservationNumber").value = reservationNumber;
         function validatePhoneNumber() {
             const phoneFirstPart = document.getElementById("phone-f").value;
             const phoneMiddlePart = document.getElementById("phone-m").value;

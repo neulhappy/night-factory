@@ -24,6 +24,7 @@ public class ReservationDTO {
     PaymentState state;
 
     @Getter
+    @Setter
     @NoArgsConstructor
     public static class GetRequest {
         UUID id;
@@ -45,6 +46,7 @@ public class ReservationDTO {
     @Getter
     @Setter
     public static class RegisterRequest {
+        private UUID id;
         private int scheduleId;
         private Date reservationDate;
         private String owner;
