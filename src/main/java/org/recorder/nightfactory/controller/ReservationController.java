@@ -54,7 +54,7 @@ public class ReservationController {
         return "payment";
     }
 
-    @GetMapping("/reservationCheck")
+    @GetMapping("/check")
     public String reservationCancel(){
         return "reservationCheck";
     }
@@ -161,7 +161,8 @@ public class ReservationController {
             @RequestParam("phone-f") String phoneFirstPart,
             @RequestParam("phone-m") String phoneMiddlePart,
             @RequestParam("phone-l") String phoneLastPart,
-    Model model) {
+            HttpSession session,
+            Model model) {
 
 //        ReservationDTO.GetRequest request = new ReservationDTO.GetRequest();
 //        request.setOwner(owner);
@@ -180,6 +181,7 @@ public class ReservationController {
         model.addAttribute("roomId", reservation.getSchedule().getTheme().getRoomId());
         model.addAttribute("themeName", reservation.getSchedule().getTheme().getName());
         model.addAttribute("startTime", reservation.getSchedule().getStartTime());
+        session.setAttribute("reservation", reservation);
 
             return "reservationCheckPost";
         }else {
@@ -187,4 +189,15 @@ public class ReservationController {
         }
     }
 
+
+    @PostMapping("delete")
+    public String deleteReservation(HttpSession session){
+        ReservationDTO.DeleteRequest request = new ReservationDTO.DeleteRequest();
+        Reservation reservation = (Reservation) session.getAttribute("reservation");
+        request.setReservation(reservation);
+        reservationService.delete(request);
+
+
+        return "reservationDeleteAlert";
+    }
 }

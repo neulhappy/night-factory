@@ -80,8 +80,9 @@ public class ReservationDTO {
 
     @NoArgsConstructor
     @Getter
+    @Setter
     public static class DeleteRequest {
-
+        Reservation reservation;
     }
 
 

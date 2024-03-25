@@ -1,6 +1,7 @@
 package org.recorder.nightfactory.service;
 
 import lombok.RequiredArgsConstructor;
+import org.recorder.nightfactory.domain.PaymentState;
 import org.recorder.nightfactory.domain.Reservation;
 import org.recorder.nightfactory.dto.ReservationDTO;
 import org.recorder.nightfactory.repository.ReservationRepository;
@@ -37,7 +38,7 @@ public class ReservationDetailService {
 
         for (Reservation reservation : reservations) {
             String reservationSecondGroup = reservation.getId().toString().substring(9, 13);
-            if (reservationId.equals(reservationSecondGroup) && owner.equals(reservation.getOwner()) && phoneNumber.equals(reservation.getPhoneNumber()) ) {
+            if (reservationId.equals(reservationSecondGroup) && owner.equals(reservation.getOwner()) && phoneNumber.equals(reservation.getPhoneNumber()) && reservation.getState() != PaymentState.CANCELLED) {
                 return reservation;
             }
         }

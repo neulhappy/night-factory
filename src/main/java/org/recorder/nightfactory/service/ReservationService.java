@@ -94,7 +94,9 @@ public class ReservationService {
 
     //예약 취소
     public ReservationDTO.DeleteResponse delete(ReservationDTO.DeleteRequest request) {
-//        reservationRepository.delete(getReservation(requestDto));
+//        reservationRepository.delete(request.getReservation());
+        request.getReservation().setState(CANCELLED);
+        reservationRepository.save(request.getReservation());
         return new ReservationDTO.DeleteResponse();
     }
 

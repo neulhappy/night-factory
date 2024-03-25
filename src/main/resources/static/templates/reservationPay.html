@@ -137,23 +137,20 @@
                 {
                     pg: "kicc",
                     pay_method: "card",
-                    merchant_uid: "reservation_" + reservationNumber,
+                    merchant_uid: "reservation_" + new Date().getTime(),
                     name: "Night Factory",
-                    amount: amount,
+                    // amount: amount,
+                    amount: 1,
                     buyer_name: owner,
                     buyer_tel: phoneNumber,
                 },
                 function (rsp) {
                     if ( rsp.success ) {
                         var msg = '결제가 완료되었습니다.';
-
-
-
+                        window.location.href = "/reservation/success";
                     } else {
                         var msg = '결제에 실패하였습니다.';
                         msg += '에러내용 : ' + rsp.error_msg;
-
-                        window.location.href = "/reservation/success";
                     }
 
                     alert(msg);
