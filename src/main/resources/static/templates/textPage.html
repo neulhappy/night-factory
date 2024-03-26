@@ -46,6 +46,12 @@
 
     </div>
 
+    <form id="viewForm" action="/view" method="post">
+        <input type="password" id="password" name="password" placeholder="비밀번호">
+        <button type="submit">입장</button>
+    </form>
+
+
     <div class="container" style="width: 800px; border: 1px solid #b6b3b3; padding: 10px;">
         <div class="row">
         <p class="col">Title: <span th:text="${post.title}"></span></p>
@@ -53,7 +59,7 @@
         <p class="col">Created Date: <span th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd HH:mm')}"></span></p>
         </div>
 
-        <p style=" min-height: 200px; border: white 1px solid; padding: 5px;"><span th:text="${post.content}"></span> </p>
+        <p id="postContent" style=" min-height: 200px; border: white 1px solid; padding: 5px;"><span th:text="${post.content}"></span> </p>
 
         <div class="row" style="padding-top: 20px">
             <div class="col-auto mr-auto"></div>
@@ -82,6 +88,39 @@
     </div>
     <!-- Search model end -->
 
+    <script>
+        // form 요소의 id를 사용하여 이벤트 핸들러를 설정
+        document.getElementById("viewForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // 폼이 실제로 전송되지 않도록 방지
+
+            var password = document.getElementById("password").value;
+
+            // 서버로 비밀번호 전송
+            fetch("/view", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ password: password })
+            })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        throw new Error("비밀번호가 일치하지 않습니다.");
+                    }
+                })
+                .then(data => {
+                    // 게시글 내용을 표시하는 부분
+                    document.getElementById("postContent").innerText = data.content; // innerText 사용하여 내용 업데이트
+                })
+                .catch(error => {
+                    alert(error.message);
+                });
+        });
+
+    </script>
+
     <!-- Js Plugins -->
     <script src="/js/jquery-3.3.1.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
@@ -94,6 +133,7 @@
     <script src="/js/faq.js"></script>
     <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
     <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
 </body>
 
 </html>

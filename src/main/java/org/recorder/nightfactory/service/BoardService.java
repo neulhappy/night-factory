@@ -3,6 +3,7 @@ package org.recorder.nightfactory.service;
 import org.recorder.nightfactory.domain.Board;
 import org.recorder.nightfactory.dto.BoardDTO;
 import org.recorder.nightfactory.repository.BoardRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,6 +14,7 @@ import java.util.stream.Collectors;
 public class BoardService {
     private final BoardRepository boardRepository;
 
+    @Autowired
     public BoardService(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
     }

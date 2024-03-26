@@ -30,6 +30,12 @@ public class Board {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
 
+    @Column
+    private String password;
+
+    @Column
+    private String phone;
+
     @CreatedDate
     @Column(updatable = false)
     private LocalDateTime createdDate;
@@ -38,12 +44,12 @@ public class Board {
     private LocalDateTime modifiedDate;
 
     @Builder
-    public Board(Long id, String author, String title, String content) {
+    public Board(Long id, String author, String title, String content, String password, String phone) {
         this.id = id;
         this.author = author;
         this.title = title;
         this.content = content;
+        this.password = password;
+        this.phone = phone;
     }
-
 }
-

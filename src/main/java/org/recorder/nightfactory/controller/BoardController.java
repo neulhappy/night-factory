@@ -1,7 +1,9 @@
 package org.recorder.nightfactory.controller;
 
+import io.micrometer.common.util.StringUtils;
 import org.recorder.nightfactory.dto.BoardDTO;
 import org.recorder.nightfactory.service.BoardService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,8 @@ import java.util.List;
 @Controller
 @ControllerAdvice
 public class BoardController {
+
+    @Autowired
     private BoardService boardService;
 
     public BoardController(BoardService boardService) {
@@ -23,14 +27,13 @@ public class BoardController {
     public String list(Model model) {
         List<BoardDTO> boardDtoList = boardService.getBoardList();
         model.addAttribute("postList", boardDtoList);
-        return "/list.html";
+        return "/list";
     }
 
     @GetMapping("/post")
     public String post() {
-        return "/post.html";
+        return "/post";
     }
-
 
     @GetMapping("/page/{id}")
     public String viewPost(@PathVariable Long id, Model model) {
@@ -44,20 +47,12 @@ public class BoardController {
         return "textPage";
     }
 
-    @PostMapping("/post")
-    public String write(BoardDTO boardDto) {
-        boardService.savePost(boardDto);
-        return "redirect:/list";
-    }
-
-    @GetMapping("/delete/{id}")
-    public String deletePost(@PathVariable Long id) {
-        boardService.deleteBoardById(id);
-        return "redirect:/list";
-    }
-
     @PostMapping("/save")
     public ResponseEntity<String> savePost(@ModelAttribute BoardDTO boardDto) {
+        if (StringUtils.isEmpty(boardDto.getPassword())) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Password cannot be empty.");
+        }
+
         try {
             Long postId = boardService.savePost(boardDto);
             // 성공적으로 저장된 경우 postId를 응답으로 전송
@@ -65,8 +60,12 @@ public class BoardController {
         } catch (IllegalArgumentException e) {
             // 에러가 발생한 경우 "error" 문자열을 응답으로 전송
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("error");
-
         }
     }
 
+    @GetMapping("/delete/{id}")
+    public String deletePost(@PathVariable Long id) {
+        boardService.deleteBoardById(id);
+        return "redirect:/list";
+    }
 }

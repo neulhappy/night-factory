@@ -15,17 +15,20 @@ public class BoardDTO {
     private String author;
     private String title;
     private String content;
+    private String phone;
+    private String password;
     private LocalDateTime createdDate;
     private LocalDateTime modifiedDate;
 
     public Board toEntity() {
-        Board build = Board.builder()
+        return Board.builder()
                 .id(id)
                 .author(author)
                 .title(title)
                 .content(content)
+                .password(password)
+                .phone(phone)
                 .build();
-        return build;
     }
 
     @Builder
@@ -38,14 +41,4 @@ public class BoardDTO {
         this.modifiedDate = modifiedDate;
     }
 
-    public boolean isContentBlank() {
-        return content == null || content.trim().isEmpty();
-    }
-    public boolean isAuthorBlank() {
-        return author == null || author.trim().isEmpty();
-    }
-
-    public boolean isTitleBlank() {
-        return title == null || title.trim().isEmpty();
-    }
 }
