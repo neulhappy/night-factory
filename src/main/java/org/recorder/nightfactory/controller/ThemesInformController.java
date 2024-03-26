@@ -5,6 +5,7 @@ import org.recorder.nightfactory.dto.ThemeDTO;
 import org.recorder.nightfactory.service.ThemeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -22,8 +23,11 @@ public class ThemesInformController {
         model.addAttribute("themeName", themeName);
         return "theme";
 
-
     }
 
 
+    @GetMapping("/list")
+    public String ThemesString(Model model){
+        return "theme";
+    }
 }

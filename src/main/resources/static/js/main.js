@@ -96,6 +96,33 @@
     $("#scrollToTopButton").click(function() {
         $("html, body").animate({ scrollTop: 0 }, "slow");
         return false;
-     });
+    });
 
 })(jQuery);
+
+function handleReservation(themeName) {
+    switch (themeName) {
+        case '관리실의 비밀 - 나폴리탄':
+            sessionStorage.setItem('scrollPosition', '300');
+            window.location.href = '/reservation/do';
+            break;
+        case '공장 작업실 - 살인사건':
+            sessionStorage.setItem('scrollPosition', '900');
+            window.location.href = '/reservation/do';
+            break;
+        case '기계실: 피의 유령':
+
+            sessionStorage.setItem('scrollPosition', '1400');
+            window.location.href = '/reservation/do';
+            break;
+        case '기숙사 탈출':
+            sessionStorage.setItem('scrollPosition', '2000');
+            window.location.href = '/reservation/do';
+            break;
+        default:
+            console.log('해당 테마에 대한 동작이 정의되어 있지 않습니다.');
+    }
+}
+
+
+

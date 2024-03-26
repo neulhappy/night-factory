@@ -2,8 +2,6 @@ package org.recorder.nightfactory.domain;
 
 import org.recorder.nightfactory.repository.ScheduleRepository;
 
-import java.util.List;
-
 public class ThemeSet {
     private Theme theme;
     private Schedules schedules;
@@ -13,7 +11,7 @@ public class ThemeSet {
         this.schedules = schedules;
     }
 
-    public static ThemeSet make(Theme theme, ScheduleRepository repository) {
+    public static ThemeSet of(Theme theme, ScheduleRepository repository) {
         return new ThemeSet(theme, theme.findSchedules(repository));
     }
 

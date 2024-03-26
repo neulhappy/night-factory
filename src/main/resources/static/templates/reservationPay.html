@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Anime Template">
+    <meta name="keywords" content="Anime, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>예약 결제</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Mr+Dafoe" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="../css/plyr.css" type="text/css">
+    <link rel="stylesheet" href="../css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="../css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/style.css" type="text/css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Dokdo&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/reservationPay.css" type="text/css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dokdo&display=swap');
+    </style>
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div th:insert="~{header.html}"></div>
+    </header>
+    <!-- Header End -->
+
+    <!-- Reservation Section Begin -->
+    <main class="reservation">
+        <div class="wrap">
+            <div class="resv-title">
+                    <h1>Reservation</h1>
+            </div>
+            <div class="resvs">
+                <div class="sec">
+                    <ul>
+                        <li>예약하기</li>
+                        <li >예약정보</li>
+                        <li class="sp">결제하기</li>
+                        <li>예약완료</li>
+                    </ul>
+                </div>
+                <div class="box">
+                    <div class="tem-box">
+                        <div class="box-img"><img th:src="'../img/theme' + (${session.roomId} - 100) + '.png'" alt="테마 포스터">
+                            <p class="box-tit" th:text="${session.themeName}" id="themeName"></p>
+                            <p class="box-days" th:text="${session.reservationDate}" id="reservationDate"></p>
+                            <p class="box-time" th:text="${session.startTime}" id="startTime"></p>
+                    </div>
+                    </div>
+                    <div class="resv-box">
+<!--                        <form id="reservationForm" action="/reservation/paying" method="post">-->
+                        <input type="hidden" id="reservationNumber" th:value="${session.reservationNumber}">
+                            <ul>
+                                <li class="select"><p>*인원</p>
+                                    <p th:text="${session.numberOfPeople}" id="numberOfPeople"></p><p>명</p>
+                                </li>
+                                <li><p>*예약자</p>
+                                    <p th:text="${session.owner}" id="owner"></p>
+                                </li>
+                                <li class="phone"><p>*연락처</p>
+                                    <p th:text="${session.phoneNumber}" id="phoneNumber"></p>
+                                </li>
+                                <li>
+                                    <p>*요금</p>
+                                    <p th:text="${session.amount}" id="sessionAmount" ></p><p>원</p>
+                                </li>
+                                <li>
+                                    <!--TODO:이게 뭐에요...?-->
+<!--                                    <button class="submit" data-userCode="request.get()" data-amount="request.get()" data-buyer_tel="request.get()">결제하기</button>-->
+                                    <button class="submit" onclick="requestPay()">결제하기</button>
+<!--                                    <button class="submit" onclick="requestPay()">결제하기</button>-->
+                                </li>
+                            </ul>
+<!--                        </form>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!--Reservation Section End -->
+
+<!-- Footer Section Begin -->
+<footer class="footer">
+    <div th:insert="~{footer.html}"></div>
+  </footer>
+  <!-- Footer Section End -->
+
+
+<!-- Js Plugins -->
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/player.js"></script>
+<script src="../js/jquery.nice-select.min.js"></script>
+<script src="../js/mixitup.min.js"></script>
+<script src="../js/jquery.slicknav.js"></script>
+<script src="../js/owl.carousel.min.js"></script>
+<script src="../js/main.js"></script>
+
+    <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+    <script>
+        var IMP = window.IMP;
+        IMP.init("imp85622471");
+        var amount = document.getElementById("sessionAmount").innerText;
+        var owner = document.getElementById("owner").innerText;
+        var phoneNumber = document.getElementById("phoneNumber").innerText;
+        var numberOfPeople = document.getElementById("numberOfPeople").innerText;
+        var themeName = document.getElementById("themeName").innerText;
+        var reservationDate = document.getElementById("reservationDate").innerText;
+        var startTime = document.getElementById("startTime").innerText;
+        var reservationNumber = document.getElementById("reservationNumber").innerText;
+
+
+        function requestPay() {
+
+            IMP.request_pay(
+                {
+                    pg: "kicc",
+                    pay_method: "card",
+                    merchant_uid: "reservation_" + new Date().getTime(),
+                    name: "Night Factory",
+                    // amount: amount,
+                    amount: 1,
+                    buyer_name: owner,
+                    buyer_tel: phoneNumber,
+                },
+                function (rsp) {
+                    if ( rsp.success ) {
+                        var msg = '결제가 완료되었습니다.';
+                        window.location.href = "/reservation/success";
+                    } else {
+                        var msg = '결제에 실패하였습니다.';
+                        msg += '에러내용 : ' + rsp.error_msg;
+                    }
+
+                    alert(msg);
+
+                }
+            );
+        }
+
+        //
+        //
+        // // 데이터 전송 함수
+        // function sendData() {
+        //     // POST 요청을 위한 데이터 객체 생성
+        //     var data = {
+        //         amount: amount,
+        //         owner: owner,
+        //         phoneNumber: phoneNumber,
+        //         numberOfPeople: numberOfPeople,
+        //         themeName: themeName,
+        //         reservationDate: reservationDate,
+        //         startTime: startTime,
+        //         reservationNumber: reservationNumber
+        //     };
+        //
+        //     // POST 요청 보내기
+        //     fetch('/reservation/success', {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json',
+        //         },
+        //         body: JSON.stringify(data),
+        //     })
+        //         .then(response => {
+        //             // 응답 처리
+        //             if (!response.ok) {
+        //                 throw new Error('네트워크 상태가 좋지 않습니다.');
+        //             }
+        //             return response.json();
+        //         })
+        //         .then(data => {
+        //             // 성공적으로 처리된 경우
+        //             console.log(data);
+        //         })
+        //         .catch(error => {
+        //             // 오류 처리
+        //             console.error('Error:', error);
+        //         });
+        // }
+    </script>
+</body>
+
+</html>

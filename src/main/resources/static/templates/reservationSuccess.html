@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Anime Template">
+    <meta name="keywords" content="Anime, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>예약 완료</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Mr+Dafoe" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="../css/plyr.css" type="text/css">
+    <link rel="stylesheet" href="../css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="../css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/style.css" type="text/css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Dokdo&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/reservationSuccess.css" type="text/css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dokdo&display=swap');
+    </style>
+</head>
+
+<body>
+<!-- Page Preloder -->
+<div id="preloder">
+    <div class="loader"></div>
+</div>
+
+<!-- Header Section Begin -->
+<header class="header">
+    <div th:insert="~{header.html}"></div>
+</header>
+<!-- Header End -->
+
+<!-- Reservation Section Begin -->
+<main class="reservation">
+    <div class="wrap">
+        <div class="resv-title">
+            <h1>Reservation</h1>
+        </div>
+        <div class="resvs">
+            <div class="sec">
+                <ul>
+                    <li>예약하기</li>
+                    <li>예약정보</li>
+                    <li>결제하기</li>
+                    <li class="sp">예약완료</li>
+                </ul>
+            </div>
+            <div class="box">
+                <div class="tem-box">
+                    <div class="box-img"><img th:src="'../img/theme' + (${session.roomId} - 100) + '.png'" alt="테마 포스터">
+                        <p class="box-tit" th:text="${session.themeName}" id="themeName"></p>
+                        <p class="box-days" th:text="${session.reservationDate}" id="reservationDate"></p>
+                        <p class="box-time" th:text="${session.startTime}" id="startTime"></p>
+                    </div>
+                </div>
+                <div class="resv-box">
+                    <form>
+                        <ul>
+                            <li>
+                                <p>예약번호</p>
+                                <p th:text="${session.reservationNumber}"></p>
+                            </li>
+                            <li class="select"><p>인원</p>
+                                <p th:text="${session.numberOfPeople}"></p>
+                                <p>명</p>
+                            </li>
+                            <li><p>예약자</p>
+                                <p th:text="${session.owner}"></p>
+                            </li>
+                            <li class="phone"><p>연락처</p>
+                                <p th:text="${session.phoneNumber}"></p>
+                            </li>
+                            <li>
+                                <p>요금</p>
+                                <p th:text="${session.amount}"></p>
+                                <p>원</p>
+                            </li>
+                            <li>
+                                <p class="success">결제가 완료됐습니다.</p>
+                            </li>
+                            <li>
+                                <a href="/" class="home">홈</a>
+                                <a href="/reservation/reservationCheck" class="resvCheck">예약확인 및 취소</a>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<!--Reservation Section End -->
+
+<!-- Footer Section Begin -->
+<footer class="footer">
+    <div th:insert="~{footer.html}"></div>
+</footer>
+<!-- Footer Section End -->
+
+
+<!-- Js Plugins -->
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/player.js"></script>
+<script src="../js/jquery.nice-select.min.js"></script>
+<script src="../js/mixitup.min.js"></script>
+<script src="../js/jquery.slicknav.js"></script>
+<script src="../js/owl.carousel.min.js"></script>
+<script src="../js/main.js"></script>
+
+
+<script>
+    // window.onload = function() {
+    //     console.log("세션 비우기 전:");
+    //     for (let i = 0; i < sessionStorage.length; i++) {
+    //         let key = sessionStorage.key(i);
+    //         let value = sessionStorage.getItem(key);
+    //         console.log(key + ": " + value);
+    //     }
+    //
+    //     sessionStorage.clear(); // 세션 스토리지 비우기
+    //
+    //     console.log("세션 비운 후:");
+    //     for (let i = 0; i < sessionStorage.length; i++) {
+    //         let key = sessionStorage.key(i);
+    //         let value = sessionStorage.getItem(key);
+    //         console.log(key + ": " + value);
+    //     }
+    // };
+</script>
+</body>
+
+</html>

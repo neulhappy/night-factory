@@ -17,7 +17,7 @@ public class ThemeSets {
         Themes themes = Themes.listTheme(themeRepository);
         ArrayList<ThemeSet> themeSetList = new ArrayList<>();
         for (Theme theme : themes.get()) {
-            ThemeSet themeSet = ThemeSet.make(theme, scheduleRepository);
+            ThemeSet themeSet = ThemeSet.of(theme, scheduleRepository);
             themeSetList.add(themeSet);
         }
         return new ThemeSets(themeSetList);

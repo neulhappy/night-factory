@@ -41,9 +41,15 @@ public class Theme {
     @Enumerated(EnumType.STRING)
     private Genre genre;
 
-    public Theme(String name, String description, String difficultyName, String estimatedTime, String genre) {
+    public Theme(String name, String description, Integer difficulty, String difficultyName, String estimatedTime, Long price, Genre genre) {
+        this.name = name;
+        this.description = description;
+        this.difficulty = difficulty;
+        this.difficultyName = difficultyName;
+        this.estimatedTime = estimatedTime;
+        this.price = price;
+        this.genre = genre;
     }
-
     public static Theme findById(ThemeRepository repository, int id) {
         Optional<Theme> themeRepo = repository.findById(id);
         if (themeRepo.isEmpty()) {

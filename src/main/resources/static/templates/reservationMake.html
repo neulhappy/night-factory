@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Anime Template">
+    <meta name="keywords" content="Anime, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>예약 정보</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Mr+Dafoe" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="../css/plyr.css" type="text/css">
+    <link rel="stylesheet" href="../css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="../css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/style.css" type="text/css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Dokdo&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/reservationMake.css" type="text/css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dokdo&display=swap');
+    </style>
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div th:insert="~{header.html}"></div>
+    </header>
+    <!-- Header End -->
+
+    <!-- Reservation Section Begin -->
+    <main class="reservation">
+        <div class="wrap">
+            <div class="resv-title">
+                    <h1>Reservation</h1>
+            </div>
+            <div class="resvs">
+                <div class="sec">
+                    <ul>
+                        <li>예약하기</li>
+                        <li class="sp">예약정보</li>
+                        <li>결제하기</li>
+                        <li>예약완료</li>
+                    </ul>
+                </div>
+                <div class="box">
+                    <div class="tem-box">
+                        <div class="box-img"><img th:src="'../img/theme' + (${session.roomId} - 100) + '.png'" alt="테마 포스터">
+
+                        <p class="box-tit" th:text="${session.themeName}"></p>
+                        <p class="box-days" th:text="${session.reservationDate}"></p>
+                        <p class="box-time" th:text="${session.startTime}"></p>
+                    </div>
+                    </div>
+                    <div class="resv-box">
+                        <form id="reservationForm" action="/reservation/pay" method="post" onsubmit="return validatePhoneNumber();" accept-charset="UTF-8">
+                            <ul>
+                                <li class="select"><p>*인원</p>
+                                    <div class="selectBox">
+                                        <select name="people" class="people" required>
+                                            <ul>
+                                                <li><option value=2>2명</option></li>
+                                                <li><option value=3>3명</option></li>
+                                                <li><option value=4>4명</option></li>
+                                                <li><option value=5>5명</option></li>
+                                                <li><option value=6>6명</option></li>
+                                            </ul>
+                                        </select>
+                                    </div>
+                                </li>
+                                <li><p>*예약자</p>
+                                    <input type="text" name="name" required>
+                                </li>
+                                <li class="phone"><p>*연락처</p>
+                                    <input type="tel" id="phone-f" name="phone-f" class="phone-f" required><p class="hi">-</p>
+                                    <input type="tel" id="phone-m" name="phone-m" class="phone-m" required><p class="hi">-</p>
+                                    <input type="tel" id="phone-l" name="phone-l" class="phone-l" required>
+                                </li>
+                                <li>
+                                    <p>*요금</p>
+                                    <p class="money" th:text="${session.amount}"></p>
+                                </li>
+                                <li>
+                                    <input type="hidden" id="reservationNumber" name="reservationNumber" th:value="${session.reservationNumber}">
+                                    <input type="submit" class="submit" value="예약하기">
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!--Reservation Section End -->
+
+<!-- Footer Section Begin -->
+<footer class="footer">
+    <div th:insert="~{footer.html}"></div>
+  </footer>
+  <!-- Footer Section End -->
+
+
+<!-- Js Plugins -->
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/player.js"></script>
+<script src="../js/jquery.nice-select.min.js"></script>
+<script src="../js/mixitup.min.js"></script>
+<script src="../js/jquery.slicknav.js"></script>
+<script src="../js/owl.carousel.min.js"></script>
+<script src="../js/main.js"></script>
+
+<script>
+    // 문서가 모두 로드된 후에 실행되도록 설정
+    document.addEventListener("DOMContentLoaded", function() {
+        // var reservationNumber = new Date().getTime()
+        // document.getElementById("reservationNumber").value = reservationNumber;
+        function validatePhoneNumber() {
+            const phoneFirstPart = document.getElementById("phone-f").value;
+            const phoneMiddlePart = document.getElementById("phone-m").value;
+            const phoneLastPart = document.getElementById("phone-l").value;
+
+            const phoneNumber = phoneFirstPart + phoneMiddlePart + phoneLastPart;
+
+            // 정규 표현식을 사용하여 전화번호 형식을 확인
+            const phoneNumberPattern = /^\d{3}\d{3,4}\d{4}$/;
+
+            if (!phoneNumberPattern.test(phoneNumber)) {
+                alert("올바른 전화번호 형식이 아닙니다. 다시 입력해주세요.\n올바른 전화번호를 입력하지 않아서 발생하는 책임은 모두 본인에게 있습니다.");
+                return false;
+            }
+
+            return true;
+        }
+
+        // 폼 제출 시 유효성 검사 실행
+        const form = document.getElementById("reservationForm");
+        form.onsubmit = function() {
+            return validatePhoneNumber();
+        };
+    });
+</script>
+</body>
+
+</html>

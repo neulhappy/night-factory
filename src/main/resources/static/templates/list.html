@@ -36,37 +36,7 @@
 
     <!-- Header Section Begin -->
     <header class="header">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-2">
-                    <div class="header__logo">
-                        <a href="index.html">
-                            <img src="/img/Logo.jpg" alt="메인로고">
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-8">
-                    <div class="header__nav">
-                        <nav class="header__menu mobile-menu">
-                            <ul>
-                                <li><a href="index.html">Homepage</a></li>
-                                <li ><a href="#">Theme</a></li>
-                                <li><a href="#">Reservation</a>
-                                    <ul class="dropdown">
-                                        <li><a href="theme.html">예약안내</a></li>
-                                        <li><a href="anime-details.html">예약하기</a></li>
-                                        <li><a href="anime-watching.html">예약확인 및 취소</a></li>
-                                    </ul>
-                                </li>
-
-                                <li class="active"><a href="#">QNA<span class="arrow_carrot-down"></span></a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            <div id="mobile-menu-wrap"></div>
-        </div>
+        <div th:insert="~{header.html}"></div>
     </header>
     <!-- Header End -->
 
@@ -114,7 +84,7 @@
 
 
     <!-- Footer Section Begin -->
-    <div th:include="footer.html"></div>
+    <div th:insert="~{footer.html}"></div>
       <!-- Footer Section End -->
 
       <!-- Search model Begin -->

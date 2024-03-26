@@ -1,6 +1,25 @@
 .header__logo {height: 100px}
 
-.theme-list ul{display: block; padding: 50px; transform: translate(300px,0)}
+.theme-list ul{display: block; padding: 50px; transform: translate(150px,0)}
 .theme-list ul li {display: flex; }
 .text li {transform: translate(-250px,0)}
 .content {padding-bottom: 80px;}
+
+.theme-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.theme-item {
+    display: flex;
+    align-items: center; /* 수직 정렬 */
+    margin-bottom: 20px; /* 하단 간격 */
+}
+
+.theme-image {
+    margin-right: 50px; /* 이미지 오른쪽 간격 */
+}
+
+.theme-text {
+    flex-grow: 1; /* 텍스트가 남은 공간을 모두 차지 */
+}

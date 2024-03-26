@@ -9,8 +9,6 @@ spring:
       hibernate:
         id:
           new_generator_mappings: false
-
-  #      ddl-auto: update #배포시 validate
   datasource:
     url: jdbc:mariadb://localhost:3306/test
     hikari:
@@ -25,7 +23,24 @@ spring:
         enabled: false
   thymeleaf:
     cache: false
-
-
-
+    prefix: classpath:/static/templates/
+  web:
+    cors:
+      allow-credentials: true
+      allowed-origins:
+        - "http://example.com"
+        - "https://anotherdomain.com"
+      allowed-methods:
+        - "GET"
+        - "POST"
+        - "PUT"
+        - "DELETE"
+      allowed-headers:
+        - "Authorization"
+        - "Content-Type"
+      exposed-headers:
+        - "Custom-Header"
+      max-age: 3600
+  server:
+    port: 8080
 

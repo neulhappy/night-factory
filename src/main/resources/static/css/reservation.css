@@ -1,25 +1,35 @@
 
 /* 공통 폰트 임포트 */
 @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@100;200;300;400;500;600;700;800;900&family=Rubik+Burned&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Doodle+Shadow&family=Rubik+Vinyl&family=Rubik+Wet+Paint&display=swap');
+@font-face {
+    font-family: 'Ansungtangmyun-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/Ansungtangmyun-Bold.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.header__nav {
+    font-family: 'Ansungtangmyun-Bold', serif;
+}
+.header__nav li {
+    font-family: 'Ansungtangmyun-Bold', serif;
+}
 
 body {
     overflow: visible !important;
-
 }
 
-ul {
+li {
     list-style: none;
 }
-.reservation {
-    font-family: 'Hahmlet', serif; /* 기본 폰트 설정 */
-}
-
 .resv-title h1 {
     text-align: center;
     font-size: 3.5rem;
-    color: #aa1f1f;
+    color: #A31E1E;
     padding: 50px 0;
-    font-family: 'Rubik Burned', system-ui;
+    font-family: "Rubik Doodle Shadow", system-ui;
+    user-select: none;
 }
 
 .resvs .box ul li,
@@ -27,17 +37,14 @@ ul {
     background: #0d0e31;
     border-radius: 5px;
     border: 1px solid rgb(23, 43, 72);
-    color: #ffffff;
+    color: #B7B7B7;
     padding: 10px 79px;
     font-size: 1.3rem;
 }
 
-.resvs .box ul li:hover {
-    background: #d35656;
-}
 
 .reservation {
-    font-family: 'Hahmlet', serif;
+    font-family: 'Ansungtangmyun-Bold', serif;
 }
 
 .reservation .resvs {
@@ -49,18 +56,21 @@ ul {
     display: flex;
     justify-content: space-around;
     padding-top: 30px;
+    user-select: none;
 }
 .resvs .sec li {
     padding: 10px 79px;
     border-radius: 5px;
     font-size: 1.3rem;
     background: #0d0e31;
-    color: #ffffff;
+    color: #B7B7B7;
     border: 1px solid rgb(23, 43, 72);
+    user-select: none;
 }
 
 .resvs .sec .sp {
-    border: solid 2px #ffffff;
+    border: solid 2px white;
+    color: white;
 }
 
 .resvs{
@@ -72,42 +82,55 @@ ul {
 }
 
 .resvs .resv-days input {
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Ansungtangmyun-Bold', sans-serif;
     font-size: 1.3rem;
     border: 1px solid rgb(23, 43, 72);
-    color: rgb(255, 255, 255);
+    color: white;
     width: 320px;
     height: 50px;
     text-align: center;
     background: #0B0C2A url("../img/calendar-icon.png") no-repeat right 10px center / 35px auto;
 }
 
-.resvs .box {
+.resvs .resv-main {
     position: relative;
     padding-top: 30px;
     display: flex;
     padding-left: 30px;
 }
 
-.resvs .box .box-img{
-    width: 320px;
+.resvs .theme-container .theme {
+    padding: 20px 0;
+    text-align: center;
+    color:#B7B7B7;
+    font-family: 'Ansungtangmyun-Bold', serif;
+    font-size: 1.2rem;
     background: rgba(15, 15, 58, 0.27);
     border: 1px solid rgb(65, 66, 77);
+    width: 320px;
+    height: 500px;
+    margin-bottom: 20px;
 }
-
-.resvs .box .box-img img{
+.resvs .theme-container img{
     width: 250px;
     display: block;
     padding-top: 30px;
     margin-left: 32px;
+    user-select: none;
 }
 
-.resvs .box .box-tit {
-    padding: 20px 0;
-    text-align: center;
-    color: white;
-    font-family: 'Hahmlet', serif;
+.resvs .theme-container h2 {
+    font-family: 'Ansungtangmyun-Bold', serif;
     font-size: 1.2rem;
+    color: white;
+    padding-top: 10px;
+}
+.resvs .theme-container p {
+    font-family: 'Ansungtangmyun-Bold', serif;
+    font-size: 1rem;
+    color: white;
+    padding-top: 10px;
+    font-weight: 400;
 }
 
 .resvs .box .schedule-ms {
@@ -118,25 +141,62 @@ ul {
     font-size: 2.3rem;
 }
 
-.resvs .box ul {
+.resvs .schedule-container ul {
     display: flex;
     gap: 20px;
     flex-direction: row;
     flex-wrap: wrap;
     width: 800px;
-    margin-left: 50px;
-    padding-top: 50px;
+    height: calc(2100px / 4);
+    margin-left: 100px;
+    padding-top: 30px;
 }
 
-.resvs .box ul li {
+.resvs .schedule-container ul li {
     background: #0e1036;
     padding: 20px 60px;
-    font-size: 1.3rem;
-    font-family: 'Ubuntu', sans-serif;
-    border-radius: 3px;
-    color: #ffffff;
+    font-size: 1.9rem;
+    font-family: 'Ansungtangmyun-Bold', sans-serif;
+    border-radius: 7px;
+    color: white;
     border: 1px solid rgb(23, 43, 72);
     transition: background-color 0.5s;
+    height: 90px;
+    user-select: none;
+}
+
+.resvs .schedule-container  li:hover {
+    background: #d35656;
+    color: white;
+}
+
+.resvs .schedule-container ul button {
+    background: #0e1036;
+    padding: 20px 60px;
+    font-size: 1.9rem;
+    font-family: 'Ansungtangmyun-Bold', sans-serif;
+    border-radius: 7px;
+    color: white;
+    border: 1px solid rgb(23, 43, 72);
+    transition: background-color 0.5s;
+    height: 90px;
+    user-select: none;
+}
+
+.resvs .schedule-container  button:hover {
+    background: #d35656;
+    color: white;
+}
+
+.resvs .time-slot-button.disabled {
+    background-color: #0e1036; /* 어둡게 표시 */
+    color: #666;
+
+}
+.resvs .time-slot-button.disabled:hover {
+    background-color: #0e1036; /* 어둡게 표시 */
+    color: #666;
+
 }
 
 /*flatpickr 디자인*/
@@ -156,7 +216,7 @@ body .flatpickr-calendar.open {
 
 body .flatpickr-calendar {
     box-shadow: none;
-    font-family: 'Hahmlet', serif;
+    font-family: 'Ansungtangmyun-Bold', serif;
     border: 1px solid rgb(23, 43, 72);
     background: #0B0C2A;
     width: 320px;

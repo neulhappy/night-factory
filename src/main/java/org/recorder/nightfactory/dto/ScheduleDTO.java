@@ -1,5 +1,6 @@
 package org.recorder.nightfactory.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,8 +17,11 @@ import java.util.List;
 public class ScheduleDTO {
     private Integer Id;
     private Theme theme;
+    @JsonFormat(pattern = "HH:mm")
     private LocalTime startTime;
     private Boolean able;
+
+
 
 
     @Getter
