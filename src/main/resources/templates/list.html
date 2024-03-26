@@ -88,7 +88,7 @@
             <tbody>
             <tr class="text-center" th:each="post : ${postList}">
                 <th scope="row">
-                    <span th:text="${post.id}"></span>
+                    <span th:text="${postStat.index}"></span>
                 </th>
                 <td>
                     <a th:href="@{'/page/' + ${post.id}}">

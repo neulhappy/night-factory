@@ -76,15 +76,16 @@
 
     </div>
 
-    <div class="container">
-
-        <p>ID: <span th:text="${post.id}"></span></p>
-        <p>Title: <span th:text="${post.title}"></span></p>
-        <p>Author: <span th:text="${post.author}"></span></p>
-        <p>Created Date: <span th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd HH:mm')}"></span></p>
-        <p>Content: <span th:text="${post.content}"></span> </p>
-
+    <div class="container" style="width: 800px; border: 1px solid #b6b3b3; padding: 10px;">
         <div class="row">
+        <p class="col">Title: <span th:text="${post.title}"></span></p>
+        <p class="col">Author: <span th:text="${post.author}"></span></p>
+        <p class="col">Created Date: <span th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd HH:mm')}"></span></p>
+        </div>
+
+        <p style=" min-height: 200px; border: white 1px solid; padding: 5px;"><span th:text="${post.content}"></span> </p>
+
+        <div class="row" style="padding-top: 20px">
             <div class="col-auto mr-auto"></div>
             <div class="col-auto">
                 <a class="btn btn-primary" th:href="@{/list}" role="button" >목록</a>
