@@ -100,6 +100,8 @@
     $(document).ready(function () {
         // 저장 버튼 클릭 시
         $(".btn.btn-primary").click(function () {
+            e.preventDefault(); // 폼의 기본 동작 중단
+
             // 모든 필드가 비어 있는지 확인
             var title = $("#inputTitle").val();
             var author = $("#inputAuthor").val();
@@ -109,7 +111,7 @@
 
             if (!title || !author || !content || !password || !phone) {
                 alert("모든 필드를 채워주세요.");
-                return "/post";
+                return false;
             }
 
             // 게시글 데이터 수집
