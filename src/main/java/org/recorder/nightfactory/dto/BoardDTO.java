@@ -32,11 +32,13 @@ public class BoardDTO {
     }
 
     @Builder
-    public BoardDTO(Long id, String author, String title, String content, LocalDateTime createdDate, LocalDateTime modifiedDate) {
+    public BoardDTO(Long id, String author, String title, String content, String phone, String password, LocalDateTime createdDate, LocalDateTime modifiedDate) {
         this.id = id;
         this.author = author;
         this.title = title;
         this.content = content;
+        this.phone = phone;
+        this.password = password;
         this.createdDate = createdDate;
         this.modifiedDate = modifiedDate;
     }

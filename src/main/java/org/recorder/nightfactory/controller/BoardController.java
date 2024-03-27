@@ -1,10 +1,11 @@
 package org.recorder.nightfactory.controller;
 
-import io.micrometer.common.util.StringUtils;
 import org.recorder.nightfactory.dto.BoardDTO;
 import org.recorder.nightfactory.dto.PasswordRequest;
 import org.recorder.nightfactory.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -39,26 +40,35 @@ public class BoardController {
         // id에 해당하는 게시글 정보를 가져옴
         BoardDTO post = boardService.getBoardById(id);
 
-        // 모델에 "post" 속성으로 게시글 정보 추가
         model.addAttribute("post", post);
 
-        // "textPage.html" 뷰를 반환
         return "textPage";
     }
 
     @PostMapping("/save")
-    public String savePost(@ModelAttribute BoardDTO boardDto) {
-        if (StringUtils.isEmpty(boardDto.getPassword())) {
-            throw new IllegalArgumentException("Password cannot be empty.");
+    public ResponseEntity<?> savePost(@RequestParam("title") String title,
+                                      @RequestParam("author") String author,
+                                      @RequestParam("content") String content,
+                                      @RequestParam("password") String password,
+                                      @RequestParam("phone") String phone) {
+        // 폼 데이터 검증
+        if (password == null || password.isEmpty()) {
+            return ResponseEntity.badRequest().body("비밀번호를 입력해주세요.");
         }
+
+        // BoardDTO 객체 생성
+        BoardDTO boardDto = new BoardDTO();
+        boardDto.setTitle(title);
+        boardDto.setAuthor(author);
+        boardDto.setContent(content);
+        boardDto.setPassword(password);
+        boardDto.setPhone(phone);
 
         try {
             Long postId = boardService.savePost(boardDto);
-            // 글이 성공적으로 저장되면 목록 페이지로 리다이렉트
-            return "redirect:/list";
+            return ResponseEntity.ok("게시글이 성공적으로 저장되었습니다.");
         } catch (IllegalArgumentException e) {
-
-            return "errorPage";
+            return ResponseEntity.badRequest().body("게시글 저장에 실패했습니다.");
         }
     }
 
@@ -70,18 +80,20 @@ public class BoardController {
     }
 
     @PostMapping("/view")
-    public String viewPost(@RequestBody PasswordRequest passwordRequest, Model model) {
-        // 게시글 정보 가져오기
-        BoardDTO post = boardService.getBoardById(passwordRequest.getId());
+    public ResponseEntity<?> viewPost(@RequestBody PasswordRequest passwordRequest) {
+        Long postId = passwordRequest.getId();
+        String password = passwordRequest.getPassword();
 
-        // 비밀번호 확인
-        if (post != null && post.getPassword().equals(passwordRequest.getPassword())) {
-            // 비밀번호가 일치하면 게시글을 모델에 추가하여 보여줌
-            model.addAttribute("post", post);
-            return "textPage";
+        BoardDTO post = boardService.getBoardById(postId);
+
+        if (post == null) {
+            return ResponseEntity.notFound().build(); // 게시물을 찾을 수 없는 경우 404 응답 반환
+        }
+
+        if (post.getPassword().equals(password)) {
+            return ResponseEntity.ok(post); // 비밀번호가 일치하는 경우 게시글 반환
         } else {
-            // 비밀번호가 일치하지 않으면 에러 메시지를 반환
-            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("비밀번호가 일치하지 않습니다."); // 비밀번호가 일치하지 않는 경우 401 응답 반환
         }
     }
 

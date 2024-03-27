@@ -54,6 +54,8 @@ public class BoardService {
                 .author(board.getAuthor())
                 .title(board.getTitle())
                 .content(board.getContent())
+                .phone(board.getPhone())
+                .password(board.getPassword())
                 .createdDate(board.getCreatedDate())
                 .build();
     }

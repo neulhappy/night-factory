@@ -40,15 +40,18 @@ CREATE OR REPLACE TABLE reservations
 );
 
 
-CREATE OR REPLACE TABLE `board` (
+CREATE TABLE `board` (
                          `id` int(11) NOT NULL AUTO_INCREMENT,
                          `author` varchar(255) NOT NULL,
                          `title` varchar(255) NOT NULL,
                          `content` varchar(255) NOT NULL,
                          `created_date` datetime DEFAULT NULL,
                          `modified_date` datetime DEFAULT NULL,
+                         `password` varchar(4) NOT NULL,
+                         `phone` varchar(20) DEFAULT NULL,
                          PRIMARY KEY (`id`)
-);
+) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
 
 ALTER TABLE schedule
     ADD COLUMN date DATE NULL;

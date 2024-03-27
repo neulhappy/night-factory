@@ -46,17 +46,12 @@
 
     </div>
 
-    <form id="viewForm" action="/view" method="post">
-        <input type="password" id="password" name="password" placeholder="비밀번호">
-        <button type="submit">입장</button>
-    </form>
-
-
-    <div class="container" style="width: 800px; border: 1px solid #b6b3b3; padding: 10px;">
+    <div class="container" id="postContainer" style="width: 800px; border: 1px solid #b6b3b3; padding: 10px; display: none;">
         <div class="row">
         <p class="col">Title: <span th:text="${post.title}"></span></p>
         <p class="col">Author: <span th:text="${post.author}"></span></p>
         <p class="col">Created Date: <span th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd HH:mm')}"></span></p>
+        <p class="col">Phone: <span th:text="${post.phone}"></span></p>
         </div>
 
         <p id="postContent" style=" min-height: 200px; border: white 1px solid; padding: 5px;"><span th:text="${post.content}"></span> </p>
@@ -71,6 +66,14 @@
             </div>
         </div>
     </div>
+
+    <form id="passwordForm" action="/view" method="post" style="margin-top: 20px; width: 400px; height:300px; background: rgba(255,255,255,0.22); transform: translate(750px, 0)">
+        <!-- hidden input을 사용하여 게시물의 id를 전달 -->
+        <input type="hidden" id="postId" name="id" th:value="${post.id}" />
+        <input type="password" id="password" name="password" placeholder="비밀번호" style="transform: translate(60px, 100px)"/>
+        <button type="submit" style="transform: translate(60px, 100px)">확인</button>
+    </form>
+
 
 
     <!-- Footer Section Begin -->
@@ -89,19 +92,15 @@
     <!-- Search model end -->
 
     <script>
-        // form 요소의 id를 사용하여 이벤트 핸들러를 설정
-        document.getElementById("viewForm").addEventListener("submit", function(event) {
+        document.getElementById("passwordForm").addEventListener("submit", function(event) {
             event.preventDefault(); // 폼이 실제로 전송되지 않도록 방지
 
-            var password = document.getElementById("password").value;
+            var formData = new FormData(document.getElementById("passwordForm")); // form 데이터 생성
 
-            // 서버로 비밀번호 전송
+            // 서버로 form 데이터 전송
             fetch("/view", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ password: password })
+                body: formData // form 데이터 전송
             })
                 .then(response => {
                     if (response.ok) {
@@ -111,15 +110,16 @@
                     }
                 })
                 .then(data => {
-                    // 게시글 내용을 표시하는 부분
-                    document.getElementById("postContent").innerText = data.content; // innerText 사용하여 내용 업데이트
+                    // 비밀번호가 일치할 때만 게시물을 표시
+                    document.getElementById("postContainer").style.display = "block";
+                    document.getElementById("postContent").innerText = data.content;
                 })
                 .catch(error => {
-                    alert(error.message);
+                    alert(error.message); // 오류 메시지 표시
                 });
         });
-
     </script>
+
 
     <!-- Js Plugins -->
     <script src="/js/jquery-3.3.1.min.js"></script>
