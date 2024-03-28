@@ -130,19 +130,26 @@ ul {
 .resvs .box .resv-box .submit {
     width: 200px;
     height: 59px;
-    margin-left: 190px;
+    margin-left: 390px;
     margin-top: 20px;
     font-size: 1.2rem;
-    background-color: #d35656;
+    background: #565656;
     box-shadow: none;
     outline: none;
     border: 0;
+    color: #a2a2a2;
+}
+
+.resvs .box .resv-box .submit.enabled {
+    background-color: #d35656;
     color: white;
 }
 
 .resvs .box .resv-box input{
     width: 516px;
     height: 50px;
+    font-size: 1.3rem;
+    padding-left: 10px;
 }
 .resvs .box .resv-box .hi {
     font-size: 1.3rem;

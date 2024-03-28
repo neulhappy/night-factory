@@ -97,14 +97,9 @@ ul {
     margin-left: 390px;
     margin-top: 20px;
     font-size: 1.2rem;
-    background: #565656;
+    background-color: #d35656;
     box-shadow: none;
     outline: none;
     border: 0;
-    color: #a2a2a2;
-}
-
-.resvs .box .resv-box .submit.enabled {
-    background-color: #d35656;
     color: white;
 }

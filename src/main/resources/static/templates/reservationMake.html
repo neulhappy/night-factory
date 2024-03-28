@@ -129,6 +129,18 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
+        const moneyElements = document.querySelectorAll('.money');
+        moneyElements.forEach(function(node) {
+            // 현재 텍스트 콘텐츠를 숫자로 변환
+            const currentText = node.textContent;
+            const amount = parseInt(currentText.replace(/,/g, ''), 10); // 콤마 제거 후 정수 변환
+
+            // 유효한 숫자인 경우, 숫자 포맷 적용
+            if (!isNaN(amount)) {
+                node.textContent = amount.toLocaleString();
+            }
+        });
+
         const submitButton = document.querySelector(".submit");
         submitButton.disabled = true; // 페이지 로드 시 예약하기 버튼 비활성화
         submitButton.classList.remove('enabled'); // 초기 상태에서 enabled 클래스 제거

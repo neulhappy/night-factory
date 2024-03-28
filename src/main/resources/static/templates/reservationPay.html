@@ -83,7 +83,7 @@
                                 </li>
                                 <li>
                                     <p>요금</p>
-                                    <p th:text="${session.amount}" id="sessionAmount" ></p><p>원</p>
+                                    <p class="money" th:text="${session.amount}" id="sessionAmount" ></p><p>원</p>
                                 </li>
                                 <li>
                                     <!--TODO:이게 뭐에요...?-->
@@ -119,7 +119,19 @@
 
     <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
     <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const moneyElements = document.querySelectorAll('.money');
+            moneyElements.forEach(function (node) {
+                // 현재 텍스트 콘텐츠를 숫자로 변환
+                const currentText = node.textContent;
+                const amount = parseInt(currentText.replace(/,/g, ''), 10); // 콤마 제거 후 정수 변환
 
+                // 유효한 숫자인 경우, 숫자 포맷 적용
+                if (!isNaN(amount)) {
+                    node.textContent = amount.toLocaleString();
+                }
+            });
+        });
 
         var IMP = window.IMP;
         IMP.init("imp85622471");
