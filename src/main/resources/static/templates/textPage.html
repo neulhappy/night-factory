@@ -48,13 +48,18 @@
 
     <div class="container" id="postContainer" style="width: 800px; border: 1px solid #b6b3b3; padding: 10px; display: none;">
         <div class="row">
-        <p class="col">Title: <span th:text="${post.title}"></span></p>
-        <p class="col">Author: <span th:text="${post.author}"></span></p>
-        <p class="col">Created Date: <span th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd HH:mm')}"></span></p>
-        <p class="col">Phone: <span th:text="${post.phone}"></span></p>
+
+            <p class="col-4">Author: <span th:text="${post.author}"></span></p>
+            <p class="col-4">Created Date: <span th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd HH:mm')}"></span></p>
+            <p class="col-4">Phone: <span th:text="${post.phone}"></span></p>
+            <br>
+            <p style="transform: translate(15px,0)">Title: <span th:text="${post.title}"></span></p>
+            <br>
         </div>
 
-        <p id="postContent" style=" min-height: 200px; border: white 1px solid; padding: 5px;"><span th:text="${post.content}"></span> </p>
+        <p id="postContent" style=" min-height: 200px; border: white 1px solid; padding: 5px;">
+            <span th:text="${post.content}"></span>
+        </p>
 
         <div class="row" style="padding-top: 20px">
             <div class="col-auto mr-auto"></div>
@@ -95,27 +100,27 @@
         document.getElementById("passwordForm").addEventListener("submit", function(event) {
             event.preventDefault(); // 폼이 실제로 전송되지 않도록 방지
 
-            var formData = new FormData(document.getElementById("passwordForm")); // form 데이터 생성
+            var formData = new FormData(document.getElementById("passwordForm"));
 
             // 서버로 form 데이터 전송
             fetch("/view", {
                 method: "POST",
-                body: formData // form 데이터 전송
+                body: formData
             })
                 .then(response => {
                     if (response.ok) {
-                        return response.json();
+                        return response.text();
                     } else {
                         throw new Error("비밀번호가 일치하지 않습니다.");
                     }
                 })
                 .then(data => {
-                    // 비밀번호가 일치할 때만 게시물을 표시
+
                     document.getElementById("postContainer").style.display = "block";
-                    document.getElementById("postContent").innerText = data.content;
+                    document.getElementById("postContent").innerText = data;
                 })
                 .catch(error => {
-                    alert(error.message); // 오류 메시지 표시
+                    alert(error.message);
                 });
         });
     </script>

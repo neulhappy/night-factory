@@ -4,6 +4,7 @@ import org.recorder.nightfactory.domain.Board;
 import org.recorder.nightfactory.dto.BoardDTO;
 import org.recorder.nightfactory.repository.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -69,4 +70,13 @@ public class BoardService {
         // 게시글 삭제
         boardRepository.delete(deletedBoard);
     }
+
+    public Board getByCredentials(Long postId, String password, PasswordEncoder encoder) {
+        Board originalBoard = boardRepository.findById(postId).orElse(null);
+        if (originalBoard != null && encoder.matches(password, originalBoard.getPassword())) {
+            return originalBoard;
+        }
+        return null;
+    }
+
 }

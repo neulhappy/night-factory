@@ -1,11 +1,11 @@
 package org.recorder.nightfactory.controller;
 
 import org.recorder.nightfactory.dto.BoardDTO;
-import org.recorder.nightfactory.dto.PasswordRequest;
 import org.recorder.nightfactory.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +18,9 @@ public class BoardController {
 
     @Autowired
     private BoardService boardService;
+
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
     public BoardController(BoardService boardService) {
         this.boardService = boardService;
@@ -56,12 +59,15 @@ public class BoardController {
             return ResponseEntity.badRequest().body("비밀번호를 입력해주세요.");
         }
 
+        // 비밀번호 암호화
+        String encryptedPassword = passwordEncoder.encode(password);
+
         // BoardDTO 객체 생성
         BoardDTO boardDto = new BoardDTO();
         boardDto.setTitle(title);
         boardDto.setAuthor(author);
         boardDto.setContent(content);
-        boardDto.setPassword(password);
+        boardDto.setPassword(encryptedPassword); // 암호화된 비밀번호 저장
         boardDto.setPhone(phone);
 
         try {
@@ -72,7 +78,6 @@ public class BoardController {
         }
     }
 
-
     @GetMapping("/delete/{id}")
     public String deletePost(@PathVariable Long id) {
         boardService.deleteBoardById(id);
@@ -80,22 +85,24 @@ public class BoardController {
     }
 
     @PostMapping("/view")
-    public ResponseEntity<?> viewPost(@RequestBody PasswordRequest passwordRequest) {
-        Long postId = passwordRequest.getId();
-        String password = passwordRequest.getPassword();
+    public ResponseEntity<?> viewPost(@RequestParam("id") Long postId,
+                                      @RequestParam("password") String password) {
 
         BoardDTO post = boardService.getBoardById(postId);
 
         if (post == null) {
-            return ResponseEntity.notFound().build(); // 게시물을 찾을 수 없는 경우 404 응답 반환
+            return ResponseEntity.notFound().build();
         }
 
-        if (post.getPassword().equals(password)) {
-            return ResponseEntity.ok(post); // 비밀번호가 일치하는 경우 게시글 반환
+        // 입력된 비밀번호를 암호화하여 저장된 암호화된 비밀번호와 비교
+        if (passwordEncoder.matches(password, post.getPassword())) {
+            // 게시물의 내용만 클라이언트에게 반환
+            return ResponseEntity.ok(post.getContent());
         } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("비밀번호가 일치하지 않습니다."); // 비밀번호가 일치하지 않는 경우 401 응답 반환
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("비밀번호가 일치하지 않습니다.");
         }
     }
+
 
 
 }
