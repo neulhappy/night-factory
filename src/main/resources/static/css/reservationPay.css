@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@100;200;300;400;500;600;700;800;900&family=Rubik+Burned&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Doodle+Shadow&family=Rubik+Vinyl&family=Rubik+Wet+Paint&display=swap');
+@font-face {
+    font-family: 'Ansungtangmyun-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/Ansungtangmyun-Bold.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
 /*font-family: 'Hahmlet', serif;
 font-family: 'Rubik Burned', system-ui;
 font-family: 'Ubuntu', sans-serif;*/
@@ -8,7 +14,7 @@ ul {
     list-style: none;
 }
 .reservation {
-    font-family: 'Hahmlet', serif;
+    font-family: 'Ansungtangmyun-Bold', serif;
 }
 .reservation .resvs {
     width: 1200px;
@@ -19,7 +25,7 @@ ul {
     font-size: 3.5rem;
     color: #aa1f1f;
     padding: 50px 0;
-    font-family: 'Rubik Burned', system-ui;
+    font-family: 'Rubik Doodle Shadow', system-ui;
 }
 .resvs .sec ul{
     display: flex;
@@ -58,13 +64,13 @@ ul {
     padding: 10px 0;
     text-align: center;
     color: white;
-    font-family: 'Hahmlet', serif;
+    font-family: 'Ansungtangmyun-Bold', serif;
     font-size: 1.3rem;
 }
 .resvs .box .box-time, .box-days {
     text-align: center;
     color: white;
-    font-family: 'Hahmlet', serif;
+    font-family: 'Ansungtangmyun-Bold', serif;
     font-size: 1.1rem;
     padding-bottom: 5px;
 }
@@ -80,18 +86,18 @@ ul {
 }
 .resvs .box .resv-box p {
     padding-right: 20px;
-    font-family: 'Hahmlet', serif;
+    font-family: 'Ansungtangmyun-Bold', serif;
     font-size: 1.2rem;
     color: white;
     padding-top: 10px;
 }
 .resvs .box .resv-box .submit {
-    width: 235px;
+    width: 200px;
     height: 59px;
-    margin-left: 190px;
+    margin-left: 390px;
     margin-top: 20px;
     font-size: 1.2rem;
-    background: #d35656;
+    background-color: #d35656;
     box-shadow: none;
     outline: none;
     border: 0;
