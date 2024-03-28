@@ -72,17 +72,17 @@
 <!--                        <form id="reservationForm" action="/reservation/paying" method="post">-->
                         <input type="hidden" id="reservationNumber" th:value="${session.reservationNumber}">
                             <ul>
-                                <li class="select"><p>*인원</p>
+                                <li class="select"><p>인원</p>
                                     <p th:text="${session.numberOfPeople}" id="numberOfPeople"></p><p>명</p>
                                 </li>
-                                <li><p>*예약자</p>
+                                <li><p>예약자</p>
                                     <p th:text="${session.owner}" id="owner"></p>
                                 </li>
-                                <li class="phone"><p>*연락처</p>
+                                <li class="phone"><p>연락처</p>
                                     <p th:text="${session.phoneNumber}" id="phoneNumber"></p>
                                 </li>
                                 <li>
-                                    <p>*요금</p>
+                                    <p>요금</p>
                                     <p th:text="${session.amount}" id="sessionAmount" ></p><p>원</p>
                                 </li>
                                 <li>
@@ -119,6 +119,8 @@
 
     <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
     <script>
+
+
         var IMP = window.IMP;
         IMP.init("imp85622471");
         var amount = document.getElementById("sessionAmount").innerText;

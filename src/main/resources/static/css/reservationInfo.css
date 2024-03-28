@@ -5,6 +5,7 @@
 font-family: 'Rubik Burned', system-ui;
 font-family: 'Ubuntu', sans-serif;*/
 .reservation {
+    font-family: 'Rubik Doodle Shadow', system-ui;
 }
 .reservation .sec2 {
     width: 1200px;
@@ -16,7 +17,7 @@ font-family: 'Ubuntu', sans-serif;*/
     font-size: 3.5rem;
     color: #aa1f1f;
     padding: 50px 0;
-    font-family: 'Rubik Burned', system-ui;
+    font-family: 'Rubik Doodle Shadow', system-ui;
 }
 .reservation-text {
     padding-left: 50px;
@@ -25,18 +26,15 @@ font-family: 'Ubuntu', sans-serif;*/
 .reservation-info h4 {
     padding: 10px 0;
     color: #dedede;
-    font-family: 'Hahmlet', serif;
     font-weight: 400;
 }
 
 .reservation-info span {
-    font-family: 'Rubik Burned', system-ui;
     color: #aa1f1f;
 }
 
 .reservation-info p {
     padding-left: 20px;
-    font-family: 'Hahmlet', serif;
     font-weight: 400;
     color: #d2d0d0;
 }
