@@ -47,7 +47,7 @@ CREATE TABLE `board` (
                          `content` varchar(255) NOT NULL,
                          `created_date` datetime DEFAULT NULL,
                          `modified_date` datetime DEFAULT NULL,
-                         `password` varchar(4) NOT NULL,
+                         `password` varchar(255) DEFAULT NULL,
                          `phone` varchar(20) DEFAULT NULL,
                          PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
