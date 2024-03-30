@@ -10,7 +10,7 @@
 
  ### 조원 및 역할
  - 팀장 <a href="https://github.com/Sonnet-Songbird/" >Sonnet-Songbird</a> : PM, 개발 환경 구축, DB 설계, 아키텍처 설계, 도메인 구현
- - 팀원 <a href="https://github.com/neulhappy" >neulhappy</a> : 
+ - 팀원 <a href="https://github.com/neulhappy" >neulhappy</a> : 예약 모듈(UI 구현, API를 이용한 날짜 필터링 및 AJAX를 이용한 비동기적 데이터 처리)
  - 팀원 <a href="mailto:bjh8332@gmail.com" >BYUNJIHYUN</a> : 
  - 팀원 <a href="https://github.com/Yeo-ok" >Yeo-ok </a> : 
 
