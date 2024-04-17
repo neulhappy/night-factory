@@ -34,50 +34,50 @@
 </head>
 
 <body>
-    <!-- Page Preloder -->
-    <div id="preloder">
-        <div class="loader"></div>
-    </div>
+<!-- Page Preloder -->
+<div id="preloder">
+    <div class="loader"></div>
+</div>
 
-    <!-- Header Section Begin -->
-    <header class="header">
-        <div th:insert="~{header.html}"></div>
-    </header>
-    <!-- Header End -->
+<!-- Header Section Begin -->
+<header class="header">
+    <div th:insert="~{header.html}"></div>
+</header>
+<!-- Header End -->
 
-    <!-- Reservation Section Begin -->
-    <main class="reservation">
-        <div class="wrap">
-            <div class="resv-title">
-                    <h1>Reservation</h1>
+<!-- Reservation Section Begin -->
+<main class="reservation">
+    <div class="wrap">
+        <div class="resv-title">
+            <h1>Reservation</h1>
+        </div>
+        <div class="resvs">
+            <div class="sec">
+                <ul>
+                    <li class="sp">예약하기</li>
+                    <li>예약정보</li>
+                    <li>결제하기</li>
+                    <li>예약완료</li>
+                </ul>
             </div>
-            <div class="resvs">
-                <div class="sec">
-                    <ul>
-                        <li class="sp">예약하기</li>
-                        <li>예약정보</li>
-                        <li>결제하기</li>
-                        <li>예약완료</li>
-                    </ul>
-                </div>
-                <div class="resv-days">
-                    <input type="text" id="datePicker"/>
-                </div>
-                <div class="resv-main">
+            <div class="resv-days">
+                <input type="text" id="datePicker"/>
+            </div>
+            <div class="resv-main">
 
                 <div id="theme-container" class="theme-container"></div>
                 <div id="schedule-container" class="schedule-container"></div>
-                </div>
             </div>
         </div>
-    </main>
-    <!--Reservation Section End -->
+    </div>
+</main>
+<!--Reservation Section End -->
 
 <!-- Footer Section Begin -->
 <footer class="footer">
     <div th:insert="~{footer.html}"></div>
-  </footer>
-  <!-- Footer Section End -->
+</footer>
+<!-- Footer Section End -->
 
 
 <!-- Js Plugins -->
@@ -213,6 +213,7 @@
                     applyStylesToDateElements(instance); // 월 변경 시 스타일 적용
                 },
                 onOpen: function(selectedDates, dateStr, instance) {
+                    instance.calendarContainer.style.zIndex = "10000";
                     applyStylesToDateElements(instance); // 달력이 열릴 때마다 공휴일 스타일 적용
                 },
                 onClose: function(selectedDates, dateStr, instance) {

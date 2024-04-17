@@ -100,7 +100,35 @@
 <script src="../js/jquery.slicknav.js"></script>
 <script src="../js/owl.carousel.min.js"></script>
 <script src="../js/main.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const submitButton = document.querySelector(".submit");
+        submitButton.disabled = true; // 페이지 로드 시 예약하기 버튼 비활성화
+        submitButton.classList.remove('enabled'); // 초기 상태에서 enabled 클래스 제거
 
+        const inputs = document.querySelectorAll("input[type=text],input[type=tel], select");
+
+        function checkFieldsFilled() {
+            let allFilled = true;
+            inputs.forEach(input => {
+                if (input.value.trim() === "") {
+                    allFilled = false;
+                }
+            });
+            submitButton.disabled = !allFilled;
+            if (allFilled) {
+                submitButton.classList.add('enabled'); // 모든 필드가 채워지면 enabled 클래스 추가
+            } else {
+                submitButton.classList.remove('enabled'); // 필드가 비어 있으면 enabled 클래스 제거
+            }
+        }
+
+        inputs.forEach(input => {
+            input.addEventListener("input", checkFieldsFilled);
+        });
+    })
+
+</script>
 
 </body>
 

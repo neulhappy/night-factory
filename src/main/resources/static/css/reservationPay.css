@@ -44,11 +44,12 @@ ul {
     border-radius: 5px;
     font-size: 1.3rem;
     background: #0d0e31;
-    color: #ffffff;
+    color: #B7B7B7;
     border: 1px solid rgb(23, 43, 72);
 }
 .resvs .sec .sp {
     border: solid 2px #ffffff;
+    color: white;
 }
 .resvs .box {
     padding-top: 50px;

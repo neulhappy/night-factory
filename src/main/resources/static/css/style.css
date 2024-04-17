@@ -265,7 +265,7 @@ ol {
 	height: 91px;
 	top: 0;
 	right: 0;
-	z-index: 999;
+
 }
 
 .spacial-controls .search-switch {
@@ -279,13 +279,12 @@ ol {
 
 .search-model {
 	display: none;
-	position: fixed;
 	width: 100%;
 	height: 100%;
 	left: 0;
 	top: 0;
 	background: #000;
-	z-index: 99999;
+
 }
 
 .search-model-form {
@@ -454,7 +453,6 @@ ol {
 
 .hero__text {
 	position: relative;
-	z-index: 9;
 	width: 1000px;
 	text-align: center;
 	transform: translate(20px,-200px);
