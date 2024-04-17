@@ -330,6 +330,8 @@ ol {
 
 .header {
 	background: #070720;
+	position: relative;
+	z-index: 10;
 }
 
 .header__logo {
