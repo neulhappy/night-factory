@@ -10,6 +10,12 @@
 font-family: 'Rubik Burned', system-ui;
 font-family: 'Ubuntu', sans-serif;*/
 
+.header__nav {
+    font-family: 'Ansungtangmyun-Bold', serif;
+}
+.header__nav li {
+    font-family: 'Ansungtangmyun-Bold', serif;
+}
 ul {
     list-style: none;
 }
