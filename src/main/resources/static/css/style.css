@@ -671,7 +671,7 @@ ol {
 /*--product--*/
 
 .theme p  {
-	text-align: center; font-size: 3rem; font-weight: 700; color: #a83636; padding-top: 100px;
+	text-align: center; font-size: 3rem; color: #a83636; padding-top: 100px;
 	padding-bottom: 100PX;
 }
 .theme ul{display: flex; justify-content: center; gap: 50px; }
