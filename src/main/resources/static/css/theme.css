@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Doodle+Shadow&family=Rubik+Vinyl&family=Rubik+Wet+Paint&display=swap');
+
+.theme p{font-family: 'Rubik Doodle Shadow', system-ui;}
+
 .header__logo {height: 100px}
 
 .theme-list ul{display: block; padding: 50px; transform: translate(150px,0)}
